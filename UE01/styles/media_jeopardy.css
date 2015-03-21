@@ -4,9 +4,9 @@ input {
 	border:1px solid black;
 }
 	.bPrice {
-		margin:1%;
-		width:9em;
-		height:2.5em;
+		margin:2px;
+		width:10em;
+		height:3em;
 		font-size: 15px;
 	}	
 		.bPrice:hover{
@@ -29,10 +29,10 @@ input {
 		margin:0 auto;
 	}*/
 	#header {
-		position: relative;
-		height: 50px;
+		position:absolute; 
+		height: 8%;
 		background:#24246B;
-		max-width:100%;
+		width:100%;
 	}
 		.text{
 			position: relative;
@@ -58,12 +58,22 @@ input {
 			.button:hover{
 				background: #EEAD4D;
 			}
+	#content {
+		position: absolute;
+		top: 8%;
+		width:70%;
+		height:92%;
+		background:transparent;
+	}
 	#navigation {
 		position:absolute;
+		top: 8%;
 		width:30%;
+		height:92%;
 		background: transparent;
 	/*	border: 1px solid #CCC; */
 		right: 0px;
+
 	}
 		.avatar{
 			float:left;
@@ -75,12 +85,6 @@ input {
 		.pos{
 			top:50px;
 		}
-	#content {
-		position: absolute;
-		width:70%;
-		background: transparent;
-		margin-right:auto;
-	}
 
 #AnsField {
 	border:1px solid;
@@ -103,24 +107,35 @@ input {
 	}
 }
 
+#CatField {
+	border:1px solid;
+	padding: 0.5em 0.5em 0.5em 0.5em;	
+	width: 131px;
+	height: 1.5em;
+	margin: 2px;
+	text-align:center;
+	font-size: 15px;
+}
+
 #PriceField {
 	position: absolute;
-	width: 11em;
+	width: 10em;
+	text-align: center;
 }	
 	.pos1 {
-		left:10%;
+		left:5em;
 	}
 	.pos2 {
-		left:25%;
+		left:15em;
 	}
 	.pos3 {
-		left:40%;
+		left:25em;
 	}
 	.pos4 {
-		left:55%;
+		left:35em;
 	}
 	.pos5 {
-		left:70%;
+		left:45em;
 	}
 
 
