@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta name="viewport" content="width=device-width"/>
+			<title>Jeopardy!</title>
+<!--			<link rel="stylesheet" type="text/css" href="styles/jeopardy.css" /> -->
+			<link rel="stylesheet" type="text/css" media=" only screen and (max-width: 2360px)" href="styles/media_jeopardy.css"/>
+		</head>
+		<body>
+
+			<div id="header">
+				<img src="img/big-logo-big.png" class="logo"/> 
+				<div class="text">Jeopardy!  </div>
+				<input type="submit" value="Abmelden" name="logout" class="button"/>
+			</div>
+			
+<!--			<div id="wrapper"> -->
+				<div id="content">
+					<p id="AnsField" class="classG">Du hast richtig/falsch geantwortet: "+/- Geldsumme"</p>
+					<p id="AnsField" class="classR">Deadpool hat richtig/falsch geantwortet: "+/- Geldsumme"</p>
+					<p id="AnsField" class="classB">"Spieler" hat "Kategorie" für "Geldsumme" gewählt.</p>
+					<!--
+					 Dynamisch umschreiben 
+					 Kategorien  -->
+					<!-- Preise-1 
+					 100€ 100€ 100€ 100€ 100€ <br/> -->
+					 <div style="margin-left:auto;margin-right:auto">
+					 <div id="PriceField" class="pos1">
+					 <p>TV</p>
+					<input type="submit" value="100€" name="price" class="bPrice"/>
+					<input type="submit" value="200€" name="price" class="bPrice"/>
+					<input type="submit" value="500€" name="price" class="bPrice"/>
+					<input type="submit" value="750€" name="price" class="bPrice"/>
+					<input type="submit" value="1000€" name="price" class="bPrice"/><br/>
+					</div>
+					 <!--Preise-2 
+					 200€ 200€ 200€ 200€ 200€ <br/> -->
+					 <div id="PriceField" class="pos2">
+					 <p>SSD</p>
+					<input type="submit" value="100€" name="price" class="bPrice"/>
+					<input type="submit" value="200€" name="price" class="bPrice"/>
+					<input type="submit" value="500€" name="price" class="bPrice"/>
+					<input type="submit" value="750€" name="price" class="bPrice"/>
+					<input type="submit" value="1000€" name="price" class="bPrice"/><br/>
+					</div>
+					 <!--Preise-3 
+					 500€ 500€ 500€ 500€ 500€ <br/> -->
+					 <div id="PriceField" class="pos3">
+					 <p>Web</p>
+					<input type="submit" value="100€" name="price" class="bPrice"/>
+					<input type="submit" value="200€" name="price" class="bPrice"/>
+					<input type="submit" value="500€" name="price" class="bPrice"/>
+					<input type="submit" value="750€" name="price" class="bPrice"/>
+					<input type="submit" value="1000€" name="price" class="bPrice"/><br/>
+					</div>	
+					<!-- Preise-4 
+					 750€ 750€ 750€ 750€ 750€ <br/> -->
+					 <div id="PriceField" class="pos4">
+					 <p>Sport</p>
+					<input type="submit" value="100€" name="price" class="bPrice"/>
+					<input type="submit" value="200€" name="price" class="bPrice"/>
+					<input type="submit" value="500€" name="price" class="bPrice"/>
+					<input type="submit" value="750€" name="price" class="bPrice"/>
+					<input type="submit" value="1000€" name="price" class="bPrice"/><br/>
+					</div>
+					<!-- Preise-5 
+					 1000€ 1000€  1000€ <br/> -->
+					 <div id="PriceField" class="pos5">
+					 <p>TUWIEN</p>
+					<input type="submit" value="100€" name="price" class="bPrice"/>
+					<input type="submit" value="200€" name="price" class="bPrice"/>
+					<input type="submit" value="500€" name="price" class="bPrice"/>
+					<input type="submit" value="750€" name="price" class="bPrice"/>
+					<input type="submit" value="1000€" name="price" class="bPrice"/><br/>
+					</div>
+					</div>
+					Letztes Spiel: "Datum und Uhrzeit" <input type="submit" value="wählen" name="choose"/>
+
+				</div>
+
+				<div id="navigation">
+				<div >
+					"SpielerName (Du)" <br/>
+					"Gewonnene Summe"<br/>
+					<img src="img/avatar/black-widow_head.png" class="avatar"/> 
+					</div>
+					<div>
+					"SpielerName" <br/>
+					"Gewonnene Summe"<br/>
+					<img src="img/avatar/deadpool_head.png" class="avatar"/> 
+					</div>
+
+					<br/> Fragen: x/n 
+				</div>
+			<!--</div>-->
+
+		</body>
+	</html>
+
+
+	<!-- <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+				<circle cx="100" cy="70" r="40" stroke="black" stroke-width="3" fill="red" />
+				Sorry, your browser does not support inline SVG.
+			</svg>
+
+	-->

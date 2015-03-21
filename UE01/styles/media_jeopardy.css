@@ -1,0 +1,126 @@
+input {
+	background: #24246B;
+	color: white;
+	border:1px solid black;
+}
+	.bPrice {
+		margin:1%;
+		width:9em;
+		height:2.5em;
+		font-size: 15px;
+	}	
+		.bPrice:hover{
+			background: #7070B8;
+		}
+		.bPrice:focus{
+			background:#E68A00;
+		}
+
+@media only screen and (max-width: 2360px){
+	body {
+		margin: 0;
+		background:#E8EDF2;
+		width: 100%;
+	}
+/*	#wrapper{
+		position:absolute;
+		width:100%;
+		height:100%;
+		margin:0 auto;
+	}*/
+	#header {
+		position: relative;
+		height: 50px;
+		background:#24246B;
+		max-width:100%;
+	}
+		.text{
+			position: relative;
+			top: 25%;
+			text-align: left;
+			color: white;
+			font-size: 20px;
+			text-indent: 1%;
+		}
+		.logo{
+			position: relative;
+			width: 50px;
+			float:left;
+		}
+		.button{
+			position: absolute;
+			background: #E68A00;
+			width:8.5em;
+			height:2.5em;
+			left: 90%;
+			top: 17%;
+		}
+			.button:hover{
+				background: #EEAD4D;
+			}
+	#navigation {
+		position:absolute;
+		width:30%;
+		background: transparent;
+	/*	border: 1px solid #CCC; */
+		right: 0px;
+	}
+		.avatar{
+			float:left;
+			min-width: 10%;
+			min-height:10%;
+			max-width: 25%;
+			max-height: 25%;
+			}
+		.pos{
+			top:50px;
+		}
+	#content {
+		position: absolute;
+		width:70%;
+		background: transparent;
+		margin-right:auto;
+	}
+
+#AnsField {
+	border:1px solid;
+	padding: 0.3em 0.3em 0.3em 0.3em;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+	#AnsField.classG {
+		border-color: #00CC00;
+		color: #00CC00;
+	}
+	#AnsField.classR {
+		border-color: #FF0000;
+		color: #FF0000;
+	}
+	#AnsField.classB {
+		color: #000000;
+	}
+}
+
+#PriceField {
+	position: absolute;
+	width: 11em;
+}	
+	.pos1 {
+		left:10%;
+	}
+	.pos2 {
+		left:25%;
+	}
+	.pos3 {
+		left:40%;
+	}
+	.pos4 {
+		left:55%;
+	}
+	.pos5 {
+		left:70%;
+	}
+
+
