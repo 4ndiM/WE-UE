@@ -36,11 +36,22 @@ input {
 			background: var(--bckgo);
 			color: #000;
 		}
+#Choose{
+	background: linear-gradient(#35D143, #21B52E);
+	border-radius: 5px;
+	position:absolute; 
+	width: 110px;
+	height: 30px;
+	left:78.5%; 
+	top:65%;
+}
+	#Choose:hover {
+		background: linear-gradient(#5DDA69,#4DC458);
+	}
 
 
 
-
-@media only screen and (max-width: 2360px){
+@media only screen and (min-width: 720px){
 	
 /*	#wrapper{
 		position:absolute;
@@ -49,18 +60,20 @@ input {
 		margin:0 auto;
 	}*/
 	#header {
-		position:absolute; 
-		height: 8%;
+		position:relative; 
+		height: 50px;
 		background:var(--bckgb);
 		width:100%;
+		margin: auto;
 	}
 		.text{
-			position: relative;
+			position: absolute;
 			top: 25%;
 			text-align: left;
 			color: white;
 			font-size: 20px;
 			text-indent: 1%;
+			left: 50px;
 		}
 		.logo{
 			position: relative;
@@ -70,24 +83,26 @@ input {
 		.button{
 			position: absolute;
 			background: var(--bckgo);
-			width:8.5em;
-			height:2.5em;
-			left: 90%;
-			top: 17%;
+			width:9em;
+			height:2em;
+			right:1.5%;
+			top: 20%;
 		}
 			.button:hover{
 				background: #EEAD4D;
 			}
 	#content {
+
 		position: absolute;
-		top: 8%;
+		top: 50px;
 		width:75%;
-		height:92%;
+		height:100%;
+		max-height: 600px;
 		background:transparent;
 	}
 	#navigation {
 		position:absolute;
-		top: 8%;
+		top: 50px;
 		width:25%;
 		height:92%;
 		background: transparent;
@@ -99,7 +114,7 @@ input {
 	#players {
 		position: relative;
 		border: 0px solid;
-		height:12%;
+		height:70px;
 		width:100%;
 		margin-bottom: 20px;
 		margin-top:10px;
@@ -117,6 +132,7 @@ input {
 			}
 
 #AnsField {
+	top: 60px;
 	border:1px solid;
 	padding: 0.3em 0.3em 0.3em 0.3em;
 	width: 60%;
@@ -169,5 +185,9 @@ input {
 	.pos5 {
 		left:74%;
 	}
-
+#DateC{
+	position:absolute; 
+	top:70%;
+	left:10%;
+}
 
