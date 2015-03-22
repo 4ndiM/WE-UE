@@ -1,13 +1,24 @@
+body {
+		/*variable definitions; apply to whole body of the page*/
+		--bckgb: linear-gradient(#34508D, #29447D) ;
+		--bckgo:linear-gradient(#FA7700, #E66D00);
+		margin: 0;
+		background:#E8EDF2;
+		width: 100%;
+	}
+
 input {
-	background: #24246B;
+  	background: var(--bckgb); /* Standard syntax */
 	color: white;
 	border:1px solid black;
 }
+#fButton{
+	margin:2px;
+	width:100%;
+	height:2.5em;
+	font-size:15px;
+}
 	.bPrice {
-		margin:2px;
-		width:10em;
-		height:3em;
-		font-size: 15px;
 	}	
 		.bPrice:hover{
 			background: #7070B8;
@@ -15,13 +26,22 @@ input {
 		.bPrice:focus{
 			background:#E68A00;
 		}
+		.bPrice:disabled{
+			background: #D1D5DA;
+			color: #8B8E91;
+		}
+	.bCat{
+	}
+		.bCat:disabled{
+			background: var(--bckgo);
+			color: #000;
+		}
+
+
+
 
 @media only screen and (max-width: 2360px){
-	body {
-		margin: 0;
-		background:#E8EDF2;
-		width: 100%;
-	}
+	
 /*	#wrapper{
 		position:absolute;
 		width:100%;
@@ -31,7 +51,7 @@ input {
 	#header {
 		position:absolute; 
 		height: 8%;
-		background:#24246B;
+		background:var(--bckgb);
 		width:100%;
 	}
 		.text{
@@ -49,7 +69,7 @@ input {
 		}
 		.button{
 			position: absolute;
-			background: #E68A00;
+			background: var(--bckgo);
 			width:8.5em;
 			height:2.5em;
 			left: 90%;
@@ -61,30 +81,40 @@ input {
 	#content {
 		position: absolute;
 		top: 8%;
-		width:70%;
+		width:75%;
 		height:92%;
 		background:transparent;
 	}
 	#navigation {
 		position:absolute;
 		top: 8%;
-		width:30%;
+		width:25%;
 		height:92%;
 		background: transparent;
 	/*	border: 1px solid #CCC; */
 		right: 0px;
 
 	}
+
+	#players {
+		position: relative;
+		border: 0px solid;
+		height:12%;
+		width:100%;
+		margin-bottom: 20px;
+		margin-top:10px;
+		font-size: 14px;
+	}
 		.avatar{
+			border:2px solid;
+			border-radius: 3px;
+			text-align: right;
 			float:left;
-			min-width: 10%;
-			min-height:10%;
-			max-width: 25%;
-			max-height: 25%;
+			width: auto;
+			height: auto;
+			max-width: 100%;
+			max-height: 100%;
 			}
-		.pos{
-			top:50px;
-		}
 
 #AnsField {
 	border:1px solid;
@@ -93,6 +123,8 @@ input {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	margin-bottom: 1%;
+	margin-top:1%;
 }
 	#AnsField.classG {
 		border-color: #00CC00;
@@ -119,23 +151,23 @@ input {
 
 #PriceField {
 	position: absolute;
-	width: 10em;
+	width: 15%;
 	text-align: center;
 }	
 	.pos1 {
-		left:5em;
+		left:10%;
 	}
 	.pos2 {
-		left:15em;
+		left:26%;
 	}
 	.pos3 {
-		left:25em;
+		left:42%;
 	}
 	.pos4 {
-		left:35em;
+		left:58%;
 	}
 	.pos5 {
-		left:45em;
+		left:74%;
 	}
 
 
