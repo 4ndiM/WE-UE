@@ -39,14 +39,18 @@ input {
 #Choose{
 	background: linear-gradient(#35D143, #21B52E);
 	border-radius: 5px;
-	position:absolute; 
 	width: 110px;
 	height: 30px;
-	left:78.5%; 
-	top:65%;
 }
 	#Choose:hover {
 		background: linear-gradient(#5DDA69,#4DC458);
+	}
+
+	#hooseF {
+		position: absolute;
+		left:78.5%; 
+		top:35%;
+
 	}
 
 
