@@ -43,13 +43,6 @@ input {
 		background: linear-gradient(#5DDA69,#4DC458);
 	}
 
-	#hooseF {
-		position: absolute;
-		left:78.5%; 
-		top:35%;
-
-	}
-
 
 
 @media only screen and (min-width: 720px){
@@ -187,8 +180,9 @@ input {
 		left:74%;
 	}
 #DateC{
-	position:absolute; 
-	top:70%;
+	position:relative; 
+	top:10%;
 	left:10%;
+	font-size: 14px;
 }
 
