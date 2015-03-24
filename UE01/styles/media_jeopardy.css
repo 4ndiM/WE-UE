@@ -1,17 +1,11 @@
 body {
-		/*variable definitions; apply to whole body of the page*/
-		--bckgb: linear-gradient(#34508D, #29447D) ;
-		--wbkitb: -webkit-linear-gradient(#34508D, #29447D);
-		--bckgo: linear-gradient(#FA7700, #E66D00);
-		--wbkito: -wbkitbebkit-linear-gradient(#FA7700, #E66D00);
 		margin: 0;
 		background:#E8EDF2;
 		width: 100%;
 	}
 
 input {
-  	background: var(--wbkitb); /* Standard syntax */
-  	background: var(--wbkito); 
+  	background: linear-gradient(#34508D, #29447D);
 	color: white;
 	border:1px solid black;
 }
@@ -36,20 +30,17 @@ input {
 	.bCat{
 	}
 		.bCat:disabled{
-			background: var(--bckgo);
-			background: var(--wbkito);
+			background: linear-gradient(#FA7700, #E66D00);
 			color: #000;
 		}
 #Choose{
 	background: linear-gradient(#35D143, #21B52E);
-	background: -webkit-linear-gradient(#35D143, #21B52E);
 	border-radius: 5px;
 	width: 110px;
 	height: 30px;
 }
 	#Choose:hover {
 		background: linear-gradient(#5DDA69,#4DC458);
-		background: -webkit-linear-gradient(#5DDA69,#4DC458);
 	}
 
 	#hooseF {
@@ -72,8 +63,7 @@ input {
 	#header {
 		position:relative; 
 		height: 50px;
-		background:var(--bckgb);
-		background:var(--wbkitb);
+	  	background: linear-gradient(#34508D, #29447D);
 		width:100%;
 		margin: auto;
 	}
@@ -93,8 +83,7 @@ input {
 		}
 		.button{
 			position: absolute;
-			background: var(--bckgo);
-			background: var(--wbkito);
+			background: linear-gradient(#FA7700, #E66D00);
 			width:9em;
 			height:2em;
 			right:1.5%;
