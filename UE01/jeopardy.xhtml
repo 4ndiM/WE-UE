@@ -6,7 +6,7 @@
 			<meta name="viewport" content="width=device-width"/>
 			<title>Jeopardy!</title>
 <!--			<link rel="stylesheet" type="text/css" href="styles/jeopardy.css" /> -->
-			<link rel="stylesheet" type="text/css" media=" only screen and (min-width: 720px)" href="styles/media_jeopardy.css"/>
+			<link rel="stylesheet" type="text/css" href="styles/media_jeopardy.css"/>
 		</head>
 		<body>
 
@@ -16,7 +16,20 @@
 				<input type="submit" value="Abmelden" name="logout" class="button"/>
 			</div>
 			
-<!--			<div id="wrapper"> -->
+			<div id="wrapper"> 
+				<div id="navigation">
+					<div id="players" class="players-left">
+						<img src="img/avatar/black-widow_head.png" class="avatar" style="border-color:orange;"/>
+						<p>"SpielerName (Du)"</p>
+						<p>"Gew. Summe"</p>
+					</div>
+					<div id="players" class="players-right">
+						<img src="img/avatar/deadpool_head.png" class="avatar avatar-right" style="clear:left;"/> 
+						<p>"SpielerName"</p>
+						<p>"Gew. Summe"</p>
+					</div>
+					<div class="questions">Fragen: x/n</div>
+				</div>
 				<div id="content">
 					<p id="AnsField" class="classG">Du hast richtig/falsch geantwortet: "+/- Geldsumme"</p>
 					<p id="AnsField" class="classR">Deadpool hat richtig/falsch geantwortet: "+/- Geldsumme"</p>
@@ -26,77 +39,64 @@
 					 Kategorien  -->
 					<!-- Preise-1 
 					 100€ 100€ 100€ 100€ 100€ <br/> -->
-					 <div id="PriceField" class="pos1">
-						<input type="submit" value="TV" name="price" id="fButton" class="bCat" disabled="disabled"/>
-						<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-						<br/>
+					 <div id="PriceFieldContainer">
+						 <div id="PriceField">
+							<input type="submit" value="TV" name="price" id="fButton" class="bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+							<br/>
+						</div>
+						 <!--Preise-2 
+						 200€ 200€ 200€ 200€ 200€ <br/> -->
+						 <div id="PriceField">
+							<input type="submit" value="SSD" name="price" id="fButton" class="bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
+						</div>
+						 <!--Preise-3 
+						 500€ 500€ 500€ 500€ 500€ <br/> -->
+						 <div id="PriceField">
+							<input type="submit" value="Web" name="price" id="fButton" class="bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
+						</div>	
+						<!-- Preise-4 
+						 750€ 750€ 750€ 750€ 750€ <br/> -->
+						 <div id="PriceField">
+							<input type="submit" value="Sport" name="price" id="fButton" class="bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+							<br/>
+						</div>
+						<!-- Preise-5 
+						 1000€ 1000€  1000€ <br/> -->
+						 <div id="PriceField">
+							<input type="submit" value="TUWIEN" name="price" id="fButton" class="bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
+						</div>
 					</div>
-					 <!--Preise-2 
-					 200€ 200€ 200€ 200€ 200€ <br/> -->
-					 <div id="PriceField" class="pos2">
-						<input type="submit" value="SSD" name="price" id="fButton" class="bCat" disabled="disabled"/>
-						<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
-					</div>
-					 <!--Preise-3 
-					 500€ 500€ 500€ 500€ 500€ <br/> -->
-					 <div id="PriceField" class="pos3">
-						<input type="submit" value="Web" name="price" id="fButton" class="bCat" disabled="disabled"/>
-						<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
-					</div>	
-					<!-- Preise-4 
-					 750€ 750€ 750€ 750€ 750€ <br/> -->
-					 <div id="PriceField" class="pos4">
-						<input type="submit" value="Sport" name="price" id="fButton" class="bCat" disabled="disabled"/>
-						<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-						<br/>
-					</div>
-					<!-- Preise-5 
-					 1000€ 1000€  1000€ <br/> -->
-					 <div id="PriceField" class="pos5" style="position:relative;">
-						<input type="submit" value="TUWIEN" name="price" id="fButton" class="bCat" disabled="disabled"/>
-						<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-						<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
-					</div>
-					<div style="position:relative;top:1%;width=100%;background:darkgreen;">
-						<input type="submit" value="wählen" name="choose" id="Choose" style="position:absolute;right:10.7%;"/>
+					<div class="choose-container">
+						<input type="submit" value="wählen" name="choose" id="Choose" style=""/>
 					</div>
 					<div id="DateC">Letztes Spiel: "Datum und Uhrzeit" </div>
 				</div>
 
-				<div id="navigation">
-					<div id="players">
-						<img src="img/avatar/black-widow_head.png" class="avatar" style="border-color:orange;"/>
-						"SpielerName (Du)"<br/>
-						<br/> 
-						"Gewonnene Summe"<br/>
-					</div>
-					<div id="players">
-						<img src="img/avatar/deadpool_head.png" class="avatar" style="clear:left;"/> 
-						"SpielerName" <br/>
-						<br/>
-						"Gewonnene Summe"<br/>
-					</div>
-
-					Fragen: x/n 
-				</div>
-			<!--</div>-->
+				
+			</div>
 
 		</body>
 	</html>
