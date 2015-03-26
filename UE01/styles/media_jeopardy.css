@@ -207,7 +207,7 @@ input {
 	}
 	#content {
 		top: 115px;
-		width:100%;
+		width:99.5%;
 	}
 	#navigation {
 		position:absolute;
@@ -233,10 +233,6 @@ input {
 			float:right;
 			text-align: right;
 		}
-
-	.button{
-		width:7em;
-	}
 }
 
 @media only screen and (max-width: 480px) {
@@ -246,6 +242,9 @@ input {
 	#players {
 		font-size:13px;
 		height:60px;
+	}
+	.button{
+		width:7em;
 	}
 }
 
