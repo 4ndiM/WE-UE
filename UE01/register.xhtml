@@ -5,7 +5,7 @@
 		<head>
 			<meta name="viewport" content="width=device-width"/>
 			<title>Welcome</title>
-			<link rel="stylesheet" type="text/css" media=" only screen and (min-width: 720px)" href="styles/media_jeopardy.css"/>
+			<link rel="stylesheet" type="text/css" href="styles/media_jeopardy.css"/>
 		</head>
 		<body>
 			<div id="header">
@@ -14,12 +14,12 @@
 				<input type="submit" value="Abmelden" name="logout" class="button"/>
 			</div>
 
-			<form action="" id="reg_form" class="center">
+			<form action="" id="reg_form" class="center" method="POST">
 				<h3 class="secHeader">Persönliche Daten</h3>
 				<div id="perDaten">
     						<label for="vorname">Vorname: </label> <input type="text" name="vorname" class="textfield" />
 						<label for="nachname">Nachname: </label> <input type="text" name="nachname" class="textfield" />
-						<label for="gebtag">Geburtstag: </label> <input type="text" id="gebtag" name="gebtag" class="textfield" />
+						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield" />
 						<label for="sex">Geschlecht: </label>
 							<input type="radio" name="sex" value="male" checked="checked"/> männlich
 							<input type="radio" name="sex" value="female" /> weiblich
@@ -33,7 +33,7 @@
 					</select>
 					<label for="benutzer">Benutzername*: </label> <input type="text" id="benutzer" name="benutzer" class="textfield" pattern=".{4,8}" aria-describedby="name_format" required="required"/>
 					<p id="name_format" class="help">Mindestlänge von 4 Zeichen und Maximallänge von 8 Zeichen.</p>
-					<label for="passwort">Passwort*: </label> <input type="text" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" aria-describedby="pw_format" required="required"/>
+					<label for="passwort">Passwort*: </label> <input type="password" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" aria-describedby="pw_format" required="required"/>
 					<p id="pw_format" class="help">Mindestlänge von 4 Zeichen und Maximallänge von 8 Zeichen.</p>
 				</div>
 				<input type="submit" value="Registrieren" class="reg_button" />

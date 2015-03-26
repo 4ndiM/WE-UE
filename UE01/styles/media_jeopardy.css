@@ -266,9 +266,7 @@ input {
 	text-indent: 5px;
 }
 label {
-	/*display: block;*/
 	display: inline-block;
-	
 	width: 150px;
 	margin-top: 30px;
 	margin-bottom: 5px;
@@ -283,20 +281,14 @@ label {
 }
 
 #reg_form{
-	/*width: 302px;*/
 	width: 460px;
-	
-}
-
-#avLabel{
-	width: 150px;
 }
 
 #avSelect{
 	background: #FFFFFF;
 	color: #000000;
 	border: 1px solid #34508D;
-	width: 302px;
+	width: 304px;
 	height: 30px;
 	border-radius: 5px;
 }
@@ -305,7 +297,6 @@ label {
 	background: linear-gradient(#35D143, #21B52E);
 	border-radius: 5px;
 	width: 150px;
-	/*width: 300px;*/
 	height: 30px;
 	float: right;
 	margin-top: 25px;
@@ -313,6 +304,11 @@ label {
 	.reg_button:hover {
 		background: linear-gradient(#5DDA69,#4DC458);
 	}
+
+.reg_button:disabled{
+	background: #D5D5D5;
+	border: 1px solid #959595;
+}
 
 #manField{
 	margin-top: 100px;
@@ -335,12 +331,36 @@ input:focus + .help{
 	display:block;
 }
 
-.disabled{
-	background: #D5D5D5;
-	border: 1px solid #959595;
-}
+@media only screen and (max-width: 470px) {
+	.textfield{
+		width: 97%;
+		margin-left: 5px;
+	}
 
-.disabled:hover{
-	background: #D5D5D5;
+	.reg_button{
+		width: 98%;
+		margin-left: 5px;
+		float: left;
+	}
+
+	#reg_form{
+		width: 97%;
+		margin-left: 5px;
+	}
+
+	label {
+		display: block;
+		margin-left: 5px;
+
+	.secHeader{
+		margin-left: 5px;
+	}
+
+	#avSelect{
+		position: relative; 
+		width: 98%;
+		margin-left: 5px;
+	}
 }
+	
 
