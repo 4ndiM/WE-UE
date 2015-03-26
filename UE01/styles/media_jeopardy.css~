@@ -4,11 +4,13 @@ body {
 	width: 100%;
 	font-family:sans-serif;
 }
+
 input {
-	background: linear-gradient(#34508D, #29447D);
+  	background: linear-gradient(#34508D, #29447D);
 	color: white;
 	border:1px solid black;
 }
+
 #wrapper{
 	position: relative;
 	margin-left: auto;
@@ -16,16 +18,19 @@ input {
 	width:98%;
 	min-width: 300px;
 }
+
 #content {
 	position: absolute;
 	float:right;
 	overflow:hidden;
 }
+
 #navigation {
 	position: relative;
 	float:right;
 	overflow:hidden;
 }
+
 #players {
 	position: relative;
 	float:left;
@@ -56,6 +61,7 @@ input {
 		margin-top:15px;
 		font-weight: bold;
 	}
+
 #fButton{
 	margin:2px;
 	width:100%;
@@ -63,23 +69,23 @@ input {
 	font-size:15px;
 }
 	.bPrice {
-	}
-	.bPrice:hover{
-		background: #7070B8;
-	}
-	.bPrice:focus{
-		background:#E68A00;
-	}
-	.bPrice:disabled{
-		background: #D1D5DA;
-		color: #8B8E91;
-	}
-	.bCat{
-	}
-	.bCat:disabled{
-		background: linear-gradient(#FA7700, #E66D00);
-		color: #000;
-	}
+	}	
+		.bPrice:hover{
+			background: #7070B8;
+		}
+		.bPrice:focus{
+			background:#E68A00;
+		}
+		.bPrice:disabled{
+			background: #D1D5DA;
+			color: #8B8E91;
+		}
+		.bCat{
+		}
+		.bCat:disabled{
+			background: linear-gradient(#FA7700, #E66D00);
+			color: #000;
+		}
 #Choose{
 	background: linear-gradient(#35D143, #21B52E);
 	border-radius: 5px;
@@ -87,19 +93,20 @@ input {
 	height: 30px;
 	float:right;
 }
-#Choose:hover {
-	background: linear-gradient(#5DDA69,#4DC458);
-}
+	#Choose:hover {
+		background: linear-gradient(#5DDA69,#4DC458);
+	}
 	.choose-container {
 		position:relative;
 		width: 99%;
 		overflow: hidden;
 		margin-top: 10px;
 	}
+
 #header {
-	position:relative;
+	position:relative; 
 	height: 50px;
-	background: linear-gradient(#34508D, #29447D);
+  	background: linear-gradient(#34508D, #29447D);
 	width:100%;
 	margin: auto;
 	min-width:300px;
@@ -129,6 +136,7 @@ input {
 	.button:hover{
 		background: #EEAD4D;
 	}
+
 #AnsField {
 	top: 60px;
 	border:1px solid;
@@ -140,30 +148,33 @@ input {
 	margin-bottom: 1%;
 	margin-top:2%;
 }
-#AnsField.classG {
-	border-color: #00CC00;
-	color: #00CC00;
-}
-#AnsField.classR {
-	border-color: #FF0000;
-	color: #FF0000;
-}
-#AnsField.classB {
-	color: #000000;
-}
+	#AnsField.classG {
+		border-color: #00CC00;
+		color: #00CC00;
+	}
+	#AnsField.classR {
+		border-color: #FF0000;
+		color: #FF0000;
+	}
+	#AnsField.classB {
+		color: #000000;
+	}
+
 #CatField {
 	border:1px solid;
-	padding: 0.5em 0.5em 0.5em 0.5em;
+	padding: 0.5em 0.5em 0.5em 0.5em;	
 	width: 131px;
 	height: 1.5em;
 	margin: 2px;
 	text-align:center;
 	font-size: 15px;
 }
-#pricefieldcontainer {
+
+#PriceFieldContainer {
 	width:100%;
 	overflow: hidden;
 }
+
 #PriceField {
 	position: relative;
 	width: 19%;
@@ -172,6 +183,7 @@ input {
 	margin-left: 0.5%;
 	margin-right: 0.5%;
 }
+
 #DateC{
 	position:relative;
 	width:100%;
@@ -179,14 +191,17 @@ input {
 	font-size: 14px;
 	padding-left: 1%;
 }
+
+
+
 @media only screen and (max-width: 800px) {
 	#wrapper {
 		width:100%;
 	}
-		.choose-container {
-			width: 99%;
-			margin-right:1%;
-		}
+	.choose-container {
+		width: 99%;
+		margin-right:1%;
+	}
 	#AnsField {
 		width: 80%;
 	}
@@ -199,6 +214,7 @@ input {
 		width:98%;
 		margin-left:1%;
 		margin-right:1%;
+
 	}
 		.questions {
 			text-align:center;
@@ -218,6 +234,7 @@ input {
 			text-align: right;
 		}
 }
+
 @media only screen and (max-width: 480px) {
 	#PriceField {
 		width: 100%;
@@ -230,117 +247,37 @@ input {
 		width:7em;
 	}
 }
+
 @media only screen and (max-width: 380px) {
 	#players {
 		font-size: 11px;
 		height:50px;
 	}
 }
+
 @media only screen and (min-width: 800px) {
 	#content {
 		right:230px;
 	}
+
 	#navigation {
 		width:230px;
 	}
+
 	#PriceFieldContainer {
 		margin-right:1%;
 		width:99%;
 	}
+
 }
+
 @media only screen and (min-width: 900px) {
+	
 	#wrapper {
 		width:90%;
 	}
+
 }
 
-/* -------------------------------------- REGISTER -------------------------------------- */
 
-.textfield{
-	background: #FFFFFF;
-	color: #000000;
-	border:1px solid #34508D;
-	width: 300px;
-	height: 25px;
-	border-radius: 5px;
-	text-indent: 5px;
-}
-label {
-	/*display: block;*/
-	display: inline-block;
-	
-	width: 150px;
-	margin-top: 30px;
-	margin-bottom: 5px;
-	text-align: left;
-}
-.center{
-	margin-left: auto;
-	margin-right: auto;
-}
-.secHeader{
-	color: #006BAC
-}
-
-#reg_form{
-	/*width: 302px;*/
-	width: 460px;
-	
-}
-
-#avLabel{
-	width: 150px;
-}
-
-#avSelect{
-	background: #FFFFFF;
-	color: #000000;
-	border: 1px solid #34508D;
-	width: 302px;
-	height: 30px;
-	border-radius: 5px;
-}
-
-.reg_button{
-	background: linear-gradient(#35D143, #21B52E);
-	border-radius: 5px;
-	width: 150px;
-	/*width: 300px;*/
-	height: 30px;
-	float: right;
-	margin-top: 25px;
-}
-	.reg_button:hover {
-		background: linear-gradient(#5DDA69,#4DC458);
-	}
-
-#manField{
-	margin-top: 100px;
-}
-
-#copyright{
-	margin-top: 100px;
-}
-
-#perDaten{
-	margin-bottom: 40px;
-}
-
-.help {
-    display:none;
-    font-size:80%;
-}
-input:focus + .help{
-	margin-top: 10px;
-	display:block;
-}
-
-.disabled{
-	background: #D5D5D5;
-	border: 1px solid #959595;
-}
-
-.disabled:hover{
-	background: #D5D5D5;
-}
 

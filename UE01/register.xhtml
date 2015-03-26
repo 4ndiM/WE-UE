@@ -3,13 +3,69 @@
 
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
-			<title>Jeopardy!</title>
-			<!-- <link rel="stylesheet" type="text/css" href=""> -->
+			<meta name="viewport" content="width=device-width"/>
+			<title>Welcome</title>
+			<link rel="stylesheet" type="text/css" media=" only screen and (min-width: 720px)" href="styles/media_jeopardy.css"/>
 		</head>
 		<body>
-			<h2>Jeopardy!</h2>
-			<input type="submit" value="Abmelden" name="logout"/>
+			<div id="header">
+				<img src="img/big-logo-big.png" class="logo"/> 
+				<div class="text">Jeopardy!  </div>
+				<input type="submit" value="Abmelden" name="logout" class="button"/>
+			</div>
 
-			<h3>Persönliche Daten</h3>	
+			<form action="" id="reg_form" class="center">
+				<h3 class="secHeader">Persönliche Daten</h3>
+				<div id="perDaten">
+    						<label for="vorname">Vorname: </label> <input type="text" name="vorname" class="textfield" />
+						<label for="nachname">Nachname: </label> <input type="text" name="nachname" class="textfield" />
+						<label for="gebtag">Geburtstag: </label> <input type="text" id="gebtag" name="gebtag" class="textfield" />
+						<label for="sex">Geschlecht: </label>
+							<input type="radio" name="sex" value="male" checked="checked"/> männlich
+							<input type="radio" name="sex" value="female" /> weiblich
+				</div>
+				<h3 class="secHeader">Spielerdaten</h3>
+				<div id="spDaten">
+					<label for="avatar" id="avLabel">Avatar: </label> 
+					<select name="avatar" id="avSelect">
+						<option value="black_widow">Black Widow</option>
+						<option value="deadpool">Deadpool</option>
+					</select>
+					<label for="benutzer">Benutzername*: </label> <input type="text" id="benutzer" name="benutzer" class="textfield" pattern=".{4,8}" aria-describedby="name_format" required="required"/>
+					<p id="name_format" class="help">Mindestlänge von 4 Zeichen und Maximallänge von 8 Zeichen.</p>
+					<label for="passwort">Passwort*: </label> <input type="text" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" aria-describedby="pw_format" required="required"/>
+					<p id="pw_format" class="help">Mindestlänge von 4 Zeichen und Maximallänge von 8 Zeichen.</p>
+				</div>
+				<input type="submit" value="Registrieren" class="reg_button" />
+			</form>
+			<center id="manField">Mit "*" gekennzeichnete Felder sind Pflichtfelder</center>
+			<center id="copyright">&#169; 2015 BIG Jeopardy</center>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/framework.js"></script>
+<script type="text/javascript"><![CDATA[
+$(document).ready(function(){
+	
+	
+	$(".textfield").keyup(function(){
+		var validate;
+		var text_reg = /^(.{4,8})$/;
+		var benutzer = $("#benutzer").val();
+		var passwort = $("#passwort").val();
+		var date_reg = /^((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?$/;
+		var date = getNormalizedDateString("#gebtag");
+		if (!text_reg.test(benutzer) || !text_reg.test(passwort) || !date_reg.test(date)){
+			$(".reg_button").prop("disabled", true);
+			$(".reg_button").addClass("disabled");
+			
+		}
+		else if (text_reg.test(benutzer) && text_reg.test(passwort) && date_reg.test(date)){
+			$(".reg_button").prop("disabled", false);
+			$(".reg_button").removeClass("disabled");
+		}
+	});
+	$(".textfield").trigger("keyup");
+});
+]]></script>
 		</body>
 	</html>
