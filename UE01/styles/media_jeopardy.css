@@ -356,8 +356,7 @@ input:focus + .help{
 		margin-left: 5px;
 	}
 
-	#avSelect{
-		position: relative; 
+	#avSelect{ 
 		width: 98%;
 		margin-left: 5px;
 	}

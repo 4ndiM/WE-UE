@@ -19,7 +19,8 @@
 				<div id="perDaten">
     						<label for="vorname">Vorname: </label> <input type="text" name="vorname" class="textfield" />
 						<label for="nachname">Nachname: </label> <input type="text" name="nachname" class="textfield" />
-						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield" />
+						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield" pattern="((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?" aria-describedby="date_format"/>
+						<p id="date_format" class="help">Format: TT.MM.JJJJ</p>
 						<label for="sex">Geschlecht: </label>
 							<input type="radio" name="sex" value="male" checked="checked"/> männlich
 							<input type="radio" name="sex" value="female" /> weiblich
@@ -36,6 +37,7 @@
 					<label for="passwort">Passwort*: </label> <input type="password" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" aria-describedby="pw_format" required="required"/>
 					<p id="pw_format" class="help">Mindestlänge von 4 Zeichen und Maximallänge von 8 Zeichen.</p>
 				</div>
+				<!--<input type="submit" id="fake_reg_button" style="display: none"/>-->
 				<input type="submit" value="Registrieren" class="reg_button" />
 			</form>
 			<center id="manField">Mit "*" gekennzeichnete Felder sind Pflichtfelder</center>
@@ -46,22 +48,17 @@
 <script type="text/javascript"><![CDATA[
 $(document).ready(function(){
 	
-	
 	$(".textfield").keyup(function(){
-		var validate;
-		var text_reg = /^(.{4,8})$/;
-		var benutzer = $("#benutzer").val();
-		var passwort = $("#passwort").val();
 		var date_reg = /^((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?$/;
 		var date = getNormalizedDateString("#gebtag");
-		if (!text_reg.test(benutzer) || !text_reg.test(passwort) || !date_reg.test(date)){
+
+		if (!$("#benutzer")[0].checkValidity() || !$("#passwort")[0].checkValidity() || !date_reg.test(date)){
+			<!--$("#fake_reg_button").click();-->
 			$(".reg_button").prop("disabled", true);
-			$(".reg_button").addClass("disabled");
 			
 		}
-		else if (text_reg.test(benutzer) && text_reg.test(passwort) && date_reg.test(date)){
+		if ($("#benutzer")[0].checkValidity() && $("#passwort")[0].checkValidity() && date_reg.test(date)){
 			$(".reg_button").prop("disabled", false);
-			$(".reg_button").removeClass("disabled");
 		}
 	});
 	$(".textfield").trigger("keyup");
