@@ -11,7 +11,9 @@
 			<div id="header">
 				<img src="img/big-logo-big.png" class="logo"/>
 				<div class="text">Jeopardy! </div>
-				<input type="submit" value="Abmelden" name="logout" class="button"/>
+				<a href="register.xhtml">
+					<input type="submit" value="Abmelden" name="logout" class="button" href="register.xhtml"/>
+				</a>
 			</div>
 			<div id="wrapper">
 				<div id="navigation">
@@ -36,7 +38,7 @@
 					Kategorien -->
 					<!-- Preise-1
 					100€ 100€ 100€ 100€ 100€ <br/> -->
-					<div id="PriceFieldContainer">
+					<div id="PriceFieldContainer" onclick="a=document.activeElement;">
 						<div id="PriceField">
 							<input type="submit" value="TV" name="price" id="fButton" class="bCat" disabled="disabled"/>
 							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
@@ -83,15 +85,31 @@
 							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
 							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
 							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
+							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><brfocus/>
 						</div>
 					</div>
 					<div class="choose-container">
-						<input type="submit" value="wählen" name="choose" id="Choose" style=""/>
+						<input type="submit" value="wählen" name="choose" id="Choose" onclick="a.disabled = true;" />
 					</div>
-					<div id="DateC">Letztes Spiel: "Datum und Uhrzeit" </div>
+					 Letztes Spiel: <div id="DateC" style="display:inline; position:absolute;"/>
+
+<script type="text/javascript">
+var d = new Date();
+var y = d.getFullYear();
+var m = d.getMonth()+1;
+var t = d.getDate();
+var h = d.getHours();
+var min = d.getMinutes();
+var s = d.getSeconds();
+document.getElementById("DateC").innerHTML =  t + "." + m + "." + y + " " + h + ":" + min + ":" + s;
+</script> 
+					
 				</div>
 			</div>
+						<script>
+							var a;
+						</script>
+						<script type="text/javascript" src="js/jquery.js"/>
 		</body>
 	</html>
 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">

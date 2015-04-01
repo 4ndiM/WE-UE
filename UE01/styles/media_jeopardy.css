@@ -87,6 +87,9 @@ input {
 	height: 30px;
 	float:right;
 }
+	#Choose:disabled {
+		background:blue;
+	}
 #Choose:hover {
 	background: linear-gradient(#5DDA69,#4DC458);
 }
@@ -323,11 +326,13 @@ label {
 }
 
 .help {
+    position:absolute;
     display:none;
     font-size:80%;
+    left:34%;
 }
 input:focus + .help{
-	margin-top: 10px;
+	margin-top: 3px;
 	display:block;
 }
 
@@ -351,7 +356,8 @@ input:focus + .help{
 	label {
 		display: block;
 		margin-left: 5px;
-
+	}
+	
 	.secHeader{
 		margin-left: 5px;
 	}
@@ -359,6 +365,10 @@ input:focus + .help{
 	#avSelect{ 
 		width: 98%;
 		margin-left: 5px;
+	}
+
+	.help{
+		left: 1%;
 	}
 }
 	
