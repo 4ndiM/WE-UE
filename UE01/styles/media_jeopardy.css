@@ -204,14 +204,14 @@ input {
 		.questions {
 			text-align:center;
 		}
-	#players {
+	.players {
 		width:50%;
 		float: left;
 	}
-		.players-left {
+		#players-left {
 			text-align: left;
 		}
-		.players-right {
+		#players-right {
 			text-align: right;
 		}
 		.avatar-right{
@@ -223,7 +223,7 @@ input {
 	.PriceField {
 		width: 100%;
 	}
-	#players {
+	.players {
 		font-size:13px;
 		height:60px;
 	}
@@ -232,7 +232,7 @@ input {
 	}
 }
 @media only screen and (max-width: 380px) {
-	#players {
+	.players {
 		font-size: 11px;
 		height:50px;
 	}
