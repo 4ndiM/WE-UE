@@ -21,7 +21,7 @@
 				<div id="perDaten" style="position:relative;">
 						<label for="vorname">Vorname: </label> <input type="text" id="vorname" class="textfield" />
 						<label for="nachname">Nachname: </label> <input type="text" id="nachname" class="textfield" />
-						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield"  onchange="valDate();"/>
+						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield"  onchange=" valDate();"/>
 					<p id="date_format" class="help">Format: TT.MM.JJJJ</p>
 					<label for="sex">Geschlecht: </label>
 					<input type="radio" id="sex" value="male" checked="checked"/> männlich
@@ -48,7 +48,12 @@
 			<script type="text/javascript" src="js/jquery.js"/>
 			<script type="text/javascript" src="js/framework.js"/>
 			<script type="text/javascript">
-
+				/*
+				function rightDate(){
+					var gb = document.getElementById("gebtag");
+					var i = getNormalizedDateString(gb);
+					gb.setAttribute("value", i);
+				}*/
 				function valDate(){
 				var i = document.getElementById("gebtag");
  				 if (i.type == "text") {
