@@ -30,86 +30,91 @@
 					<div class="questions">Fragen: x/n</div>
 				</div>
 				<div id="content">
-					<p id="AnsField" class="classG">Du hast richtig/falsch geantwortet: "+/- Geldsumme"</p>
-					<p id="AnsField" class="classR">Deadpool hat richtig/falsch geantwortet: "+/- Geldsumme"</p>
-					<p id="AnsField" class="classB">"Spieler" hat "Kategorie" für "Geldsumme" gewählt.</p>
+					<p class="AnsField" id="classG">Du hast richtig/falsch geantwortet: "+/- Geldsumme"</p>
+					<p class="AnsField" id="classR">Deadpool hat richtig/falsch geantwortet: "+/- Geldsumme"</p>
+					<p class="AnsField" id="classB">"Spieler" hat "Kategorie" für "Geldsumme" gewählt.</p>
 					<!--
 					Dynamisch umschreiben
 					Kategorien -->
 					<!-- Preise-1
 					100€ 100€ 100€ 100€ 100€ <br/> -->
 					<div id="PriceFieldContainer" onclick="a=document.activeElement;">
-						<div id="PriceField">
-							<input type="submit" value="TV" name="price" id="fButton" class="bCat" disabled="disabled"/>
-							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+						<div class="PriceField" id="TV">
+							<input type="submit" value="TV" name="price" class="fButton bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" class="fButton"/>
+							<input type="submit" value="200€" name="price" class="fButton"/>
+							<input type="submit" value="500€" name="price" class="fButton"/>
+							<input type="submit" value="750€" name="price" class="fButton"/>
 							<br/>
 						</div>
 						<!--Preise-2
 						200€ 200€ 200€ 200€ 200€ <br/> -->
-						<div id="PriceField">
-							<input type="submit" value="SSD" name="price" id="fButton" class="bCat" disabled="disabled"/>
-							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
+						<div class="PriceField" id="SSD">
+							<input type="submit" value="SSD" name="price" class="fButton bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" class="fButton"/>
+							<input type="submit" value="200€" name="price" class="fButton"/>
+							<input type="submit" value="500€" name="price" class="fButton"/>
+							<input type="submit" value="750€" name="price" class="fButton"/>
+							<input type="submit" value="1000€" name="price" class="fButton"/><br/>
 						</div>
 						<!--Preise-3
 						500€ 500€ 500€ 500€ 500€ <br/> -->
-						<div id="PriceField">
-							<input type="submit" value="Web" name="price" id="fButton" class="bCat" disabled="disabled"/>
-							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><br/>
+						<div class="PriceField" id="Web">
+							<input type="submit" value="Web" name="price" class="fButton bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" class="fButton"/>
+							<input type="submit" value="200€" name="price" class="fButton"/>
+							<input type="submit" value="500€" name="price" class="fButton"/>
+							<input type="submit" value="750€" name="price" class="fButton"/>
+							<input type="submit" value="1000€" name="price" class="fButton"/><br/>
 						</div>
 						<!-- Preise-4
 						750€ 750€ 750€ 750€ 750€ <br/> -->
-						<div id="PriceField">
-							<input type="submit" value="Sport" name="price" id="fButton" class="bCat" disabled="disabled"/>
-							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
+						<div class="PriceField" id="Sport">
+							<input type="submit" value="Sport" name="price" class="fButton bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" class="fButton"/>
+							<input type="submit" value="200€" name="price" class="fButton"/>
+							<input type="submit" value="500€" name="price" class="fButton"/>
+							<input type="submit" value="750€" name="price" class="fButton"/>
 							<br/>
 						</div>
 						<!-- Preise-5
 						1000€ 1000€ 1000€ <br/> -->
-						<div id="PriceField">
-							<input type="submit" value="TUWIEN" name="price" id="fButton" class="bCat" disabled="disabled"/>
-							<input type="submit" value="100€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="200€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="500€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="750€" name="price" id="fButton" class="bPrice"/>
-							<input type="submit" value="1000€" name="price" id="fButton" class="bPrice"/><brfocus/>
+						<div class="PriceField" id="TUWIEN">
+							<input type="submit" value="TUWIEN" name="price" class="fButton bCat" disabled="disabled"/>
+							<input type="submit" value="100€" name="price" class="fButton"/>
+							<input type="submit" value="200€" name="price" class="fButton"/>
+							<input type="submit" value="500€" name="price" class="fButton"/>
+							<input type="submit" value="750€" name="price" class="fButton"/>
+							<input type="submit" value="1000€" name="price" class="fButton"/><brfocus/>
 						</div>
 					</div>
 					<div class="choose-container">
-						<input type="submit" value="wählen" name="choose" id="Choose" onclick="a.disabled = true;" />
+						<input type="submit" value="wählen" name="choose" id="Choose" onclick="a.disabled = true;writeAnsField();" />
 					</div>
 					 Letztes Spiel: <div id="DateC" style="display:inline; position:absolute;"/>
 
-<script type="text/javascript">
-var d = new Date();
-var y = d.getFullYear();
-var m = d.getMonth()+1;
-var t = d.getDate();
-var h = d.getHours();
-var min = d.getMinutes();
-var s = d.getSeconds();
-document.getElementById("DateC").innerHTML =  t + "." + m + "." + y + " " + h + ":" + min + ":" + s;
-</script> 
+					<script type="text/javascript">
+						function writeAnsField(){
+							var name = a.parentNode.getAttribute("id");
+							var price = a.getAttribute("value");
+							var inp = document.getElementById("classB");
+							inp.innerHTML = "Spieler hat " + name + " für " + price + " gewählt";
+						}
+
+						var a;
+						
+						var d = new Date();
+						var y = d.getFullYear();
+						var m = d.getMonth()+1;
+						var t = d.getDate();
+						var h = d.getHours();
+						var min = d.getMinutes();
+						var s = d.getSeconds();
+						document.getElementById("DateC").innerHTML =  t + "." + m + "." + y + " " + h + ":" + min + ":" + s;
+					</script> 
 					
 				</div>
 			</div>
-						<script>
-							var a;
-						</script>
-						<script type="text/javascript" src="js/jquery.js"/>
 		</body>
 	</html>
 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">

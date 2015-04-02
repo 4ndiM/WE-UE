@@ -56,26 +56,23 @@ input {
 		margin-top:15px;
 		font-weight: bold;
 	}
-#fButton{
+.fButton{
 	margin:2px;
 	width:100%;
 	height:2.5em;
 	font-size:15px;
 }
-	.bPrice {
-	}
-	.bPrice:hover{
+	.fButton:hover{
 		background: #7070B8;
 	}
-	.bPrice:focus{
+	.fButton:focus{
 		background:#E68A00;
 	}
-	.bPrice:disabled{
+	.fButton:disabled{
 		background: #D1D5DA;
 		color: #8B8E91;
 	}
-	.bCat{
-	}
+
 	.bCat:disabled{
 		background: linear-gradient(#FA7700, #E66D00);
 		color: #000;
@@ -132,7 +129,7 @@ input {
 	.button:hover{
 		background: #EEAD4D;
 	}
-#AnsField {
+.AnsField {
 	top: 60px;
 	border:1px solid;
 	padding: 0.3em 0.3em 0.3em 0.3em;
@@ -143,17 +140,18 @@ input {
 	margin-bottom: 1%;
 	margin-top:2%;
 }
-#AnsField.classG {
-	border-color: #00CC00;
-	color: #00CC00;
-}
-#AnsField.classR {
-	border-color: #FF0000;
-	color: #FF0000;
-}
-#AnsField.classB {
-	color: #000000;
-}
+	#classG {
+		border-color: #00CC00;
+		color: #00CC00;
+	}
+	#classR {
+		border-color: #FF0000;
+		color: #FF0000;
+	}
+	#classB {
+		color: #000000;
+	}
+
 #CatField {
 	border:1px solid;
 	padding: 0.5em 0.5em 0.5em 0.5em;
@@ -167,7 +165,7 @@ input {
 	width:100%;
 	overflow: hidden;
 }
-#PriceField {
+.PriceField {
 	position: relative;
 	width: 19%;
 	text-align: center;
@@ -190,7 +188,7 @@ input {
 			width: 99%;
 			margin-right:1%;
 		}
-	#AnsField {
+	.AnsField {
 		width: 80%;
 	}
 	#content {
@@ -222,7 +220,7 @@ input {
 		}
 }
 @media only screen and (max-width: 480px) {
-	#PriceField {
+	.PriceField {
 		width: 100%;
 	}
 	#players {
