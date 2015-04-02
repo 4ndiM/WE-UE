@@ -26,7 +26,7 @@ input {
 	float:right;
 	overflow:hidden;
 }
-#players {
+.players {
 	position: relative;
 	float:left;
 	border: 0px solid;
@@ -35,7 +35,7 @@ input {
 	margin-top:15px;
 	font-size: 14px;
 }
-	.players-left {
+	#players-left {
 		font-weight: bold;
 	}
 	.avatar{
@@ -266,6 +266,15 @@ input {
 	border-radius: 5px;
 	text-indent: 5px;
 }
+	#benutzer:focus ~ #name_format{
+		display: block;
+	}
+	.passwort:focus ~ #pw_format{
+		display: block;
+	}
+	.gebtag:focus ~ #date_format{
+		display: block;
+	}
 label {
 	display: inline-block;
 	width: 150px;
@@ -320,6 +329,11 @@ label {
 	font-size: 12px;
 	margin-top: 35px;
 }
+
+	.cent{
+		width: 100%;
+		text-align: center;
+	}
 
 #perDaten{
 	margin-bottom: 40px;

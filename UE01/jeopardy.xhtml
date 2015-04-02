@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-	<html xmlns="http://www.w3.org/1999/xhtml">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
 		<head>
 			<meta name="viewport" content="width=device-width"/>
 			<title>Jeopardy!</title>
@@ -9,21 +9,19 @@
 		</head>
 		<body>
 			<div id="header">
-				<img src="img/big-logo-big.png" class="logo"/>
+				<img src="img/big-logo-big.png" class="logo" alt="BIG Logo"/>
 				<div class="text">Jeopardy! </div>
-				<a href="register.xhtml">
-					<input type="submit" value="Abmelden" name="logout" class="button" href="register.xhtml"/>
-				</a>
+					<input type="button" value="Abmelden" name="logout" class="button" onclick="location.href =' register.xhtml';"/>
 			</div>
 			<div id="wrapper">
 				<div id="navigation">
-					<div id="players" class="players-left">
-						<img src="img/avatar/black-widow_head.png" class="avatar" style="border-color:orange;"/>
+					<div class="players" id="players-left">
+						<img src="img/avatar/black-widow_head.png" class="avatar" style="border-color:orange;" alt="Avatar Player 1"/>
 						<p>"SpielerName (Du)"</p>
 						<p>"Gew. Summe"</p>
 					</div>
-					<div id="players" class="players-right">
-						<img src="img/avatar/deadpool_head.png" class="avatar avatar-right" style="clear:left;"/>
+					<div class="players" id="players-right">
+						<img src="img/avatar/deadpool_head.png" class="avatar avatar-right" style="clear:left;" alt="Avatar Player 2"/>
 						<p>"SpielerName"</p>
 						<p>"Gew. Summe"</p>
 					</div>
@@ -33,11 +31,7 @@
 					<p class="AnsField" id="classG">Du hast richtig/falsch geantwortet: "+/- Geldsumme"</p>
 					<p class="AnsField" id="classR">Deadpool hat richtig/falsch geantwortet: "+/- Geldsumme"</p>
 					<p class="AnsField" id="classB">"Spieler" hat "Kategorie" für "Geldsumme" gewählt.</p>
-					<!--
-					Dynamisch umschreiben
-					Kategorien -->
-					<!-- Preise-1
-					100€ 100€ 100€ 100€ 100€ <br/> -->
+
 					<div id="PriceFieldContainer" onclick="a=document.activeElement;">
 						<div class="PriceField" id="TV">
 							<input type="submit" value="TV" name="price" class="fButton bCat" disabled="disabled"/>
@@ -47,8 +41,6 @@
 							<input type="submit" value="750€" name="price" class="fButton"/>
 							<br/>
 						</div>
-						<!--Preise-2
-						200€ 200€ 200€ 200€ 200€ <br/> -->
 						<div class="PriceField" id="SSD">
 							<input type="submit" value="SSD" name="price" class="fButton bCat" disabled="disabled"/>
 							<input type="submit" value="100€" name="price" class="fButton"/>
@@ -57,8 +49,6 @@
 							<input type="submit" value="750€" name="price" class="fButton"/>
 							<input type="submit" value="1000€" name="price" class="fButton"/><br/>
 						</div>
-						<!--Preise-3
-						500€ 500€ 500€ 500€ 500€ <br/> -->
 						<div class="PriceField" id="Web">
 							<input type="submit" value="Web" name="price" class="fButton bCat" disabled="disabled"/>
 							<input type="submit" value="100€" name="price" class="fButton"/>
@@ -67,8 +57,6 @@
 							<input type="submit" value="750€" name="price" class="fButton"/>
 							<input type="submit" value="1000€" name="price" class="fButton"/><br/>
 						</div>
-						<!-- Preise-4
-						750€ 750€ 750€ 750€ 750€ <br/> -->
 						<div class="PriceField" id="Sport">
 							<input type="submit" value="Sport" name="price" class="fButton bCat" disabled="disabled"/>
 							<input type="submit" value="100€" name="price" class="fButton"/>
@@ -77,15 +65,13 @@
 							<input type="submit" value="750€" name="price" class="fButton"/>
 							<br/>
 						</div>
-						<!-- Preise-5
-						1000€ 1000€ 1000€ <br/> -->
 						<div class="PriceField" id="TUWIEN">
 							<input type="submit" value="TUWIEN" name="price" class="fButton bCat" disabled="disabled"/>
 							<input type="submit" value="100€" name="price" class="fButton"/>
 							<input type="submit" value="200€" name="price" class="fButton"/>
 							<input type="submit" value="500€" name="price" class="fButton"/>
 							<input type="submit" value="750€" name="price" class="fButton"/>
-							<input type="submit" value="1000€" name="price" class="fButton"/><brfocus/>
+							<input type="submit" value="1000€" name="price" class="fButton"/>
 						</div>
 					</div>
 					<div class="choose-container">
@@ -102,7 +88,7 @@
 						}
 
 						var a;
-						
+
 						var d = new Date();
 						var y = d.getFullYear();
 						var m = d.getMonth()+1;
@@ -117,8 +103,3 @@
 			</div>
 		</body>
 	</html>
-<!-- <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-<circle cx="100" cy="70" r="40" stroke="black" stroke-width="3" fill="red" />
-Sorry, your browser does not support inline SVG.
-</svg>
--->
