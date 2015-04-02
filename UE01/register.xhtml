@@ -19,13 +19,13 @@
 
 				<h3 class="secHeader">Persönliche Daten</h3>
 				<div id="perDaten" style="position:relative;">
-    						<label for="vorname">Vorname: </label> <input type="text" name="vorname" class="textfield" />
+						<label for="vorname">Vorname: </label> <input type="text" name="vorname" class="textfield" />
 						<label for="nachname">Nachname: </label> <input type="text" name="nachname" class="textfield" />
 						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield" pattern="((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?" aria-describedby="date_format"/>
-						<p id="date_format" class="help">Format: TT.MM.JJJJ</p>
-						<label for="sex">Geschlecht: </label>
-							<input type="radio" name="sex" value="male" checked="checked"/> männlich
-							<input type="radio" name="sex" value="female" /> weiblich
+					<p id="date_format" class="help">Format: TT.MM.JJJJ</p>
+					<label for="sex">Geschlecht: </label>
+					<input type="radio" name="sex" value="male" checked="checked"/> männlich
+					<input type="radio" name="sex" value="female" /> weiblich
 				</div>
 				<h3 class="secHeader">Spielerdaten</h3>
 				<div id="spDaten" style="position:relative;">
@@ -36,35 +36,35 @@
 					</select>
 					<label for="benutzer">Benutzername*: </label> <input type="text" id="benutzer" name="benutzer" class="textfield" pattern=".{4,8}" aria-describedby="name_format" required="required"/>
 					<p id="name_format" class="help">Der Benutzername muss 4-8 Zeichen lang sein</p>
-					<label for="passwort">Passwort*: </label> <input type="password" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" aria-describedby="pw_format" required="required"/>
+					<label for="passwort">Passwort*: </label> <input type="password" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" aria-escribedby="pw_format" required="required"/>
 					<p id="pw_format" class="help">Das Passwort muss 4-8 Zeichen lang sein</p>
 				</div>
-				<!--<input type="submit" id="fake_reg_button" style="display: none"/>-->
+					<!--<input type="submit" id="fake_reg_button" style="display: none"/>-->
 				<input type="submit" value="Registrieren" class="reg_button" />
 			</form>
 			<center id="manField">Mit "*" gekennzeichnete Felder sind Pflichtfelder</center>
 			<center id="copyright">&#169; 2015 BIG Jeopardy</center>
 
-<script type="text/javascript" src="js/jquery.js"/>
-<script type="text/javascript" src="js/framework.js"/>
-<script type="text/javascript"><![CDATA[
-$(document).ready(function(){
-	
-	$(".textfield").keyup(function(){
-		var date_reg = /^((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?$/;
-		var date = getNormalizedDateString("#gebtag");
+			<script type="text/javascript" src="js/jquery.js"/>
+			<script type="text/javascript" src="js/framework.js"/>
+			<script type="text/javascript"><![CDATA[
+			$(document).ready(function(){
+				
+				$(".textfield").keyup(function(){
+					var date_reg = /^((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?$/;
+					var date = getNormalizedDateString("#gebtag");
 
-		if (!$("#benutzer")[0].checkValidity() || !$("#passwort")[0].checkValidity() || !date_reg.test(date)){
-			<!--$("#fake_reg_button").click();-->
-			$(".reg_button").prop("disabled", true);
-			
-		}
-		if ($("#benutzer")[0].checkValidity() && $("#passwort")[0].checkValidity() && date_reg.test(date)){
-			$(".reg_button").prop("disabled", false);
-		}
-	});
-	$(".textfield").trigger("keyup");
-});
-]]></script>
+					if (!$("#benutzer")[0].checkValidity() || !$("#passwort")[0].checkValidity() || !date_reg.test(date)){
+						<!--$("#fake_reg_button").click();-->
+						$(".reg_button").prop("disabled", true);
+						
+					}
+					if ($("#benutzer")[0].checkValidity() && $("#passwort")[0].checkValidity() && date_reg.test(date)){
+						$(".reg_button").prop("disabled", false);
+					}
+				});
+				$(".textfield").trigger("keyup");
+			});
+			]]></script>
 		</body>
 	</html>
