@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,6 @@ public class BigJeopardyServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		
 		if(request.getParameter("login") != null) {
 			HttpSession session = request.getSession(true);
@@ -43,6 +42,8 @@ public class BigJeopardyServlet extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 			dispatcher.forward(request, response);
 		}
+		
+		
 	}
 
 }
