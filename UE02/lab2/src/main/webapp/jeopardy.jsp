@@ -74,7 +74,7 @@
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
-            <form id="questionform" action="question.xhtml" method="post">
+            <form id="questionform" action="BigJeopardyServlet" method="post">
                <fieldset>
                <legend class="accessibility">Fragenauswahl</legend>
                <!-- <section class="questioncategory" aria-labelledby="tvheading">
@@ -128,15 +128,13 @@
                <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
                <%@ page import="at.ac.tuwien.big.we15.lab2.api.Question" %>
                <jsp:useBean id="categories" scope="session" type="java.util.List<Category>" />
-               <% int counter = 1; %>
 				<% for(Category c : categories) { %>
 					<% String name = c.getName(); %>
 					<section class="questioncategory" aria-labelledby="tuwienheading">
 						<h3 id="categoryheading" class="tile category-title"><span class="accessibility">Kategorie: </span><%=name %></h3>
 						<ol class="category_questions">
 							<% for(Question q : c.getQuestions()) {  %>
-								<li><input name="question_selection" id="question_<%=counter %>" value="<%=counter %>" type="radio" /><label class="tile clickable" for="question_<%=counter %>">€ <%= q.getValue() %></label></li>
-								<% counter++; %>
+								<li><input name="question_selection" id="question_<%=q.getId() %>" value="<%=q.getId() %>" type="radio" /><label class="tile clickable" for="question_<%=q.getId() %>">€ <%= q.getValue() %></label></li>
 							<% } %>
 						</ol>
                		</section>

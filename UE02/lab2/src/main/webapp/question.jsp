@@ -40,7 +40,10 @@
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Black Widow (Du)</td>
+                     <td class="playername">
+						<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.User" />
+						<%=user.getUsername() %>
+					</td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
@@ -69,13 +72,23 @@
       <section id="question" aria-labelledby="questionheading">
             <form id="questionform" action="jeopardy.xhtml" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
-               <p id="questiontype">TUWIEN für € 300</p>
-               <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>
+               <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
+               <jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion" />
+               <p id="questiontype"><%=question.getCategory().getName() %> für € 300</p>
+               <p id="questiontext"><%=question.getText() %></p>
                <ul id="answers">
-                  <li><input name="answers" id="answer_1" value="1" type="checkbox"/><label class="tile clickable" for="answer_1">Was ist IT Strategie?</label></li>
+               		<%@ page import="at.ac.tuwien.big.we15.lab2.api.Answer" %>
+               		<%@ page import="java.util.List" %>
+               		<% int counter = 1; %>
+               		<% for(Answer a : question.getAllAnswers()) {  %>
+						<li><input name="answers" id="answer_<%=counter %>" value="<%=counter %>" type="checkbox"/><label class="tile clickable" for="answer_<%=counter %>"><%=a.getText() %></label></li>
+						<% counter++; %>
+					<% } %>
+               
+                  <!-- <li><input name="answers" id="answer_1" value="1" type="checkbox"/><label class="tile clickable" for="answer_1">Was ist IT Strategie?</label></li>
                   <li><input name="answers" id="answer_2" value="2" type="checkbox"/><label class="tile clickable" for="answer_2">Was ist Web Engineering?</label></li>
                   <li><input name="answers" id="answer_3" value="3" type="checkbox"/><label class="tile clickable" for="answer_3">Was ist Semistrukturierte Daten?</label></li>
-                  <li><input name="answers" id="answer_4" value="4" type="checkbox"/><label class="tile clickable" for="answer_4">Was ist Objektorientierte Modellierung?</label></li>
+                  <li><input name="answers" id="answer_4" value="4" type="checkbox"/><label class="tile clickable" for="answer_4">Was ist Objektorientierte Modellierung?</label></li> -->
                </ul>
                <input id="timeleftvalue" type="hidden" value="100"/>
                <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="antworten" accesskey="s"/>

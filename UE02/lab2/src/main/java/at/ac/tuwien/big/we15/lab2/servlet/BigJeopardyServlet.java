@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import at.ac.tuwien.big.we15.lab2.api.Category;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.User;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
@@ -24,9 +25,17 @@ import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static List<Category> categories = null;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	public void init() {
+		ServletContext servletContext = getServletContext();
+		JeopardyFactory factory = new ServletJeopardyFactory(servletContext);
+		QuestionDataProvider provider = factory.createQuestionDataProvider();
+		categories = provider.getCategoryData();
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -45,16 +54,30 @@ public class BigJeopardyServlet extends HttpServlet {
 			user.setUsername(request.getParameter("username"));
 			session.setAttribute("user", user);
 			
-			ServletContext servletContext = getServletContext();
-			JeopardyFactory factory = new ServletJeopardyFactory(servletContext);
-			QuestionDataProvider provider = factory.createQuestionDataProvider();
-			List<Category> categories = provider.getCategoryData();
 			session.setAttribute("categories", categories);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 			dispatcher.forward(request, response);
 		}
 		
+		if(request.getParameter("question_submit") != null) {
+			HttpSession session = request.getSession(true);
+			int id = Integer.parseInt(request.getParameter("question_selection"));
+			
+			Question question = null;
+			for(Category c : categories) {
+				for(Question q : c.getQuestions()) {
+					if(q.getId() == id) {
+						question = q;
+					}
+				}
+			}
+			
+			session.setAttribute("question", question);
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 	}
 
