@@ -77,7 +77,7 @@
             <form id="questionform" action="question.xhtml" method="post">
                <fieldset>
                <legend class="accessibility">Fragenauswahl</legend>
-               <section class="questioncategory" aria-labelledby="tvheading">
+               <!-- <section class="questioncategory" aria-labelledby="tvheading">
                   <h3 id="tvheading" class="tile category-title"><span class="accessibility">Kategorie: </span>TV</h3>
                   <ol class="category_questions">
                      <li><input name="question_selection" id="question_1" value="1" type="radio" disabled="disabled" /><label class="tile clickable" for="question_1">€ 100</label></li>
@@ -124,7 +124,24 @@
                      <li><input name="question_selection" id="question_22" value="22" type="radio" /><label class="tile clickable" for="question_22">€ 750</label></li>
                      <li><input name="question_selection" id="question_23" value="23" type="radio" disabled="disabled" /><label class="tile clickable" for="question_23">€ 1000</label></li>
                   </ol>
-               </section> 
+               </section>  -->
+               <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
+               <%@ page import="at.ac.tuwien.big.we15.lab2.api.Question" %>
+               <jsp:useBean id="categories" scope="session" type="java.util.List<Category>" />
+               <% int counter = 1; %>
+				<% for(Category c : categories) { %>
+					<% String name = c.getName(); %>
+					<section class="questioncategory" aria-labelledby="tuwienheading">
+						<h3 id="categoryheading" class="tile category-title"><span class="accessibility">Kategorie: </span><%=name %></h3>
+						<ol class="category_questions">
+							<% for(Question q : c.getQuestions()) {  %>
+								<li><input name="question_selection" id="question_<%=counter %>" value="<%=counter %>" type="radio" /><label class="tile clickable" for="question_<%=counter %>">€ <%= q.getValue() %></label></li>
+								<% counter++; %>
+							<% } %>
+						</ol>
+               		</section>
+				<% } %>
+               
                </fieldset>               
                <input class="greenlink formlink clickable" name="question_submit" id="next" type="submit" value="wählen" accesskey="s" />
             </form>
