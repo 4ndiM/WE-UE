@@ -151,6 +151,24 @@ public class SimpleQuestion implements Question {
 			category.addQuestion(this);
 		}
 	}
+	
+	public boolean trueAnswer(String[] answer){
+		if(answer == null || answer.length == 0){
+			return false;
+		}
+		int cnt = 0;
+		for(String s: answer){
+			for(Answer a: rightAnswers){
+				if(a.getId() == Integer.parseInt(s)){
+					cnt++;
+				}
+			}
+		}
+		if(cnt == rightAnswers.size()){
+			return true;	
+		}
+		return false;
+	}
 
 	@Override
 	public int hashCode() {

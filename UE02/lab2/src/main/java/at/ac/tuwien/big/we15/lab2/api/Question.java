@@ -100,4 +100,6 @@ public interface Question {
 	 *            the category to set
 	 */
 	public void setCategory(Category category);
+	
+	public boolean trueAnswer(String[] answer);
 }

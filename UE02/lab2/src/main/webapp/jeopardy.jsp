@@ -41,7 +41,7 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-                     	<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.User" />
+                     	<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
 						<%=user.getUsername() %>
                      </td>
                   </tr>
@@ -65,7 +65,8 @@
                   </tr>
                </table>
             </section>
-            <p id="round">Fragen: 2 / 10</p>
+            <jsp:useBean id="round" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.Round" />
+            <p id="round">Fragen: <%=round.getRound() %> / <%=round.getMaxRound() %></p>
          </section>
 
          <!-- Question -->

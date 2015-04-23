@@ -41,7 +41,7 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-						<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.User" />
+						<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
 						<%=user.getUsername() %>
 					</td>
                   </tr>
@@ -64,13 +64,14 @@
                      <td class="playerpoints">400 €</td>
                   </tr>
                </table>
-            </section>
-            <p id="round">Frage: 3 / 10</p>
+            </section>            
+	            <jsp:useBean id="round" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.Round" />
+	            <p id="round">Fragen: <%=round.getRound() %> / <%=round.getMaxRound() %></p>
          </section>
             
       <!-- Question -->
       <section id="question" aria-labelledby="questionheading">
-            <form id="questionform" action="jeopardy.xhtml" method="get">
+            <form id="questionform" action="BigJeopardyServlet" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
                <jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion" />
@@ -110,7 +111,7 @@
             
             // initialize time
             $(document).ready(function() {
-                var maxtime = 30;
+                var maxtime = 3;
                 var hiddenInput = $("#timeleftvalue");
                 var meter = $("#timer meter");
                 var timeleft = $("#timeleft");
@@ -138,7 +139,7 @@
                 timeleft.text(secToMMSS(value));
                 
                 if(value <= 0) {
-                    $('#questionform').submit();
+                    $('#next').click();
                 }
             }
             

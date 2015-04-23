@@ -16,8 +16,9 @@ import at.ac.tuwien.big.we15.lab2.api.Category;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
-import at.ac.tuwien.big.we15.lab2.api.User;
+import at.ac.tuwien.big.we15.lab2.api.impl.Round;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.impl.User;
 
 /**
  * Servlet implementation class BigJeopardyServlet
@@ -37,13 +38,16 @@ public class BigJeopardyServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<h1>Hello " + request.getParameter("userName") + "</h1>");
-		out.println("</body>");
-		out.println("</html>");
+		if(request.getParameter("answer_submit") != null){
+			String[] answers = request.getParameterValues("answers");
+			HttpSession session = request.getSession(true);
+			
+			Question q = (Question) session.getAttribute("question");
+			boolean right = q.trueAnswer(answers);
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,6 +58,7 @@ public class BigJeopardyServlet extends HttpServlet {
 			user.setUsername(request.getParameter("username"));
 			session.setAttribute("user", user);
 			
+			session.setAttribute("round", new Round());
 			session.setAttribute("categories", categories);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
