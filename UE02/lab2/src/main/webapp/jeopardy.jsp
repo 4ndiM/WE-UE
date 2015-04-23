@@ -41,13 +41,13 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-                     	<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
-						<%=user.getUsername() %>
+                     	<jsp:useBean id="user1" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
+						<%=user1.getUsername() %>
                      </td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">2000 €</td>
+                     <td class="playerpoints"><%=user1.getSum() %> €</td>
                   </tr>
                </table>
             </section>
@@ -57,11 +57,13 @@
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Deadpool</td>
+                     <td class="playername">
+	                     <jsp:useBean id="user2" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
+	                     <%=user2.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">400 €</td>
+                     <td class="playerpoints"><%=user2.getSum() %> €</td>
                   </tr>
                </table>
             </section>

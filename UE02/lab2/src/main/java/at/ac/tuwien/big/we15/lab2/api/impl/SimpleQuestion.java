@@ -161,6 +161,7 @@ public class SimpleQuestion implements Question {
 			for(Answer a: rightAnswers){
 				if(a.getId() == Integer.parseInt(s)){
 					cnt++;
+					break;
 				}
 			}
 		}

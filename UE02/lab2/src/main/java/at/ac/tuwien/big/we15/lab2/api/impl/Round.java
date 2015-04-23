@@ -15,8 +15,12 @@ public class Round {
 	public int getRound() {
 		return round;
 	}
-	public void setRound(int round) {
-		this.round = round;
+	public boolean setRound() {
+		if(this.round >= 10){
+			return false;
+		}
+		this.round++;
+		return true;
 	}
 	
 	

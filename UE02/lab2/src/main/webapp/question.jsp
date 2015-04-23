@@ -41,13 +41,13 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-						<jsp:useBean id="user" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
-						<%=user.getUsername() %>
+						<jsp:useBean id="user1" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
+						<%=user1.getUsername() %>
 					</td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">2000 €</td>
+                     <td class="playerpoints"><%=user1.getSum() %> €</td>
                   </tr>
                </table>
             </section>
@@ -57,11 +57,13 @@
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Deadpool</td>
+                     <td class="playername">
+	                     <jsp:useBean id="user2" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
+	                     <%=user2.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">400 €</td>
+                     <td class="playerpoints"><%=user2.getSum() %> €</td>
                   </tr>
                </table>
             </section>            
@@ -75,7 +77,7 @@
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
                <jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion" />
-               <p id="questiontype"><%=question.getCategory().getName() %> für € 300</p>
+               <p id="questiontype"><%=question.getCategory().getName() %> für € <%=question.getValue() %></p>
                <p id="questiontext"><%=question.getText() %></p>
                <ul id="answers">
                		<%@ page import="at.ac.tuwien.big.we15.lab2.api.Answer" %>
@@ -111,7 +113,7 @@
             
             // initialize time
             $(document).ready(function() {
-                var maxtime = 3;
+                var maxtime = 30;
                 var hiddenInput = $("#timeleftvalue");
                 var meter = $("#timer meter");
                 var timeleft = $("#timeleft");

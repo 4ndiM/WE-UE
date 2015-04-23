@@ -15,7 +15,7 @@ public class User {
 		return sum;
 	}
 	public void setSum(int sum) {
-		this.sum = sum;
+		this.sum += sum;
 	}
 	
 }

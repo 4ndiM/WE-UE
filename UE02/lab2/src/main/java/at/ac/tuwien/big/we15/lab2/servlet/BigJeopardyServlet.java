@@ -39,14 +39,33 @@ public class BigJeopardyServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("answer_submit") != null){
+			boolean right = false;
+			Question q = null;
+			Round rnd = null;
+			String jsp = "/jeopardy.jsp";
+			
 			String[] answers = request.getParameterValues("answers");
 			HttpSession session = request.getSession(true);
 			
-			Question q = (Question) session.getAttribute("question");
-			boolean right = q.trueAnswer(answers);
+			q = (Question) session.getAttribute("question");
+
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+			if(q.trueAnswer(answers) == true){
+				((User) session.getAttribute("user1")).setUsername(q.getText());
+				((User) session.getAttribute("user1")).setSum(q.getValue());
+			
+			} else {
+				((User) session.getAttribute("user1")).setUsername("falsch");
+			}
+			
+			rnd = (Round) session.getAttribute("round");
+			if(!rnd.setRound()){
+				jsp= "/winner.jsp";
+			}
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 			dispatcher.forward(request, response);
+		
 		}
 	}
 	
@@ -54,9 +73,13 @@ public class BigJeopardyServlet extends HttpServlet {
 		
 		if(request.getParameter("login") != null) {
 			HttpSession session = request.getSession(true);
-			User user = new User();
-			user.setUsername(request.getParameter("username"));
-			session.setAttribute("user", user);
+			User user[] = {new User(), new User()};
+			user[0].setUsername(request.getParameter("username"));
+			user[1].setUsername("Deadpool");
+			for(int i=1;i<=2;i++){
+				session.setAttribute("user"+i, user[i-1]);
+			}
+
 			
 			session.setAttribute("round", new Round());
 			session.setAttribute("categories", categories);
