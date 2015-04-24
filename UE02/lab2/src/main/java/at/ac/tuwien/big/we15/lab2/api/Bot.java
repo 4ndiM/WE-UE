@@ -3,14 +3,14 @@ package at.ac.tuwien.big.we15.lab2.api;
 import java.util.List;
 
 public interface Bot {
-
+	
 	/**
 	 * 
 	 * @param categories
-	 * 			list of categories from which the bot chooses one category and a question from that category
+	 * 				List of categories, from which a question an the corresponding answers are chosen
 	 * @return
-	 * 			the chosen question
+	 * 				an array of ids of the answers given
 	 */
-	public Question chQuestion(List<Category> categories);
+	public String[] chAnswer(List<Category> categories);
 
 }

@@ -18,6 +18,7 @@ import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.impl.Round;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleBot;
 import at.ac.tuwien.big.we15.lab2.api.impl.User;
 
 /**
@@ -68,9 +69,8 @@ public class BigJeopardyServlet extends HttpServlet {
 		
 		if(request.getParameter("login") != null) {
 			HttpSession session = request.getSession(true);
-			User user[] = {new User(), new User()};
+			User user[] = {new User(), new SimpleBot()};
 			user[0].setUsername(request.getParameter("username"));
-			user[1].setUsername("Deadpool");
 			for(int i=1;i<=2;i++){
 				session.setAttribute("user"+i, user[i-1]);
 			}
