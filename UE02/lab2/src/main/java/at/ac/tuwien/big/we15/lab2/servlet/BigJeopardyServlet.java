@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import at.ac.tuwien.big.we15.lab2.api.Bot;
+import at.ac.tuwien.big.we15.lab2.api.CategoryList;
 import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.User;
 import at.ac.tuwien.big.we15.lab2.api.impl.Round;
@@ -45,15 +46,21 @@ public class BigJeopardyServlet extends HttpServlet {
 				user.setSum(-(q.getValue() / 2));
 			}
 			
+			CategoryList categories = (CategoryList) session.getAttribute("categories");
+			
 			Bot bot = (Bot) session.getAttribute("bot");
-			Question botQ = (Question) session.getAttribute("bot");
-			
-			
+			Question botQ = bot.chQuestion(categories.getCategories());
+			botQ.setUsed(true);
+			if(Math.floor((Math.random()*100)) > 50) {
+				bot.setSum(botQ.getValue());
+			} else {
+				bot.setSum(-(botQ.getValue() / 2));
+			}
 			
 			rnd = (Round) session.getAttribute("round");
 			if(!rnd.setRound()){
-				User user1 = (User) session.getAttribute("user1");
-				User user2 = (User) session.getAttribute("user2");
+				User user1 = (User) session.getAttribute("user");
+				User user2 = (User) session.getAttribute("bot");
 				session.setAttribute("winner", user1.getSum() > user2.getSum() ? user1 : user2);
 				session.setAttribute("loser", user1.getSum() <= user2.getSum() ? user1 : user2);
 				jsp= "/winner.jsp";
@@ -69,9 +76,7 @@ public class BigJeopardyServlet extends HttpServlet {
 		
 		if((request.getParameter("login") != null) || (request.getParameter("restart") != null)) {
 			HttpSession session = request.getSession(true);
-//<<<<<<< HEAD
-//=======
-//			
+
 //			User user[] = {new User(), new SimpleBot()};
 //			if(request.getParameter("login") != null) {
 //				user[0].setUsername(request.getParameter("username"));
@@ -82,7 +87,7 @@ public class BigJeopardyServlet extends HttpServlet {
 //			
 //			user[0].setImage("img/avatar/black-widow.png");
 //			user[0].setImageHead("img/avatar/black-widow_head.png");
-//		//	user[1].setUsername("Deadpool");
+//			user[1].setUsername("Deadpool");
 //			user[1].setImage("img/avatar/deadpool.png");
 //			user[1].setImageHead("img/avatar/deadpool_head.png");
 //			if(request.getParameter("restart") != null) {
@@ -95,13 +100,16 @@ public class BigJeopardyServlet extends HttpServlet {
 //			for(int i=1;i<=2;i++){
 //				session.setAttribute("user"+i, user[i-1]);
 //			}
-//>>>>>>> 38d740de7755014252c7898882993f0bac041cd3
 
 			User user = new SimpleUser();
 			user.setUsername(request.getParameter("username"));
+			user.setImage("img/avatar/black-widow.png");
+			user.setImageHead("img/avatar/black-widow_head.png");
 			session.setAttribute("user", user);
 			
 			Bot bot = new SimpleBot();
+			bot.setImage("img/avatar/deadpool.png");
+			bot.setImageHead("img/avatar/deadpool_head.png");
 			session.setAttribute("bot", bot);
 
 			session.setAttribute("round", new Round());

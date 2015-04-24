@@ -41,13 +41,13 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-						<jsp:useBean id="user1" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
-						<%=user1.getUsername() %>
+						<jsp:useBean id="user" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
+						<%=user.getUsername() %>
 					</td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints"><%=user1.getSum() %> €</td>
+                     <td class="playerpoints"><%=user.getSum() %> €</td>
                   </tr>
                </table>
             </section>
@@ -58,12 +58,12 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-	                     <jsp:useBean id="user2" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
-	                     <%=user2.getUsername() %></td>
+	                     <jsp:useBean id="bot" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
+	                     <%=bot.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints"><%=user2.getSum() %> €</td>
+                     <td class="playerpoints"><%=bot.getSum() %> €</td>
                   </tr>
                </table>
             </section>            
@@ -76,7 +76,7 @@
             <form id="questionform" action="BigJeopardyServlet" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
-               <jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion" />
+               <jsp:useBean id="question" scope="session" type="at.ac.tuwien.big.we15.lab2.api.Question" />
                <p id="questiontype"><%=question.getCategory().getName() %> für € <%=question.getValue() %></p>
                <p id="questiontext"><%=question.getText() %></p>
                <ul id="answers">

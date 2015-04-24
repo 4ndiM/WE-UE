@@ -6,4 +6,8 @@ public interface User {
 	public int getSum();
 	public void setSum(int sum);
 	public int getLastProfit();
+	public String getImage();
+	public void setImage(String image);
+	public String getImageHead();
+	public void setImageHead(String image_head);
 }

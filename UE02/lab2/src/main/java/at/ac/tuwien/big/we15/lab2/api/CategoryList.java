@@ -1,6 +1,10 @@
 package at.ac.tuwien.big.we15.lab2.api;
 
+import java.util.List;
+
 public interface CategoryList {
+	
+	public List<Category> getCategories();
 	
 	public int getNumberOfCategories();
 

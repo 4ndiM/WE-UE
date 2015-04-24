@@ -82,9 +82,9 @@
             <% } %>
             
             <% if(bot.getLastProfit() > 0) { %>
-            	<p class="user-info positive-change">Du hast richtig geantwortet: +<%=bot.getLastProfit() %> €</p>
+            	<p class="user-info positive-change"><%=bot.getUsername() %> hat richtig geantwortet: +<%=bot.getLastProfit() %> €</p>
             <% } else if(bot.getLastProfit() < 0) { %>
-            	<p class="user-info negative-change">Du hast falsch geantwortet: <%=bot.getLastProfit() %> €</p>
+            	<p class="user-info negative-change"><%=bot.getUsername() %> hat falsch geantwortet: <%=bot.getLastProfit() %> €</p>
             <% } %>
             <!-- <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>

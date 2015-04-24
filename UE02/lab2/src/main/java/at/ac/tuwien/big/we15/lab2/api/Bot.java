@@ -14,5 +14,7 @@ public interface Bot extends User {
 	 * 				an array of ids of the answers given
 	 */
 	public String[] chAnswer(List<Category> categories);
+	
+	public Question chQuestion(List<Category> categories);
 
 }

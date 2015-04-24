@@ -1,9 +1,7 @@
 package at.ac.tuwien.big.we15.lab2.api.impl;
 
 import java.util.Arrays;
-
 import java.util.List;
-import java.util.Random;
 
 import at.ac.tuwien.big.we15.lab2.api.Answer;
 import at.ac.tuwien.big.we15.lab2.api.Bot;
@@ -12,11 +10,8 @@ import at.ac.tuwien.big.we15.lab2.api.Question;
 
 public class SimpleBot extends SimpleUser implements Bot {
 	
-	private Random rnd;
-	
 	public SimpleBot(){
 		setUsername("Deadbot");
-		rnd = new Random();
 	}
 	
 	public String[] chAnswer(List<Category> categories){
@@ -47,7 +42,7 @@ public class SimpleBot extends SimpleUser implements Bot {
 	 * @return
 	 * 			the chosen question
 	 */
-	private Question chQuestion(List<Category> categories){
+	public Question chQuestion(List<Category> categories){
 		int cnt = 0;
 		Category c = null;
 		List<Question> lst = null;
@@ -74,7 +69,6 @@ public class SimpleBot extends SimpleUser implements Bot {
 	}
 
 	private int getRandom(int size) {
-		rnd.setSeed(System.currentTimeMillis());
-		return rnd.nextInt()%size;
+		return (int) Math.floor(Math.random()*size);
 	}
 }

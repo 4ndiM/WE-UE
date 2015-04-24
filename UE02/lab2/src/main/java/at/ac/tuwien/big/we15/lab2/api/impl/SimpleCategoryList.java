@@ -12,7 +12,7 @@ import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 
 public class SimpleCategoryList implements CategoryList {
 
-	List<Category> categories;
+	public List<Category> categories;
 	
 	public SimpleCategoryList(ServletContext servletContext) {
 		JeopardyFactory factory = new ServletJeopardyFactory(servletContext);
@@ -29,6 +29,10 @@ public class SimpleCategoryList implements CategoryList {
 			}
 		}
 		return null;
+	}
+	
+	public List<Category> getCategories() {
+		return categories;
 	}
 	
 	public int getNumberOfCategories() {

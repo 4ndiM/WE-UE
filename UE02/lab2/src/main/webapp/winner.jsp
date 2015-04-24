@@ -32,7 +32,7 @@
       <!-- Content -->
       <div role="main">
       	 <%@ page import="javax.servlet.http.HttpSession" %>
-         <%@ page import="at.ac.tuwien.big.we15.lab2.api.impl.User" %>
+         <%@ page import="at.ac.tuwien.big.we15.lab2.api.User" %>
          <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">Gewinnerinformationen</h2>
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
