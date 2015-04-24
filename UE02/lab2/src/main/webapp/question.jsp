@@ -41,7 +41,7 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-						<jsp:useBean id="user1" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
+						<jsp:useBean id="user1" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
 						<%=user1.getUsername() %>
 					</td>
                   </tr>
@@ -58,7 +58,7 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-	                     <jsp:useBean id="user2" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
+	                     <jsp:useBean id="user2" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
 	                     <%=user2.getUsername() %></td>
                   </tr>
                   <tr>

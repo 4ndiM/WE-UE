@@ -1,24 +1,21 @@
 package at.ac.tuwien.big.we15.lab2.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import at.ac.tuwien.big.we15.lab2.api.Category;
-import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.Bot;
 import at.ac.tuwien.big.we15.lab2.api.Question;
-import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
+import at.ac.tuwien.big.we15.lab2.api.User;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleBot;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleCategoryList;
 import at.ac.tuwien.big.we15.lab2.api.impl.Round;
-import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
-import at.ac.tuwien.big.we15.lab2.api.impl.User;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleUser;
 
 /**
  * Servlet implementation class BigJeopardyServlet
@@ -26,20 +23,12 @@ import at.ac.tuwien.big.we15.lab2.api.impl.User;
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static List<Category> categories = null;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public void init() {
-		ServletContext servletContext = getServletContext();
-		JeopardyFactory factory = new ServletJeopardyFactory(servletContext);
-		QuestionDataProvider provider = factory.createQuestionDataProvider();
-		categories = provider.getCategoryData();
-	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("answer_submit") != null){
-			boolean right = false;
 			Question q = null;
 			Round rnd = null;
 			String jsp = "/jeopardy.jsp";
@@ -47,11 +36,18 @@ public class BigJeopardyServlet extends HttpServlet {
 			String[] answers = request.getParameterValues("answers");
 			HttpSession session = request.getSession(true);
 			
+			User user = (User) session.getAttribute("user");
 			q = (Question) session.getAttribute("question");
 			if(q.trueAnswer(answers)){
-				((User) session.getAttribute("user1")).setSum(q.getValue());
-			
+				user.setSum(q.getValue());
+			} else {
+				user.setSum(-(q.getValue() / 2));
 			}
+			
+			Bot bot = (Bot) session.getAttribute("bot");
+			Question botQ = (Question) session.getAttribute("bot");
+			
+			
 			
 			rnd = (Round) session.getAttribute("round");
 			if(!rnd.setRound()){
@@ -68,16 +64,17 @@ public class BigJeopardyServlet extends HttpServlet {
 		
 		if(request.getParameter("login") != null) {
 			HttpSession session = request.getSession(true);
-			User user[] = {new User(), new User()};
-			user[0].setUsername(request.getParameter("username"));
-			user[1].setUsername("Deadpool");
-			for(int i=1;i<=2;i++){
-				session.setAttribute("user"+i, user[i-1]);
-			}
 
+			User user = new SimpleUser();
+			user.setUsername(request.getParameter("username"));
+			session.setAttribute("user", user);
 			
+			Bot bot = new SimpleBot();
+			session.setAttribute("bot", bot);
+
 			session.setAttribute("round", new Round());
-			session.setAttribute("categories", categories);
+			
+			session.setAttribute("categories", new SimpleCategoryList(getServletContext()));
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 			dispatcher.forward(request, response);
@@ -87,15 +84,10 @@ public class BigJeopardyServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			int id = Integer.parseInt(request.getParameter("question_selection"));
 			
-			Question question = null;
-			for(Category c : categories) {
-				for(Question q : c.getQuestions()) {
-					if(q.getId() == id) {
-						question = q;
-					}
-				}
-			}
-			
+			SimpleCategoryList categories = (SimpleCategoryList) session.getAttribute("categories");
+			Question question = categories.getQuestion(id);
+
+			question.setUsed(true);
 			session.setAttribute("question", question);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");

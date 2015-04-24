@@ -2,7 +2,7 @@ package at.ac.tuwien.big.we15.lab2.api;
 
 import java.util.List;
 
-public interface Bot {
+public interface Bot extends User {
 
 	/**
 	 * 

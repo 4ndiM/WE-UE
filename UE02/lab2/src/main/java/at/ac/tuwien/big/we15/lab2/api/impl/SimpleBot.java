@@ -7,7 +7,7 @@ import at.ac.tuwien.big.we15.lab2.api.Bot;
 import at.ac.tuwien.big.we15.lab2.api.Category;
 import at.ac.tuwien.big.we15.lab2.api.Question;
 
-public class SimpleBot extends User implements Bot {
+public class SimpleBot extends SimpleUser implements Bot {
 	
 	private Random rnd;
 	

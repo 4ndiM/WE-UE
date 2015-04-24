@@ -41,13 +41,13 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-                     	<jsp:useBean id="user1" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
-						<%=user1.getUsername() %>
+                     	<jsp:useBean id="user" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
+						<%=user.getUsername() %>
                      </td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints"><%=user1.getSum() %> €</td>
+                     <td class="playerpoints"><%=user.getSum() %> €</td>
                   </tr>
                </table>
             </section>
@@ -58,25 +58,40 @@
                   <tr>
                      <th class="accessibility">Spielername</th>
                      <td class="playername">
-	                     <jsp:useBean id="user2" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.User" />
-	                     <%=user2.getUsername() %></td>
+	                     <jsp:useBean id="bot" scope="session" type="at.ac.tuwien.big.we15.lab2.api.Bot" />
+	                     <%=bot.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints"><%=user2.getSum() %> €</td>
+                     <td class="playerpoints"><%=bot.getSum() %> €</td>
                   </tr>
                </table>
             </section>
-            <jsp:useBean id="round" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.Round" />
+            <jsp:useBean id="round" scope="session" type="at.ac.tuwien.big.we15.lab2.api.impl.Round" />
             <p id="round">Fragen: <%=round.getRound() %> / <%=round.getMaxRound() %></p>
          </section>
 
          <!-- Question -->
          <section id="question-selection" aria-labelledby="questionheading">
             <h2 id="questionheading" class="black accessibility">Jeopardy</h2>
-            <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
+            
+            <% if(user.getLastProfit() > 0) { %>
+            	<p class="user-info positive-change">Du hast richtig geantwortet: +<%=user.getLastProfit() %> €</p>
+            <% } else if(user.getLastProfit() < 0) { %>
+            	<p class="user-info negative-change">Du hast falsch geantwortet: <%=user.getLastProfit() %> €</p>
+            <% } %>
+            
+            <% if(bot.getLastProfit() > 0) { %>
+            	<p class="user-info positive-change">Du hast richtig geantwortet: +<%=bot.getLastProfit() %> €</p>
+            <% } else if(bot.getLastProfit() < 0) { %>
+            	<p class="user-info negative-change">Du hast falsch geantwortet: <%=bot.getLastProfit() %> €</p>
+            <% } %>
+            <!-- <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
-            <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
+            <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p> -->
+            
+            
+            
             <form id="questionform" action="BigJeopardyServlet" method="post">
                <fieldset>
                <legend class="accessibility">Fragenauswahl</legend>
@@ -128,16 +143,18 @@
                      <li><input name="question_selection" id="question_23" value="23" type="radio" disabled="disabled" /><label class="tile clickable" for="question_23">€ 1000</label></li>
                   </ol>
                </section>  -->
-               <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
-               <%@ page import="at.ac.tuwien.big.we15.lab2.api.Question" %>
-               <jsp:useBean id="categories" scope="session" type="java.util.List<Category>" />
-				<% for(Category c : categories) { %>
-					<% String name = c.getName(); %>
-					<section class="questioncategory" aria-labelledby="tuwienheading">
+               <jsp:useBean id="categories" scope="session" type="at.ac.tuwien.big.we15.lab2.api.CategoryList" />
+				<% for(int i = 0; i < categories.getNumberOfCategories(); i++) { %>
+					<% String name = categories.getCategoryName(i); %>
+					<section class="questioncategory" aria-labelledby="categoryheading">
 						<h3 id="categoryheading" class="tile category-title"><span class="accessibility">Kategorie: </span><%=name %></h3>
 						<ol class="category_questions">
-							<% for(Question q : c.getQuestions()) {  %>
-								<li><input name="question_selection" id="question_<%=q.getId() %>" value="<%=q.getId() %>" type="radio" /><label class="tile clickable" for="question_<%=q.getId() %>">€ <%= q.getValue() %></label></li>
+							<% for(int j = 0; j < categories.getNumberOfQuestions(i); j++) {  %>
+								<% int id = categories.getQuestionId(i, j); %>
+								<li>
+									<input name="question_selection" id="question_<%=id %>" value="<%=id %>" type="radio" <% if(categories.getQuestionUsed(i, j)) { %>disabled<% } %> />
+									<label class="tile clickable" for="question_<%=id %>">€ <%=categories.getQuestionValue(i, j) %></label>
+								</li>
 							<% } %>
 						</ol>
                		</section>
