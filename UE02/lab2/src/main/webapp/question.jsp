@@ -84,7 +84,7 @@
                		<%@ page import="java.util.List" %>
                		<% int counter = 1; %>
                		<% for(Answer a : question.getAllAnswers()) {  %>
-						<li><input name="answers" id="answer_<%=counter %>" value="<%=counter %>" type="checkbox"/><label class="tile clickable" for="answer_<%=counter %>"><%=a.getText() %></label></li>
+						<li><input name="answers" id="answer_<%=counter %>" value="<%=a.getId() %>" type="checkbox"/><label class="tile clickable" for="answer_<%=counter %>"><%=a.getText() %></label></li>
 						<% counter++; %>
 					<% } %>
                

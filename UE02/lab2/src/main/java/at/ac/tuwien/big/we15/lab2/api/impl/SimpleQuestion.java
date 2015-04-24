@@ -32,6 +32,8 @@ public class SimpleQuestion implements Question {
 
 	private Category category;
 
+	private boolean used = false;
+
 	public SimpleQuestion() {
 		this.text = "";
 		this.value = 60;
@@ -218,6 +220,16 @@ public class SimpleQuestion implements Question {
 		return "SimpleQuestion [value=" + value + ", text=" + text 
 				+ ", wrongChoices=" + wrongAnswers + ", correctChoices="
 				+ rightAnswers + ", category=" + ((category != null)? category.getName() : "null") + "]";
+	}
+
+	@Override
+	public boolean getUsed() {
+		return used;
+	}
+
+	@Override
+	public void setUsed(boolean bool) {
+		this.used = bool;
 	}
 
 }

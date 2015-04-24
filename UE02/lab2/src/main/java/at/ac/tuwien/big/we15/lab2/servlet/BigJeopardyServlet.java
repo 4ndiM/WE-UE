@@ -48,14 +48,9 @@ public class BigJeopardyServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			
 			q = (Question) session.getAttribute("question");
-
-			
-			if(q.trueAnswer(answers) == true){
-				((User) session.getAttribute("user1")).setUsername(q.getText());
+			if(q.trueAnswer(answers)){
 				((User) session.getAttribute("user1")).setSum(q.getValue());
 			
-			} else {
-				((User) session.getAttribute("user1")).setUsername("falsch");
 			}
 			
 			rnd = (Round) session.getAttribute("round");

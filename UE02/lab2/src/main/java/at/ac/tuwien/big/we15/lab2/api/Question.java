@@ -101,5 +101,16 @@ public interface Question {
 	 */
 	public void setCategory(Category category);
 	
+	/**
+	 * 
+	 * @param answer 
+	 * 			an array of the set of given answers
+	 * @return 
+	 * 			returns of the given answers are correct
+	 */
 	public boolean trueAnswer(String[] answer);
+	
+	public boolean getUsed();
+
+	void setUsed(boolean bool);
 }
