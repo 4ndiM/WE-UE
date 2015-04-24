@@ -25,48 +25,50 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">Navigation</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.xhtml" accesskey="l">Abmelden</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.jsp" accesskey="l">Abmelden</a></li>
 			</ul>
 		</nav>
       
       <!-- Content -->
       <div role="main">
+      	 <%@ page import="javax.servlet.http.HttpSession" %>
+         <%@ page import="at.ac.tuwien.big.we15.lab2.api.impl.User" %>
          <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">Gewinnerinformationen</h2>
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
-               <h3 id="winnerannouncement">Gewinner: Black Widow</h3>
-               <img class="avatar" src="img/avatar/black-widow.png" alt="Spieler-Avatar Black Widow" />
+               <h3 id="winnerannouncement">Gewinner: <%=((User) session.getAttribute("winner")).getUsername() %></h3>
+               <img class="avatar" src="<%=((User) session.getAttribute("winner")).getImage() %>" alt="Spieler-Avatar Black Widow" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Black Widow</td>
+                     <td class="playername"><%=((User) session.getAttribute("winner")).getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">€ 2000</td>
+                     <td class="playerpoints">€ <%=((User) session.getAttribute("winner")).getSum() %></td>
                   </tr>
                </table>
             </section>
             <section class="playerinfo" aria-labelledby="loserheading">
                <h3 id="loserheading" class="accessibility">Verlierer: Deadpool</h3>
-               <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
+               <img class="avatar" src="<%=((User) session.getAttribute("loser")).getImageHead() %>" alt="Spieler-Avatar Deadpool" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Deadpool</td>
+                     <td class="playername"><%=((User) session.getAttribute("loser")).getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">€ 400</td>
+                     <td class="playerpoints">€ <%=((User) session.getAttribute("loser")).getSum() %></td>
                   </tr>
                </table>
             </section>
          </section>
          <section id="newgame" aria-labelledby="newgameheading">
              <h2 id="newgameheading" class="accessibility">Neues Spiel</h2>
-         	<form action="jeopardy.xhtml" method="post">
+         	<form action="BigJeopardyServlet" method="post">
                	<input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="Neues Spiel" />
             </form>
          </section>

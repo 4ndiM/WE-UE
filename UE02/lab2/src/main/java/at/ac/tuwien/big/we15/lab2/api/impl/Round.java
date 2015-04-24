@@ -2,7 +2,7 @@ package at.ac.tuwien.big.we15.lab2.api.impl;
 
 public class Round {
 
-	private int maxRound = 10;
+	private int maxRound = 2;
 	private int round = 1;
 	
 	
@@ -16,7 +16,7 @@ public class Round {
 		return round;
 	}
 	public boolean setRound() {
-		if(this.round >= 10){
+		if(this.round >= 2){
 			return false;
 		}
 		this.round++;

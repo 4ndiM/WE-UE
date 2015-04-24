@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we15.lab2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -55,6 +56,10 @@ public class BigJeopardyServlet extends HttpServlet {
 			
 			rnd = (Round) session.getAttribute("round");
 			if(!rnd.setRound()){
+				User user1 = (User) session.getAttribute("user1");
+				User user2 = (User) session.getAttribute("user2");
+				session.setAttribute("winner", user1.getSum() > user2.getSum() ? user1 : user2);
+				session.setAttribute("loser", user1.getSum() <= user2.getSum() ? user1 : user2);
 				jsp= "/winner.jsp";
 			}
 			
@@ -66,11 +71,28 @@ public class BigJeopardyServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(request.getParameter("login") != null) {
+		if((request.getParameter("login") != null) || (request.getParameter("restart") != null)) {
 			HttpSession session = request.getSession(true);
 			User user[] = {new User(), new User()};
-			user[0].setUsername(request.getParameter("username"));
+			if(request.getParameter("login") != null) {
+				user[0].setUsername(request.getParameter("username"));
+			}
+			else if(request.getParameter("restart") != null) {
+				user[0].setUsername(((User) session.getAttribute("user1")).getUsername());
+			}
+			
+			user[0].setImage("img/avatar/black-widow.png");
+			user[0].setImageHead("img/avatar/black-widow_head.png");
 			user[1].setUsername("Deadpool");
+			user[1].setImage("img/avatar/deadpool.png");
+			user[1].setImageHead("img/avatar/deadpool_head.png");
+			if(request.getParameter("restart") != null) {
+				Enumeration<String> attributes = session.getAttributeNames();
+				while(attributes.hasMoreElements()) {
+					session.removeAttribute(attributes.nextElement());
+				}
+				session = request.getSession(true);
+			}
 			for(int i=1;i<=2;i++){
 				session.setAttribute("user"+i, user[i-1]);
 			}
