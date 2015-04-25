@@ -10,14 +10,10 @@ import at.ac.tuwien.big.we15.lab2.api.Question;
 
 public class SimpleBot extends SimpleUser implements Bot {
 	
-	private Category c;
-	private Question q;
-
+	private Question currentQuestion = null;
 
 	public SimpleBot(){
 		setUsername("Deadbot");
-		this.c = null;
-		this.q = null;
 	}
 	
 	public String[] chAnswer(List<Category> categories){
@@ -46,6 +42,7 @@ public class SimpleBot extends SimpleUser implements Bot {
 		int cnt = 0;
 		List<Question> lst = null;
 		Question q = null;
+		Category c = null;
 		
 		while(true){
 			cnt++;
@@ -54,7 +51,6 @@ public class SimpleBot extends SimpleUser implements Bot {
 			
 			q = lst.get(getRandom(lst.size()));
 			if(!q.getUsed()){
-				this.q = q;
 				return q;
 			}
 			if(cnt > categories.size()*lst.size()){
@@ -72,11 +68,11 @@ public class SimpleBot extends SimpleUser implements Bot {
 		return (int) Math.floor(Math.random()*size);
 	}
 	
-	public Category getCategory(){
-		return this.c;
+	public Question getCurrentQuestion() {
+		return currentQuestion;
 	}
-	
-	public Question getQuestion(){
-		return this.q;
+
+	public void setCurrentQuestion(Question currentQuestion) {
+		this.currentQuestion = currentQuestion;
 	}
 }

@@ -31,37 +31,55 @@
       
       <!-- Content -->
       <div role="main">
+      	<jsp:useBean id="user" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
+        <jsp:useBean id="bot" scope="session" type="at.ac.tuwien.big.we15.lab2.api.Bot" />
       	 <%@ page import="javax.servlet.http.HttpSession" %>
          <%@ page import="at.ac.tuwien.big.we15.lab2.api.User" %>
          <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">Gewinnerinformationen</h2>
-            <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
-            <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
+            
+            <% if(user.getLastProfit() > 0) { %>
+            	<p class="user-info positive-change">Du hast richtig geantwortet: +<%=user.getLastProfit() %> €</p>
+            <% } else if(user.getLastProfit() < 0) { %>
+            	<p class="user-info negative-change">Du hast falsch geantwortet: <%=user.getLastProfit() %> €</p>
+            <% } %>
+            
+            <% if(bot.getLastProfit() > 0) { %>
+            	<p class="user-info positive-change"><%=bot.getUsername() %> hat richtig geantwortet: +<%=bot.getLastProfit() %> €</p>
+            <% } else if(bot.getLastProfit() < 0) { %>
+            	<p class="user-info negative-change"><%=bot.getUsername() %> hat falsch geantwortet: <%=bot.getLastProfit() %> €</p>
+            <% } %>
+            
+            <!-- <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
+            <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p> -->
+            
+            <jsp:useBean id="winner" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
-               <h3 id="winnerannouncement">Gewinner: <%=((User) session.getAttribute("winner")).getUsername() %></h3>
-               <img class="avatar" src="<%=((User) session.getAttribute("winner")).getImage() %>" alt="Spieler-Avatar Black Widow" />
+               <h3 id="winnerannouncement">Gewinner: <%=winner.getUsername() %></h3>
+               <img class="avatar" src="<%=winner.getImage() %>" alt="Spieler-Avatar Black Widow" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername"><%=((User) session.getAttribute("winner")).getUsername() %></td>
+                     <td class="playername"><%=winner.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">€ <%=((User) session.getAttribute("winner")).getSum() %></td>
+                     <td class="playerpoints">€ <%=winner.getSum() %></td>
                   </tr>
                </table>
             </section>
+            <jsp:useBean id="loser" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
             <section class="playerinfo" aria-labelledby="loserheading">
                <h3 id="loserheading" class="accessibility">Verlierer: Deadpool</h3>
-               <img class="avatar" src="<%=((User) session.getAttribute("loser")).getImageHead() %>" alt="Spieler-Avatar Deadpool" />
+               <img class="avatar" src="<%=loser.getImageHead() %>" alt="Spieler-Avatar Deadpool" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername"><%=((User) session.getAttribute("loser")).getUsername() %></td>
+                     <td class="playername"><%=loser.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">€ <%=((User) session.getAttribute("loser")).getSum() %></td>
+                     <td class="playerpoints">€ <%=loser.getSum() %></td>
                   </tr>
                </table>
             </section>

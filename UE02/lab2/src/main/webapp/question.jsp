@@ -25,25 +25,24 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">Navigation</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.xhtml" accesskey="l">Abmelden</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.jsp" accesskey="l">Abmelden</a></li>
 			</ul>
 		</nav>
       
       <!-- Content -->
       <div role="main"> 
          <!-- info -->
+         <jsp:useBean id="user" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
+         <jsp:useBean id="bot" scope="session" type="at.ac.tuwien.big.we15.lab2.api.Bot" />
          <section id="gameinfo" aria-labelledby="gameinfoinfoheading">
             <h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
-            <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
+            <section id="firstplayer" <% if(user.getSum() > bot.getSum()) { %>class="playerinfo leader"<% } else { %>class="playerinfo"<% } %> aria-labelledby="firstplayerheading">
                <h3 id="firstplayerheading" class="accessibility">Führender Spieler</h3>
-               <img class="avatar" src="img/avatar/black-widow_head.png" alt="Spieler-Avatar Black Widow" />
+               <img class="avatar" src=<%=user.getImageHead() %> alt="Spieler-Avatar Black Widow" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">
-						<jsp:useBean id="user" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
-						<%=user.getUsername() %>
-					</td>
+                     <td class="playername"><%=user.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
@@ -51,37 +50,33 @@
                   </tr>
                </table>
             </section>
-            <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
+            <section id="secondplayer" <% if(user.getSum() <= bot.getSum()) { %>class="playerinfo leader"<% } else { %>class="playerinfo"<% } %> aria-labelledby="secondplayerheading">
                <h3 id="secondplayerheading" class="accessibility">Zweiter Spieler</h3>
-               <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
+               <img class="avatar" src=<%=bot.getImageHead() %> alt="Spieler-Avatar Deadpool" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">
-	                     <jsp:useBean id="bot" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
-	                     <%=bot.getUsername() %></td>
+                     <td class="playername"><%=bot.getUsername() %></td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
                      <td class="playerpoints"><%=bot.getSum() %> €</td>
                   </tr>
                </table>
-            </section>            
-	            <jsp:useBean id="round" scope="session" class="at.ac.tuwien.big.we15.lab2.api.impl.Round" />
-	            <p id="round">Fragen: <%=round.getRound() %> / <%=round.getMaxRound() %></p>
+            </section>
+            <jsp:useBean id="round" scope="session" type="at.ac.tuwien.big.we15.lab2.api.impl.Round" />
+            <p id="round">Fragen: <%=round.getRound() %> / <%=round.getMaxRound() %></p>
          </section>
             
       <!-- Question -->
       <section id="question" aria-labelledby="questionheading">
             <form id="questionform" action="BigJeopardyServlet" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
-               <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category" %>
                <jsp:useBean id="question" scope="session" type="at.ac.tuwien.big.we15.lab2.api.Question" />
                <p id="questiontype"><%=question.getCategory().getName() %> für € <%=question.getValue() %></p>
                <p id="questiontext"><%=question.getText() %></p>
                <ul id="answers">
                		<%@ page import="at.ac.tuwien.big.we15.lab2.api.Answer" %>
-               		<%@ page import="java.util.List" %>
                		<% int counter = 1; %>
                		<% for(Answer a : question.getAllAnswers()) {  %>
 						<li><input name="answers" id="answer_<%=counter %>" value="<%=a.getId() %>" type="checkbox"/><label class="tile clickable" for="answer_<%=counter %>"><%=a.getText() %></label></li>

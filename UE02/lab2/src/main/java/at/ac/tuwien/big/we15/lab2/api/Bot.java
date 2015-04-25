@@ -1,6 +1,7 @@
 package at.ac.tuwien.big.we15.lab2.api;
 
 import java.util.List;
+
 import at.ac.tuwien.big.we15.lab2.api.User;
 import at.ac.tuwien.big.we15.lab2.api.Category;
 
@@ -22,9 +23,9 @@ public interface Bot extends User {
 	 * 			the chosen question
 	 */
 	public Question chQuestion(List<Category> categories);
-
-	public Category getCategory();
 	
-	public Question getQuestion();
+	public Question getCurrentQuestion();
+
+	public void setCurrentQuestion(Question currentQuestion);
 
 }

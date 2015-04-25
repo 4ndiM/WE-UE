@@ -167,7 +167,7 @@ public class SimpleQuestion implements Question {
 				}
 			}
 		}
-		if(cnt == rightAnswers.size()){
+		if(cnt == rightAnswers.size() && cnt == answer.length){
 			return true;	
 		}
 		return false;
