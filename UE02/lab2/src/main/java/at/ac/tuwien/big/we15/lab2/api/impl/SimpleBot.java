@@ -10,8 +10,14 @@ import at.ac.tuwien.big.we15.lab2.api.Question;
 
 public class SimpleBot extends SimpleUser implements Bot {
 	
+	private Category c;
+	private Question q;
+
+
 	public SimpleBot(){
 		setUsername("Deadbot");
+		this.c = null;
+		this.q = null;
 	}
 	
 	public String[] chAnswer(List<Category> categories){
@@ -35,16 +41,9 @@ public class SimpleBot extends SimpleUser implements Bot {
 		return !(Arrays.asList(a).contains(str));
 	}
 
-	/**
-	 * 
-	 * @param categories
-	 * 			list of categories from which the bot chooses one category and a question from that category
-	 * @return
-	 * 			the chosen question
-	 */
+
 	public Question chQuestion(List<Category> categories){
 		int cnt = 0;
-		Category c = null;
 		List<Question> lst = null;
 		Question q = null;
 		
@@ -55,6 +54,7 @@ public class SimpleBot extends SimpleUser implements Bot {
 			
 			q = lst.get(getRandom(lst.size()));
 			if(!q.getUsed()){
+				this.q = q;
 				return q;
 			}
 			if(cnt > categories.size()*lst.size()){
@@ -70,5 +70,13 @@ public class SimpleBot extends SimpleUser implements Bot {
 
 	private int getRandom(int size) {
 		return (int) Math.floor(Math.random()*size);
+	}
+	
+	public Category getCategory(){
+		return this.c;
+	}
+	
+	public Question getQuestion(){
+		return this.q;
 	}
 }

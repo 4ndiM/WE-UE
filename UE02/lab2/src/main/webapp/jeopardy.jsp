@@ -86,6 +86,9 @@
             <% } else if(bot.getLastProfit() < 0) { %>
             	<p class="user-info negative-change"><%=bot.getUsername() %> hat falsch geantwortet: <%=bot.getLastProfit() %> €</p>
             <% } %>
+            <% if(bot.getCategory() != null && bot.getQuestion() != null){ %>
+          		<p class="user-info"><%=bot.getUsername() %> hat <%=bot.getCategory().getName() %> für € <%=bot.getQuestion().getValue() %> gewählt.</p>
+            <% } %>
             <!-- <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p> -->
