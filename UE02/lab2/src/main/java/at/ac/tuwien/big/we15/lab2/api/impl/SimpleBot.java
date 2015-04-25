@@ -10,6 +10,8 @@ import at.ac.tuwien.big.we15.lab2.api.Question;
 
 public class SimpleBot extends SimpleUser implements Bot {
 	
+	private Question currentQuestion = null;
+
 	public SimpleBot(){
 		setUsername("Deadbot");
 	}
@@ -70,5 +72,13 @@ public class SimpleBot extends SimpleUser implements Bot {
 
 	private int getRandom(int size) {
 		return (int) Math.floor(Math.random()*size);
+	}
+	
+	public Question getCurrentQuestion() {
+		return currentQuestion;
+	}
+
+	public void setCurrentQuestion(Question currentQuestion) {
+		this.currentQuestion = currentQuestion;
 	}
 }

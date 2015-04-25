@@ -49,12 +49,22 @@ public class BigJeopardyServlet extends HttpServlet {
 			CategoryList categories = (CategoryList) session.getAttribute("categories");
 			
 			Bot bot = (Bot) session.getAttribute("bot");
-			Question botQ = bot.chQuestion(categories.getCategories());
-			botQ.setUsed(true);
+			Question botQ = bot.getCurrentQuestion();
+			if(botQ == null) {
+				botQ = bot.chQuestion(categories.getCategories());
+				botQ.setUsed(true);
+			}
 			if(Math.floor((Math.random()*100)) > 50) {
 				bot.setSum(botQ.getValue());
 			} else {
 				bot.setSum(-(botQ.getValue() / 2));
+			}
+			bot.setCurrentQuestion(null);
+			
+			if(bot.getSum() < user.getSum()) {
+				botQ = bot.chQuestion(categories.getCategories());
+				botQ.setUsed(true);
+				bot.setCurrentQuestion(botQ);
 			}
 			
 			rnd = (Round) session.getAttribute("round");
@@ -100,9 +110,13 @@ public class BigJeopardyServlet extends HttpServlet {
 //			for(int i=1;i<=2;i++){
 //				session.setAttribute("user"+i, user[i-1]);
 //			}
-
+			
 			User user = new SimpleUser();
-			user.setUsername(request.getParameter("username"));
+			if(request.getParameter("restart") != null) {
+				user.setUsername(((User) session.getAttribute("user")).getUsername());
+			} else {
+				user.setUsername(request.getParameter("username"));
+			}
 			user.setImage("img/avatar/black-widow.png");
 			user.setImageHead("img/avatar/black-widow_head.png");
 			session.setAttribute("user", user);
