@@ -28,7 +28,7 @@ public class RealUser extends SimpleUser {
     public String firstname;
     public String lastname;
     /*TODO: Pattern Syntax*/
-    @Constraints.Pattern(regexp="0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20))", message="Invalid date format!")
+    @Constraints.Pattern(value="0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).(19|20))", message="Invalid date format!")
    // @Constraints.Pattern()
     public String birthdate;
 }

@@ -16,8 +16,10 @@ import java.util.Locale;
 
 public class Application extends Controller {
 
+	private static Form<RealUser> userform = Form.form(RealUser.class);
+
 	public static Result index() {
-		return ok(authentication.render());
+		return ok(authentication.render(Form.form(RealUser.class)));
 	}
 
 
@@ -42,12 +44,12 @@ public class Application extends Controller {
 		});
 		/*** Ends here ***/
 
-		Form<RealUser> form = Form.form(RealUser.class).bindFromRequest();
-		System.out.println(form.toString());
-		if (form.hasErrors()) {
-			return badRequest(registration.render(form));
+		userform = Form.form(RealUser.class).bindFromRequest();
+		// System.out.println(userform.toString());
+		if (userform.hasErrors()) {
+			return badRequest(registration.render(userform));
 		} else {
-			RealUser realUser = form.get();
+			RealUser realUser = userform.get();
 			JPA.em().persist(realUser);
 		}
 		return redirect(routes.Application.index());

@@ -1,4 +1,4 @@
-@(form: Form[RealUser])
+@(userform: Form[RealUser])
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
@@ -9,8 +9,8 @@
         <title>Business Informatics Group Jeopardy! - Registrieren</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")" />
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/screen.css")" />
-        <script src="js/jquery.js" type="text/javascript"></script>
-        <script src="js/framework.js" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/framework.js")" type="text/javascript"></script>
     </head>
     <body id="register-page">
       <a title="Zur Registrierung springen" class="accessibility" href="#register">Zur Registrierung springen</a>
@@ -34,14 +34,14 @@
       <div id="register" role="main"> 
             <!-- Register section -->
             <h2 id="registerheading" class="accessibility">Registrierung</h2>
-            @implicitField = @{ FieldConstructor(FormConstructorTemplate.f) }
+
             @helper.form(action= routes.Application.register()){
-                @helper.inputText(form("firstname"))
-                @helper.inputText(form("lastname"))
-                @helper.inputDate(form("birthdate"))
-                @helper.inputRadioGroup(form("gender"), options = Seq(("m"->"male"),
+                @helper.inputText(userform("firstname"))
+                @helper.inputText(userform("lastname"))
+                @helper.inputDate(userform("birthdate"))
+                @helper.inputRadioGroup(userform("gender"), options = Seq(("m"->"male"),
                                                                         ("female"->"female")))
-                @helper.select(form("avatar"), options = Seq(("aldrich-killian" -> "Aldrich Killian"),
+                @helper.select(userform("avatar"), options = Seq(("aldrich-killian" -> "Aldrich Killian"),
                                                               ("beetle" -> "Beetle"),
                                                               ("black-widow" -> "Black Widow"),
                                                               ("captain-america" -> "Captain America"),
@@ -83,8 +83,8 @@
                                                               ("venom" -> "Venom"),
                                                               ("war-machine" -> "War Machine"),
                                                               ("wolverine" -> "Wolverine")))
-                @helper.inputText(form("username"))
-                @helper.inputPassword(form("password"))
+                @helper.inputText(userform("username"))
+                @helper.inputPassword(userform("password"))
             }
             <!--<form action="@routes.Application.register()" method="post">
                 <fieldset>
