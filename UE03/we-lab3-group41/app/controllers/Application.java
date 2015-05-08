@@ -1,7 +1,10 @@
 package controllers;
 
-import at.ac.tuwien.big.we15.lab2.api.*;
 import at.ac.tuwien.big.we15.lab2.api.impl.PlayJeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
+import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+import at.ac.tuwien.big.we15.lab2.api.User;
 import play.data.Form;
 import play.data.format.Formatters;
 import play.mvc.*;
@@ -11,6 +14,7 @@ import views.html.*;
 
 import models.RealUser;
 
+import java.security.MessageDigest;
 import java.text.ParseException;
 import java.util.Locale;
 
@@ -31,7 +35,7 @@ public class Application extends Controller {
 	@play.db.jpa.Transactional
 	public static Result register(){
 
-		/*** Custom DataBinder ***/
+		/*** Custom DataBinder to convert String from form to Avatar object ***/
 		Formatters.register(Avatar.class, new Formatters.SimpleFormatter<Avatar>() {
 			@Override
 			public Avatar parse(String input, Locale arg1) throws ParseException {
@@ -46,18 +50,24 @@ public class Application extends Controller {
 		/*** Ends here ***/
 
 		userform = Form.form(RealUser.class).bindFromRequest();
-		// System.out.println(userform.toString());
 		if (userform.hasErrors()) {
 			return badRequest(registration.render(userform));
 		} else {
 			RealUser realUser = userform.get();
+			/*Verbesserungswürdig*/
+			/*try {
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+				realUser.password = digest.digest(realUser.password.getBytes("UTF-8")).toString();
+			} catch(Exception e){
+				System.out.println("An error occurred while hashing the password");
+				return badRequest(registration.render(userform));
+			}*/
 			JPA.em().persist(realUser);
 		}
 		return redirect(routes.Application.index());
 	}
-
-
-	public static Result signin(){
+	@Security.Authenticated(Game.class)
+	public static Result login(){
 		/*TODO: Get and check input, somehow???*/
 
 		userform = Form.form(RealUser.class).bindFromRequest();

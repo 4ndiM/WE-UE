@@ -33,8 +33,6 @@
       <div role="main">
       	<jsp:useBean id="user" scope="session" type="at.ac.tuwien.big.we15.lab2.api.User" />
         <jsp:useBean id="bot" scope="session" type="at.ac.tuwien.big.we15.lab2.api.Bot" />
-      	 <%@ page import="javax.servlet.http.HttpSession" %>
-         <%@ page import="at.ac.tuwien.big.we15.lab2.api.User" %>
          <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">Gewinnerinformationen</h2>
             
