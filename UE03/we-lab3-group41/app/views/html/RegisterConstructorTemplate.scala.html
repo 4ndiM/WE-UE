@@ -8,7 +8,11 @@
 } else {@if(elements.id == "username" || elements.id == "password"){
 <label for="@elements.id">@elements.label*:</label>
 @elements.input
+
 } else {
 <label for="@elements.id">@elements.label: </label>
 @elements.input
 }}
+@if(elements.hasErrors){
+<div id="error_msg_@elements.id" role="alert">@elements.errors</div>
+}

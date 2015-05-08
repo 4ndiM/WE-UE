@@ -27,7 +27,7 @@
     <section id="login" aria-labelledby="loginheading">
         <h2 id="loginheading" class="accessibility">Login</h2>
         <fieldset>
-            @helper.form(action= routes.Application.signin()){
+            @helper.form(action= routes.Application.login()){
                 <legend id="logindata">Login</legend>
                 @helper.inputText(userform("username"), '_label -> "Benutzername:")
                 @helper.inputPassword(userform("password"), '_label -> "Passwort:")
@@ -35,7 +35,7 @@
         </fieldset>
         }
 
-        <!--<form action="/signin" method="post">
+        <!--<form action="/login" method="post">
             <fieldset>
                 <legend id="logindata">Login</legend>
                 <label for="username">Benutzername:</label>
