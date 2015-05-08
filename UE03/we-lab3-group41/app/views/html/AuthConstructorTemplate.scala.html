@@ -1,0 +1,13 @@
+@(elements: views.html.helper.FieldElements)
+@import views.html.helper._
+
+  <!--  @if(elements.id == "username"){
+        <label for="@elements.id">Benutzername: </label>
+    }else {
+        <label for="@elements.id">Passwort: </label>
+
+    }
+    @elements.input-->
+
+<label for="@elements.id">@elements.label </label>
+@elements.input

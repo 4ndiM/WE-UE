@@ -1,4 +1,6 @@
 @(userform: Form[RealUser])
+@implicitField = @{ helper.FieldConstructor(html.RegisterConstructorTemplate.f) }
+
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
@@ -34,58 +36,31 @@
       <div id="register" role="main"> 
             <!-- Register section -->
             <h2 id="registerheading" class="accessibility">Registrierung</h2>
-
+            <fieldset>
+                <legend>Persönliche Daten</legend>
             @helper.form(action= routes.Application.register()){
-                @helper.inputText(userform("firstname"))
-                @helper.inputText(userform("lastname"))
-                @helper.inputDate(userform("birthdate"))
-                @helper.inputRadioGroup(userform("gender"), options = Seq(("m"->"male"),
-                                                                        ("female"->"female")))
-                @helper.select(userform("avatar"), options = Seq(("aldrich-killian" -> "Aldrich Killian"),
-                                                              ("beetle" -> "Beetle"),
-                                                              ("black-widow" -> "Black Widow"),
-                                                              ("captain-america" -> "Captain America"),
-                                                              ("cyclops" -> "Cyclops"),
-                                                              ("deadpool" -> "Deadpool"),
-                                                              ("doctor-doom" -> "Doctor Doom"),
-                                                              ("doctor-octopus" -> "Doctor Octopus"),
-                                                              ("drax" -> "Drax"),
-                                                              ("electro" -> "Electro"),
-                                                              ("extremis-soldier" -> "Extremis Soldier"),
-                                                              ("falcon" -> "Falcon"),
-                                                              ("gamora" -> "Gamora"),
-                                                              ("green-goblin" -> "Green Goblin"),
-                                                              ("groot" -> "Groot"),
-                                                              ("hawkeye" -> "Hawkeye"),
-                                                              ("hulk" -> "Hulk"),
-                                                              ("hydra-henchman" -> "Hydra Henchman"),
-                                                              ("iron-fist" -> "Iron Fist"),
-                                                              ("iron-man" -> "Iron Man"),
-                                                              ("j-jonah-jameson" -> "J. Jonah Jameson"),
-                                                              ("loki" -> "Loki"),
-                                                              ("magneto" -> "Magneto"),
-                                                              ("mary-jane-watson" -> "Mary Jane Watson"),
-                                                              ("modok" -> "MODOK"),
-                                                              ("nebula" -> "Nebula"),
-                                                              ("nick-fury" -> "Nick Fury"),
-                                                              ("nova" -> "Nova"),
-                                                              ("pepper-potts" -> "Pepper Potts"),
-                                                              ("power-man" -> "Power Man"),
-                                                              ("red-skull" -> "Red Skull"),
-                                                              ("rocket" -> "Rocket Raccoon"),
-                                                              ("ronan" -> "Ronan"),
-                                                              ("spiderman" -> "Spiderman"),
-                                                              ("starlord" -> "Starlord"),
-                                                              ("taskmaster" -> "Taskmaster"),
-                                                              ("the-mandarin" -> "The Mandarin"),
-                                                              ("thor" -> "Thor"),
-                                                              ("tony-stark" -> "Tony Stark"),
-                                                              ("venom" -> "Venom"),
-                                                              ("war-machine" -> "War Machine"),
-                                                              ("wolverine" -> "Wolverine")))
-                @helper.inputText(userform("username"))
-                @helper.inputPassword(userform("password"))
+                @helper.inputText(userform("firstname"), '_label -> "Vorname")
+                @helper.inputText(userform("lastname"), '_label -> "Nachname")
+                @helper.inputDate(userform("birthdate"), '_label -> "Geburtstag")
+
+                @helper.inputRadioGroup(userform("gender"), options = Seq(("m"->"Männlich"),
+                                                                        ("f"->"Weiblich")), '_label -> "Geschlecht")
+                </fieldset>
+                <fieldset>
+                <legend>Spielerdaten</legend>
+                <select name="avatar">
+                    @for(av <- at.ac.tuwien.big.we15.lab2.api.Avatar.values()){
+                    <option value="@av.getId()">@av.getName()</option>
+                    }
+                </select>
+                @helper.inputText(userform("username"), '_label -> "Benutzername", '_pattern -> "\\w{4,8}")
+
+                @helper.inputPassword(userform("password"), '_label -> "Passwort")
+
+                <input class="greenlink formlink" type="submit" value="Registrieren" accesskey="s"/>
+                <p id="requiredhint">Mit "*" gekennzeichnete Felder sind Pflichtfelder</p>
             }
+                </fieldset>
             <!--<form action="@routes.Application.register()" method="post">
                 <fieldset>
                     <legend>Persönliche Daten</legend>
@@ -167,9 +142,8 @@
                     <input class="greenlink formlink" type="submit" value="Registrieren" accesskey="s"/>
                     <p id="requiredhint">Mit "*" gekennzeichnete Felder sind Pflichtfelder</p>
                 </fieldset>
-            </form>-->
-        </div>
-
+            </form>
+        </div>-->
         <!-- Footer -->
         <footer role="contentinfo">© 2015 BIG Jeopardy</footer>
         
