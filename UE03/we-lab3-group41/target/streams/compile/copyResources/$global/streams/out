@@ -1,0 +1,7 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/application.conf,/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/data.de.json,/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/classes/data.de.json)[0m
+[0m[[0mdebug[0m] [0m	(/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/data.en.json,/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/classes/data.en.json)[0m
+[0m[[0mdebug[0m] [0m	(/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/META-INF,/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/classes/META-INF)[0m
+[0m[[0mdebug[0m] [0m	(/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/routes,/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/META-INF/persistence.xml,/Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/classes/META-INF/persistence.xml)[0m

@@ -1,6 +1,7 @@
 package controllers;
 
-import at.ac.tuwien.big.we15.lab2.api.Avatar;
+import at.ac.tuwien.big.we15.lab2.api.*;
+import at.ac.tuwien.big.we15.lab2.api.impl.PlayJeopardyFactory;
 import play.data.Form;
 import play.data.format.Formatters;
 import play.mvc.*;
@@ -58,8 +59,15 @@ public class Application extends Controller {
 
 	public static Result signin(){
 		/*TODO: Get and check input, somehow???*/
+
+		userform = Form.form(RealUser.class).bindFromRequest();
 		if(true){
-			return ok(jeopardy.render());
+			JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
+			User test = new RealUser();
+			test.setName("sadasdf");
+			test.setAvatar(Avatar.getAvatar("cyclops"));
+			JeopardyGame game = factory.createGame(test);
+			return ok(jeopardy.render(game));
 		}
 		return unauthorized();
 	}

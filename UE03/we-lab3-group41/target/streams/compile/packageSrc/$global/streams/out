@@ -1,0 +1,19 @@
+[0m[[0minfo[0m] [0mPackaging /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/target/scala-2.11/we-lab3-group41_2.11-1.0-SNAPSHOT-sources.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	META-INF/persistence.xml[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/META-INF/persistence.xml[0m
+[0m[[0mdebug[0m] [0m	controllers/Application.java[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/app/controllers/Application.java[0m
+[0m[[0mdebug[0m] [0m	routes[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/routes[0m
+[0m[[0mdebug[0m] [0m	models/RealUser.java[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/app/models/RealUser.java[0m
+[0m[[0mdebug[0m] [0m	data.en.json[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/data.en.json[0m
+[0m[[0mdebug[0m] [0m	application.conf[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/application.conf[0m
+[0m[[0mdebug[0m] [0m	data.de.json[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/data.de.json[0m
+[0m[[0mdebug[0m] [0m	META-INF[0m
+[0m[[0mdebug[0m] [0m	  /Volumes/BoxCryptor/Uni/Aktuell/Web Engineering/WE-UE/UE03/we-lab3-group41/conf/META-INF[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

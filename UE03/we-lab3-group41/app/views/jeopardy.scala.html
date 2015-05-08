@@ -1,3 +1,4 @@
+@(game:at.ac.tuwien.big.we15.lab2.api.JeopardyGame)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
@@ -5,10 +6,10 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Business Informatics Group Jeopardy! - Fragenauswahl</title>
-        <link rel="stylesheet" type="text/css" href="style/base.css" />
-        <link rel="stylesheet" type="text/css" href="style/screen.css" />
-        <script src="js/jquery.js" type="text/javascript"></script>
-        <script src="js/framework.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/screen.css")"
+        <script src="@routes.Assets.at("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/framework.js")" type="text/javascript"></script>
    </head>
    <body id="selection-page">
       <a class="accessibility" href="#question-selection">Zur Fragenauswahl springen</a>
@@ -34,45 +35,75 @@
             <h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
             <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
                <h3 id="firstplayerheading" class="accessibility">Führender Spieler</h3>
-               <img class="avatar" src="img/avatar/black-widow_head.png" alt="Spieler-Avatar Black Widow" />
+               <img class="avatar" src="@routes.Assets.at("images/avatar/" + game.getHuman().getAvatar().getImageHead())" alt="Spieler-Avatar @game.getHuman().getName()" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Black Widow (Du)</td>
+                     <td class="playername">@game.getHuman().getName()</td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">2000 €</td>
+                     <td class="playerpoints">@game.getHumanPlayer.getProfit() €</td>
                   </tr>
                </table>
             </section>
             <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
                <h3 id="secondplayerheading" class="accessibility">Zweiter Spieler</h3>
-               <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
+               <img class="avatar" src="@routes.Assets.at("images/avatar/" + game.getMarvin().getAvatar().getImageHead())" alt="Spieler-Avatar @game.getMarvin().getName()" />
                <table>
                   <tr>
                      <th class="accessibility">Spielername</th>
-                     <td class="playername">Deadpool</td>
+                     <td class="playername">@game.getMarvin().getName()</td>
                   </tr>
                   <tr>
                      <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">400 €</td>
+                     <td class="playerpoints">@game.getMarvinPlayer.getProfit() €</td>
                   </tr>
                </table>
             </section>
-            <p id="round">Fragen: 2 / 10</p>
+            <p id="round">Fragen: 2 / @game.getMaxQuestions()</p>
          </section>
 
          <!-- Question -->
          <section id="question-selection" aria-labelledby="questionheading">
             <h2 id="questionheading" class="black accessibility">Jeopardy</h2>
-            <p class="realUser-info positive-change">Du hast richtig geantwortet: +1000 €</p>
+             @if(!game.isRoundStart()) {
+                @if(game.getHumanPlayer().getLatestProfitChange() > 0) {
+                 <p class="realUser-info positive-change">Du hast richtig geantwortet: +@game.getHumanPlayer().getLatestProfitChange() €</p>
+                } else {
+                 <p class="realUser-info negative-change">Du hast falsch geantwortet: @game.getHumanPlayer().getLatestProfitChange() €</p>
+                }
+
+                 @if(game.getMarvinPlayer().getLatestProfitChange() > 0) {
+                 <p class="realUser-info positive-change">@game.getMarvin().getName() hat richtig geantwortet: +@game.getMarvinPlayer().getLatestProfitChange() €</p>
+                 } else {
+                 <p class="realUser-info negative-change">@game.getMarvin().getName() hat falsch geantwortet: @game.getMarvinPlayer().getLatestProfitChange() €</p>
+                 }
+             }
+            <!--<p class="realUser-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="realUser-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
-            <p class="realUser-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
+            <p class="realUser-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>-->
             <form id="questionform" action="question.xhtml" method="post">
                <fieldset>
                <legend class="accessibility">Fragenauswahl</legend>
+
+
+               @for(c <- game.getCategories()) {
                <section class="questioncategory" aria-labelledby="tvheading">
+                   <h3 id="tvheading" class="tile category-title"><span class="accessibility">Kategorie: </span>@c.getName()</h3>
+                   <ol class="category_questions">
+                       @for(q <- c.getQuestions()) {
+                       <li>
+                           <input name="question_selection" id="question_@q.getId()" value="@q.getId()" type="radio" @if(game.hasBeenChosen(q)) { disabled="disabled" }/>
+                           <label class="tile clickable" for="question_@q.getId()">€ @q.getValue()</label>
+                       </li>
+                       }
+                   </ol>
+               </section>
+               }
+
+
+               <!--<section class="questioncategory" aria-labelledby="tvheading">
                   <h3 id="tvheading" class="tile category-title"><span class="accessibility">Kategorie: </span>TV</h3>
                   <ol class="category_questions">
                      <li><input name="question_selection" id="question_1" value="1" type="radio" disabled="disabled" /><label class="tile clickable" for="question_1">€ 100</label></li>
@@ -119,7 +150,7 @@
                      <li><input name="question_selection" id="question_22" value="22" type="radio" /><label class="tile clickable" for="question_22">€ 750</label></li>
                      <li><input name="question_selection" id="question_23" value="23" type="radio" disabled="disabled" /><label class="tile clickable" for="question_23">€ 1000</label></li>
                   </ol>
-               </section> 
+               </section> -->
                </fieldset>               
                <input class="greenlink formlink clickable" name="question_submit" id="next" type="submit" value="wählen" accesskey="s" />
             </form>
