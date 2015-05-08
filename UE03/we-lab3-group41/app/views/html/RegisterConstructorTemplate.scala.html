@@ -8,7 +8,6 @@
 } else {@if(elements.id == "username" || elements.id == "password"){
 <label for="@elements.id">@elements.label*:</label>
 @elements.input
-<div id="error_msg_@elements.id" class="hide" role="alert">Der @elements.label muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>username
 } else {
 <label for="@elements.id">@elements.label: </label>
 @elements.input

@@ -1,6 +1,5 @@
 package models;
 
-import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleUser;
 
 import javax.persistence.Entity;
@@ -8,7 +7,6 @@ import javax.persistence.Id;
 
 
 import play.data.validation.Constraints;
-import play.data.validation.ValidationError;
 
 @Entity
 public class RealUser extends SimpleUser {
@@ -17,6 +15,7 @@ public class RealUser extends SimpleUser {
     @Constraints.Required
     @Constraints.MinLength(4)
     @Constraints.MaxLength(8)
+    @Constraints.Pattern(value="\\w{4,8}", message = "Benutzername hat zwischen 4 und 8 Zeichen.")
     public String username;
 
     @Constraints.Required

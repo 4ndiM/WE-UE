@@ -48,12 +48,13 @@
                 </fieldset>
                 <fieldset>
                 <legend>Spielerdaten</legend>
+                    <label for="avatar">Avatar:</label>
                 <select name="avatar">
                     @for(av <- at.ac.tuwien.big.we15.lab2.api.Avatar.values()){
                     <option value="@av.getId()">@av.getName()</option>
                     }
                 </select>
-                @helper.inputText(userform("username"), '_label -> "Benutzername", '_pattern -> "\\w{4,8}")
+                @helper.inputText(userform("username"), '_label -> "Benutzername")
 
                 @helper.inputPassword(userform("password"), '_label -> "Passwort")
 
