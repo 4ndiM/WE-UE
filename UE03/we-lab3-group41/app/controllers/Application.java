@@ -5,6 +5,7 @@ import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
 import at.ac.tuwien.big.we15.lab2.api.User;
+import play.cache.Cache;
 import play.data.Form;
 import play.data.format.Formatters;
 import play.mvc.*;
@@ -66,17 +67,20 @@ public class Application extends Controller {
 		}
 		return redirect(routes.Application.index());
 	}
-	@Security.Authenticated(Game.class)
+
+	//@Security.Authenticated(Game.class)
 	public static Result login(){
 		/*TODO: Get and check input, somehow???*/
 
-		userform = Form.form(RealUser.class).bindFromRequest();
+		//userform = Form.form(RealUser.class).bindFromRequest();
 		if(true){
 			JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
-			User test = new RealUser();
-			test.setName("sadasdf");
-			test.setAvatar(Avatar.getAvatar("cyclops"));
-			JeopardyGame game = factory.createGame(test);
+			User user = new RealUser();
+			user.setName("sadasdf");
+			user.setAvatar(Avatar.getAvatar("cyclops"));
+			JeopardyGame game = factory.createGame(user);
+			Cache.set("game_"+user.getName(), game);
+			session().put("user",user.getName());
 			return ok(jeopardy.render(game));
 		}
 		return unauthorized();
