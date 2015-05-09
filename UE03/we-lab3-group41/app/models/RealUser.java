@@ -31,4 +31,8 @@ public class RealUser extends SimpleUser {
     @Constraints.Pattern(value="((([0-2][1-9]|3[01]).(0(1|[3-9])|1[0-2])|(([0-2][1-9]).(2))).(19[0-9][0-9]|20[0-9][0-9]))",
             message="Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2010).")
     public String birthdate;
+
+    public String getName() {
+        return username;
+    }
 }

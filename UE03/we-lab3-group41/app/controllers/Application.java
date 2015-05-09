@@ -50,21 +50,11 @@ public class Application extends Controller {
 		});
 		/*** Ends here ***/
 
-		userform = Form.form(RealUser.class).bindFromRequest();
-		if (userform.hasErrors()) {
-			return badRequest(registration.render(userform));
-		} else {
+		if(!getForm()){return badRequest(registration.render(userform));}
 			RealUser realUser = userform.get();
-			/*Verbesserungswürdig*/
-			/*try {
-				MessageDigest digest = MessageDigest.getInstance("SHA-256");
-				realUser.password = digest.digest(realUser.password.getBytes("UTF-8")).toString();
-			} catch(Exception e){
-				System.out.println("An error occurred while hashing the password");
-				return badRequest(registration.render(userform));
-			}*/
+			//TODO: hash/encode password
 			JPA.em().persist(realUser);
-		}
+
 		return redirect(routes.Application.index());
 	}
 
@@ -73,16 +63,52 @@ public class Application extends Controller {
 		/*TODO: Get and check input, somehow???*/
 
 		//userform = Form.form(RealUser.class).bindFromRequest();
-		if(true){
+
+		if(!getForm()){return badRequest(registration.render(userform));}
+		if(validate(userform.get())){
+			System.out.println("got validated");
 			JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
-			User user = new RealUser();
-			user.setName("sadasdf");
+			RealUser user = new RealUser();
+			//test.setName("sadasdf");
+			user.username = "sadasdf";
 			user.setAvatar(Avatar.getAvatar("cyclops"));
 			JeopardyGame game = factory.createGame(user);
-			Cache.set("game_"+user.getName(), game);
-			session().put("user",user.getName());
+			Cache.set("game_" + user.getName(), game);
+			session().clear();
+			session().put("user", user.getName());
 			return ok(jeopardy.render(game));
 		}
+		System.out.println("did not...");
 		return unauthorized();
 	}
+
+	@play.db.jpa.Transactional
+	private static boolean validate(RealUser user) {
+		RealUser usr = JPA.em().find(RealUser.class, user.username);
+		if ( usr != null && usr.password == user.password){ /*TODO: use hashedPwd(user.password)*/
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean getForm(){
+		userform = Form.form(RealUser.class).bindFromRequest();
+		if (userform.hasErrors()) {
+			return false;
+		}
+		return true;
+	}
+
+	/*TODO: Implement this*/
+/*	private String hashedPwd(String pwd){
+
+			try {
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+				realUser.password = digest.digest(realUser.password.getBytes("UTF-8")).toString();
+			} catch(Exception e){
+				System.out.println("An error occurred while storing the password");
+				return badRequest(registration.render(userform));
+			}
+		return null;
+	}*/
 }
