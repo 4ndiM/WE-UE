@@ -9,11 +9,11 @@ public class Game extends Security.Authenticator {
 
     @Override
     public String getUsername(Context ctx) {
-        return ctx.session().get("username");
+        System.out.println("security ok");return ctx.session().get("username");
     }
 
     @Override
     public Result onUnauthorized(Context ctx) {
-        return redirect(routes.Application.login());
+        return redirect(routes.Application.index());
     }
 }

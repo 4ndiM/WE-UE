@@ -49,39 +49,58 @@ public class Application extends Controller {
 		});
 		/*** Ends here ***/
 
-		if(!getForm()){return badRequest(registration.render(userform));}
+		userform = Form.form(RealUser.class).bindFromRequest();
+		if (userform.hasErrors()) {
+			return badRequest(registration.render(userform));}
 			RealUser realUser = userform.get();
 			//TODO: hash/encode password
 			JPA.em().persist(realUser);
-
 		return redirect(routes.Application.index());
-	}
-	@Security.Authenticated(Game.class)
-	public static Result login(){
-		/*TODO: Get and check input, somehow???*/
-
-		if(!getForm()){return badRequest(registration.render(userform));}
-
-		if(validate(userform.get())){
-			System.out.println("got validated");
-			JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
-			RealUser test = new RealUser();
-			//test.setName("sadasdf");
-			test.username = "sadasdf";
-			test.setAvatar(Avatar.getAvatar("cyclops"));
-			JeopardyGame game = factory.createGame(test);
-			session().clear();
-			session("username", userform.get().username);
-			return ok(jeopardy.render(game));
-		}
-		System.out.println("did not...");
-		return unauthorized();
 	}
 
 	@play.db.jpa.Transactional
-	private static boolean validate(RealUser user) {
+	public static Result login(){
+		/*TODO: Get and check input, somehow???*/
+
+		userform = Form.form(RealUser.class).bindFromRequest();
+		if (userform.hasErrors()) {
+			//System.out.println("did not... in form");
+			return badRequest(authentication.render(userform));}
+
+		boolean logg = validate(userform.get());
+		System.out.println("user is valid: " + logg);
+		if(logg){
+			//System.out.println("did so!!");
+			return redirect(routes.Application.game());
+		}
+		//System.out.println("did not...");
+		return unauthorized("You shall not pass! ...unless you login with your correct username and password");
+	}
+
+	@Security.Authenticated(Game.class)
+	public static Result game(){
+		//System.out.println("got validated");
+		JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
+		RealUser test = new RealUser();
+		//test.setName("sadasdf");
+		test.username = "sadasdf";
+		test.setAvatar(Avatar.getAvatar("cyclops"));
+		JeopardyGame game = factory.createGame(test);
+		return ok(jeopardy.render(game));
+	}
+
+	public static boolean validate(RealUser user) {
 		RealUser usr = JPA.em().find(RealUser.class, user.username);
-		if ( usr != null && usr.password == user.password){ /*TODO: use hashedPwd(user.password)*/
+
+		System.out.printf("user.username: %s\n usr.username: %s\n",user.username, usr.username);
+		System.out.printf("user.password: %s\n usr.password: %s\n",user.password, usr.password);
+		if(usr == null){
+			System.out.println("usr is null");
+		}
+		if(usr.password != user.password){
+			System.out.println("password not correct");
+		}
+		if(usr != null && usr.password == user.password){ /*TODO: use hashedPwd(user.password)*/
 			return true;
 		}
 		return false;
