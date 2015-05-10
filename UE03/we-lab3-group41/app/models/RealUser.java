@@ -1,11 +1,13 @@
 package models;
 
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleUser;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
+import play.data.Form;
 import play.data.validation.Constraints;
 
 @Entity
@@ -32,7 +34,27 @@ public class RealUser extends SimpleUser {
             message="Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2010).")
     public String birthdate;
 
+    private String avId;
+    private Avatar avatar;
+
     public String getName() {
         return username;
+    }
+
+    public String toString(){
+        return String.format("%s, %s\n",username, avId);
+    }
+
+    public String getAvId() {
+        return this.avId;
+    }
+
+    @Override
+    public Avatar getAvatar(){return this.avatar;}
+
+    @Override
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+        this.avId = avatar.getId();
     }
 }

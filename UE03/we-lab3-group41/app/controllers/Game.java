@@ -18,20 +18,28 @@ public class Game extends Controller {
 
     public static Result selectQuestion() {
         DynamicForm form = Form.form().bindFromRequest();
-        int questionSelection = Integer.parseInt(form.data().get("question_selection"));
-        String username = session().get("user");
-        JeopardyGame game = (JeopardyGame) Cache.get("game_"+ username);
-        game.chooseHumanQuestion(questionSelection);
-        return ok(question.render(game));
+        if(form.data().get("question_selection") != null){
+            int questionSelection = Integer.parseInt(form.data().get("question_selection"));
+
+            String username = session().get("username");
+            JeopardyGame game = (JeopardyGame) Cache.get("game_" + username);
+            if (game != null) {
+                game.chooseHumanQuestion(questionSelection);
+                return ok(question.render(game));
+            }
+        }
+        return noContent();
     }
 
     public static Result selectAnswer() {
         String[] answersAsString = request().body().asFormUrlEncoded().get("answers");
         ArrayList<Integer> answers = new ArrayList<>();
-        for(String a: answersAsString) {
-            answers.add(Integer.parseInt(a));
+        if(answersAsString != null) {
+            for (String a : answersAsString) {
+                answers.add(Integer.parseInt(a));
+            }
         }
-        String username = session().get("user");
+        String username = session().get("username");
         JeopardyGame game = (JeopardyGame) Cache.get("game_"+username);
 
         game.answerHumanQuestion(answers);
