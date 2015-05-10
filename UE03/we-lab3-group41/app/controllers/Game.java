@@ -6,10 +6,12 @@ import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
 import at.ac.tuwien.big.we15.lab2.api.User;
 import at.ac.tuwien.big.we15.lab2.api.impl.PlayJeopardyFactory;
 import models.RealUser;
+import play.Logger;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.JPA;
+import play.i18n.Lang;
 import play.mvc.*;
 import views.html.jeopardy;
 import views.html.question;
@@ -29,7 +31,13 @@ public class Game extends Controller {
         if(usr == null)
             return noContent();
 
-        JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
+        String language = request().acceptLanguages().get(0).code();
+        String dataFile = "data.en.json";
+        if(language.equals("de-DE") || language.equals("de")) {
+            dataFile = "data.de.json";
+        }
+        
+        JeopardyFactory factory = new PlayJeopardyFactory(dataFile);
         usr.setAvatar(Avatar.getAvatar(usr.getAvId()));
         JeopardyGame game = factory.createGame(usr);
         Cache.set("game_" + usr.getName(), game);
