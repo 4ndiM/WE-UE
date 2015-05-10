@@ -5,6 +5,7 @@ import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
 import at.ac.tuwien.big.we15.lab2.api.User;
+import play.cache.Cache;
 import play.data.Form;
 import play.data.format.Formatters;
 import play.mvc.*;
@@ -67,19 +68,23 @@ public class Application extends Controller {
 			//System.out.println("did not... in form");
 			return badRequest(authentication.render(userform));}
 
-		boolean logg = validate(userform.get());
-		System.out.println("user is valid: " + logg);
-		if(logg){
-			//System.out.println("did so!!");
+		if(validate(userform.get())){
+			System.out.println("did so!!");/*
+			session().clear();
+			session("username", userform.get().username);*/
+			Cache.set("username", userform);
 			return redirect(routes.Application.game());
+/*
+		if(!getForm()){return badRequest(authentication.render(userform));}
+*/
 		}
 		//System.out.println("did not...");
 		return unauthorized("You shall not pass! ...unless you login with your correct username and password");
 	}
 
-	@Security.Authenticated(Game.class)
+	@Security.Authenticated(Secure.class)
 	public static Result game(){
-		//System.out.println("got validated");
+		System.out.println("got validated");
 		JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
 		RealUser test = new RealUser();
 		//test.setName("sadasdf");
@@ -91,16 +96,14 @@ public class Application extends Controller {
 
 	public static boolean validate(RealUser user) {
 		RealUser usr = JPA.em().find(RealUser.class, user.username);
-
-		System.out.printf("user.username: %s\n usr.username: %s\n",user.username, usr.username);
-		System.out.printf("user.password: %s\n usr.password: %s\n",user.password, usr.password);
+/*
 		if(usr == null){
 			System.out.println("usr is null");
 		}
-		if(usr.password != user.password){
+		if(!usr.password.equals(user.password)){
 			System.out.println("password not correct");
-		}
-		if(usr != null && usr.password == user.password){ /*TODO: use hashedPwd(user.password)*/
+		}*/
+		if(usr != null && usr.password.equals(user.password)){ /*TODO: use hashedPwd(user.password)*/
 			return true;
 		}
 		return false;
