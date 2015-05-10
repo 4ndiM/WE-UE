@@ -1,8 +1,6 @@
 package controllers;
 
-import at.ac.tuwien.big.we15.lab2.api.impl.*;
 import at.ac.tuwien.big.we15.lab2.api.*;
-import play.cache.Cache;
 import play.data.Form;
 import play.data.format.Formatters;
 import play.mvc.*;
@@ -18,10 +16,11 @@ import java.util.Locale;
 
 public class Application extends Controller {
 
-	private static Form<RealUser> userform = Form.form(RealUser.class);
-	private static RealUser usr = null;
+	//private static Form<RealUser> userform = Form.form(RealUser.class);
+	//private static RealUser usr = null;
 
 	public static Result index() {
+		session().clear();
 		return ok(authentication.render(Form.form(RealUser.class)));
 	}
 
@@ -47,7 +46,7 @@ public class Application extends Controller {
 		});
 		/*** Ends here ***/
 
-		userform = Form.form(RealUser.class).bindFromRequest();
+		Form<RealUser> userform = Form.form(RealUser.class).bindFromRequest();
 		if (userform.hasErrors()) {
 			return badRequest(registration.render(userform));}
 			RealUser realUser = userform.get();
@@ -58,41 +57,35 @@ public class Application extends Controller {
 
 	@play.db.jpa.Transactional
 	public static Result login(){
-		userform = Form.form(RealUser.class).bindFromRequest();
+		Form<RealUser> userform = Form.form(RealUser.class).bindFromRequest();
 		if (userform.hasErrors()) {
 			return badRequest(authentication.render(userform));}
 
-		if(validate(userform.get())){
+		RealUser usr = validate(userform.get());
+		//if(validate(userform.get())){
+		if(usr != null){
 			session().clear();
-			session("username", userform.get().username);
-			return redirect(routes.Application.game());
+			session("username", usr.getName());
+			return redirect(routes.Game.game());
 
 		}
 		userform.error("Wrong login credentials, pleas try again");
 		return badRequest(authentication.render(userform));
 	}
 
-	@Security.Authenticated(Secure.class)
-	public static Result game(){
-		JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
 
-		usr.setAvatar(Avatar.getAvatar(usr.getAvId()));
-		JeopardyGame game = factory.createGame(usr);
-		Cache.set("game_"+usr.getName(), game);
-		return ok(jeopardy.render(game));
-	}
 
-	public static boolean validate(RealUser user) {
-		usr = JPA.em().find(RealUser.class, user.username);
+	public static RealUser validate(RealUser user) {
+		RealUser usr = JPA.em().find(RealUser.class, user.username);
 
 		if(usr != null && usr.password.equals(user.password)){ /*TODO: use hashedPwd(user.password)*/
-			return true;
+			return usr;
 		}
-		return false;
+		return null;
 	}
 
 	private static boolean getForm(){
-		userform = Form.form(RealUser.class).bindFromRequest();
+		Form<RealUser> userform = Form.form(RealUser.class).bindFromRequest();
 		if (userform.hasErrors()) {
 			return false;
 		}

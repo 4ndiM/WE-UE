@@ -5,11 +5,11 @@
 # Home page
 GET    /    		    	controllers.Application.index()
 GET    /register 			controllers.Application.registerPage()
-GET    /game     			controllers.Application.game()
 
 POST   /login   	    	controllers.Application.login()
 POST   /register 			controllers.Application.register()
 
+GET    /game     			controllers.Game.game()
 POST   /question            controllers.Game.selectQuestion()
 POST   /answer              controllers.Game.selectAnswer()
 

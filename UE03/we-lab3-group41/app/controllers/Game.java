@@ -1,9 +1,15 @@
 package controllers;
 
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
+import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+import at.ac.tuwien.big.we15.lab2.api.User;
+import at.ac.tuwien.big.we15.lab2.api.impl.PlayJeopardyFactory;
+import models.RealUser;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.db.jpa.JPA;
 import play.mvc.*;
 import views.html.jeopardy;
 import views.html.question;
@@ -11,10 +17,24 @@ import views.html.winner;
 
 import java.util.ArrayList;
 
+@Security.Authenticated(Secure.class)
 public class Game extends Controller {
 
+    @play.db.jpa.Transactional
+    public static Result game(){
 
+        String username = session().get("username");
+        RealUser usr = JPA.em().find(RealUser.class, username);
 
+        if(usr == null)
+            return noContent();
+
+        JeopardyFactory factory = new PlayJeopardyFactory("data.de.json");
+        usr.setAvatar(Avatar.getAvatar(usr.getAvId()));
+        JeopardyGame game = factory.createGame(usr);
+        Cache.set("game_" + usr.getName(), game);
+        return ok(jeopardy.render(game));
+    }
 
     public static Result selectQuestion() {
         DynamicForm form = Form.form().bindFromRequest();
