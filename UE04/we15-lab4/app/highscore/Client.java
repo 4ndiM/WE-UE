@@ -1,12 +1,11 @@
 package highscore;
 
 import highscore.data.*;
-import models.JeopardyDAO;
 import models.JeopardyGame;
 import models.JeopardyUser;
 import models.Player;
+import play.Logger;
 
-import javax.xml.bind.JAXBElement;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import java.util.GregorianCalendar;
@@ -15,55 +14,71 @@ import java.util.GregorianCalendar;
 public class Client {
 
     private JeopardyGame jeopardyGame;
-    private JeopardyUser ju;
+    private highscore.data.ObjectFactory factory;
+    private UserDataType udt = null;
 
-    public Client(JeopardyUser ju, JeopardyGame jeopardyGame) {
-        this.ju = ju;
+    public Client(JeopardyGame jeopardyGame) {
         this.jeopardyGame = jeopardyGame;
+        this.factory = new highscore.data.ObjectFactory();
     }
 
-    public void userInfoToWebService() {
-        highscore.data.ObjectFactory of = new highscore.data.ObjectFactory();
+    public String uuidWebService() {
 
-        UserType ut = of.createUserType();
+        HighScoreRequestType requestType;
 
-        ut.setFirstName(ju.getFirstName());
-        ut.setLastName(ju.getLastName());
-        ut.setGender(GenderType.fromValue(ju.getGender().toString()));
-        ut.setPassword("");
+        setValues(jeopardyGame.getMarvinPlayer());
+        setValues(jeopardyGame.getHumanPlayer());
 
-        Player pl = jeopardyGame.getHumanPlayer();
-        ut.setPoints(pl.getProfit());
 
-        GregorianCalendar c = new GregorianCalendar();
-        c.setTime(ju.getBirthDate());
-        try {
-            ut.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(c));
-        } catch (DatatypeConfigurationException e) {
-            e.getMessage();
-        }
-
-        UserDataType udt = of.createUserDataType();
-
-        if(jeopardyGame.getWinner()== pl){
-            udt.setWinner(ut);
-        } else {
-            udt.setLoser(ut);
-        }
-
-        HighScoreRequestType hsrt = of.createHighScoreRequestType();
-        hsrt.setUserData(udt);
-        hsrt.setUserKey("3ke93-gue34-dkeu9");
-/*        of.createHighScoreRequest(hsrt);
-        JAXBElement<String> uuid = of.createHighScoreResponse("3ke93-gue34-dkeu9");*/
+        requestType = factory.createHighScoreRequestType();
+        requestType.setUserData(udt);
+        requestType.setUserKey("3ke93-gue34-dkeu9");
 
         PublishHighScoreService service = new PublishHighScoreService();
         PublishHighScoreEndpoint endpoint =  service.getPublishHighScorePort();
         try {
-            endpoint.publishHighScore(hsrt);
+            String str = endpoint.publishHighScore(requestType);
+            Logger.info(str);
+            return str;
         } catch (Failure failure) {
             /*TODO: replace stacktrace!*/
+            Logger.error("Failed to retrieve UUID.");
             failure.printStackTrace();
         }
+
+        return null;
+    }
+
+    private String setValues(Player player){
+        JeopardyUser user = player.getUser();
+
+        UserType utype;
+
+        utype = factory.createUserType();
+
+        utype.setFirstName(user.getFirstName());
+        utype.setLastName(user.getLastName());
+        utype.setGender(GenderType.fromValue(user.getGender().toString()));
+        utype.setPassword("");
+
+        utype.setPoints(player.getProfit());
+
+        GregorianCalendar c = new GregorianCalendar();
+        c.setTime(user.getBirthDate());
+        try {
+            utype.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(c));
+        } catch (DatatypeConfigurationException e) {
+            e.getMessage();
+        }
+
+        udt = factory.createUserDataType();
+
+        if(jeopardyGame.getWinner() == player){
+            udt.setWinner(utype);
+        } else {
+            udt.setLoser(utype);
+        }
+
+        return null;
     }
 }

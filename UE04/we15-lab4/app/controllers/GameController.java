@@ -15,6 +15,8 @@ import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import twitter.TwitterClient;
+import twitter.TwitterStatusMessage;
 import views.html.jeopardy;
 import views.html.question;
 import views.html.winner;
@@ -158,9 +160,16 @@ public class GameController extends Controller {
 		if(game == null || !game.isGameOver())
 			return redirect(routes.GameController.playGame());
 
-		JeopardyUser ju = JeopardyDAO.INSTANCE.findByUserName(request().username());
-		Client client = new Client(ju, cachedGame(ju.getUserName()));
-		client.userInfoToWebService();
+//		JeopardyUser ju = JeopardyDAO.INSTANCE.findByUserName(request().username());
+		Client client = new Client(cachedGame(request().username()));
+		String uuid = client.uuidWebService(); /*is it really the uuid i get?*/
+		TwitterClient twitterC = new TwitterClient();
+		try {
+			twitterC.publishUuid(new TwitterStatusMessage("",uuid,new Date()));
+		} catch (Exception e) {
+			Logger.error("Tweet could not be sent");
+			System.err.println("Tweet could not be sent");
+		}
 
 		Logger.info("[" + request().username() + "] Game over.");		
 		return ok(winner.render(game));
