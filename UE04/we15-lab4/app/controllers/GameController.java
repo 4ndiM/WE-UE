@@ -2,10 +2,8 @@ package controllers;
 
 import java.util.*;
 
-import highscore.data.GenderType;
-import highscore.data.ObjectFactory;
-import highscore.data.UserDataType;
-import highscore.data.UserType;
+import highscore.Client;
+import highscore.data.*;
 import models.*;
 import play.Logger;
 import play.cache.Cache;
@@ -21,6 +19,7 @@ import views.html.jeopardy;
 import views.html.question;
 import views.html.winner;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
@@ -110,7 +109,7 @@ public class GameController extends Controller {
 	@play.db.jpa.Transactional(readOnly = true)
 	public static Result questionSelected() {
 		JeopardyGame game = cachedGame(request().username());
-		if(game == null || !game.isRoundStart()).
+		if(game == null || !game.isRoundStart())
 			return redirect(routes.GameController.playGame());
 		
 		Logger.info("[" + request().username() + "] Questions selected.");		
@@ -158,44 +157,14 @@ public class GameController extends Controller {
 		JeopardyGame game = cachedGame(request().username());
 		if(game == null || !game.isGameOver())
 			return redirect(routes.GameController.playGame());
-		userInfoToWebService();
+
+		JeopardyUser ju = JeopardyDAO.INSTANCE.findByUserName(request().username());
+		Client client = new Client(ju, cachedGame(ju.getUserName()));
+		client.userInfoToWebService();
+
 		Logger.info("[" + request().username() + "] Game over.");		
 		return ok(winner.render(game));
 	}
 
-	@play.db.jpa.Transactional(readOnly = true)
-	private static void userInfoToWebService() {
-		ObjectFactory of = new ObjectFactory();
 
-		UserType ut = of.createUserType();
-		JeopardyUser ju = JeopardyDAO.INSTANCE.findByUserName(request().username());
-
-		ut.setFirstName(ju.getFirstName());
-		ut.setLastName(ju.getLastName());
-		ut.setGender(GenderType.fromValue(ju.getGender().toString()));
-		ut.setPassword("");
-
-		JeopardyGame cg = cachedGame(ju.getUserName());
-		Player pl = cg.getHumanPlayer();
-		ut.setPoints(pl.getProfit());
-
-		GregorianCalendar c = new GregorianCalendar();
-		c.setTime(ju.getBirthDate());
-		try {
-			ut.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(c));
-		} catch (DatatypeConfigurationException e) {
-			e.getMessage();
-		}
-
-		UserDataType udt = of.createUserDataType();
-
-		if(cg.getWinner()== pl){
-			udt.setWinner(ut);
-		} else {
-			udt.setLoser(ut);
-		}
-
-
-
-	}
 }
