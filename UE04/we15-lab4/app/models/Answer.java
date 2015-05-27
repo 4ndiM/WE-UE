@@ -3,12 +3,12 @@ package models;
 
 import play.data.validation.Constraints;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Represents an answer which is stored in the DB
  */
+//@Embeddable
 @Entity
 public class Answer extends BaseEntity {
 
@@ -21,7 +21,7 @@ public class Answer extends BaseEntity {
     private Boolean correctAnswer;
 
     @Constraints.Required
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL)
     private Question question;
 
     /**

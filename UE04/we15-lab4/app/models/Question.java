@@ -2,9 +2,7 @@ package models;
 
 import play.data.validation.Constraints;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +10,7 @@ import java.util.List;
 /**
  * Represents a question, which is stored in the DB
  */
+
 @Entity
 public class Question extends BaseEntity {
 
@@ -24,12 +23,13 @@ public class Question extends BaseEntity {
 
     //The category to which this question belongs to
     @Constraints.Required
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Category category;
 
 
     //A list of right choices in this category
-    @ElementCollection
+   // @Transient
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     private List<Answer> answers = new ArrayList<Answer>();
 
 

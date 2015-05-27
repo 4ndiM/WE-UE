@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import play.Logger;
 import play.db.jpa.JPA;
+import org.hibernate.*;
 
 /**
  * Provides Data Access methods for JPA
@@ -51,38 +52,47 @@ public class JeopardyDAO implements IGameDAO {
     }
 
 
-    /**
+    /**persist
      * Save an entity. Throws an error if an entity with the given id already exists
      * @param entity
      * @return
      */
     @Override
     public void persist(BaseEntity entity) {
-        if (entity.getId() == null){
+        System.out.println("persist " + entity.getClass().getSimpleName());
+        if (entity.getId() == null || findEntity(entity.getId(), entity.getClass()) == null){
             em().persist(entity);
-        Logger.info("New user added to database");
-    } else {
-        Logger.error("There is already entry using the same ID");
-    }
+        }
         // TODO: Implement Method
         // throw new  UnsupportedOperationException("Not yet implemented.");
     }
 
-/*    public void persist(JeopardyUser user){
-        if(user.getId() != null && findById(user.getId()) != null) {
-            return;
-        }
 
-        em().persist(user);
+/*    public void persist(JeopardyUser user){
+        System.out.println("persist user");
+
+        if (user.getId() == null || findEntity(user.getId(), user.getClass()) == null){
+            em().persist(user);
+        }
     }
 
     public void persist(Category category){
-
+        if (category.getId() == null || findEntity(category.getId(), category.getClass()) == null){
+            em().persist(category);
+        }            System.out.println("persist category");
     }
     public void persist(Question question){
+        if (question.getId() == null || findEntity(question.getId(), question.getClass()) == null){
+            em().persist(question);
+        }
+        System.out.println("persist question");
 
     }
     public void persist(Answer answer){
+        if (answer.getId() == null || findEntity(answer.getId(), answer.getClass()) == null){
+            em().persist(answer);
+        }
+        System.out.println("persist answer");
 
     }*/
 
@@ -96,22 +106,20 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <T extends BaseEntity> T merge(T entity) {
-        long id = entity.getId();
-
-        if(em().find(Category.class,id)==null &&
-                em().find(Question.class,id)==null &&
-                em().find(Answer.class,id)==null &&
-                findById(entity.getId()) == null){
+        System.out.println("Merge entities" + entity.getClass().getSimpleName());
+        if (findEntity(entity.getId(), entity.getClass()) == null){
             persist(entity);
         } else {
+
             em().merge(entity);
         }
         // TODO: Implement Method
-        // throw new UnsupportedOperationException("Not yet implemented.");
+        //throw new UnsupportedOperationException("Not yet implemented.");
         return entity;
     }
 
-    /**user
+
+    /**
      * Get an entity of the given type using the id
      * @param id
      * @param entityClazz
@@ -120,8 +128,10 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <T extends BaseEntity> T findEntity(Long id, Class<T> entityClazz) {
+        System.out.println("findEntity" + entityClazz.getSimpleName());
+        return em().find(entityClazz,id);
         // TODO: Implement Method
-        throw new UnsupportedOperationException("Not yet implemented.");
+        // throw new UnsupportedOperationException("Not yet implemented.");
     }
 
 
@@ -134,8 +144,21 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <E extends BaseEntity> List<E> findEntities(Class<E> entityClazz) {
+        System.out.println("findEntities " + entityClazz.getSimpleName());
+        String className = entityClazz.getSimpleName();
+        String queryStr = "from " + className;
+        TypedQuery<E> query = em().createQuery(queryStr, entityClazz);
+        List<E> list = query.getResultList();
+        if (list.isEmpty()) {
+            Logger.error("No elements in list");
+            return null;
+        } else {
+            Logger.info(entityClazz.getSimpleName() + " list has been loaded");
+            return list;
+        }
+
         // TODO: Implement Method
-        throw new UnsupportedOperationException("Not yet implemented.");
+        //throw new UnsupportedOperationException("Not yet implemented.");
     }
 
     /**

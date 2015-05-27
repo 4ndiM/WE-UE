@@ -2,8 +2,7 @@ package models;
 
 import play.data.validation.Constraints;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,7 +21,9 @@ public class Category extends BaseEntity {
 
 
     //A list of questions in this category
-    @ElementCollection
+    //@Transient
+    //@ElementCollection
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Question> questions = new ArrayList<Question>();
 
     /**

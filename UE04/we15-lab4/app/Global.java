@@ -12,6 +12,7 @@ import play.libs.F.Function0;
 import data.JSONDataInserter;
 
 public class Global extends GlobalSettings {
+
 	
 	@play.db.jpa.Transactional
 	public static void insertJSonData() throws IOException {
@@ -35,7 +36,7 @@ public class Global extends GlobalSettings {
 			   
 			});
        } catch (Throwable e) {
-    	   e.printStackTrace();
+		   e.printStackTrace();
        }
     }
 

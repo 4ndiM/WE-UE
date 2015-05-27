@@ -34,6 +34,7 @@ public class JeopardyUser extends BaseEntity {
 
 	private String firstName;
 	private String lastName;
+	@Constraints.Required
 	private Date birthDate;
 	private Gender gender;
 	
