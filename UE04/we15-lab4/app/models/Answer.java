@@ -1,17 +1,27 @@
 package models;
 
 
+import play.data.validation.Constraints;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
 /**
  * Represents an answer which is stored in the DB
  */
+@Entity
 public class Answer extends BaseEntity {
 
-
+    @Constraints.Required
     private String textDE;
+    @Constraints.Required
     private String textEN;
 
+    @Constraints.Required
     private Boolean correctAnswer;
 
+    @Constraints.Required
+    @ManyToOne
     private Question question;
 
     /**

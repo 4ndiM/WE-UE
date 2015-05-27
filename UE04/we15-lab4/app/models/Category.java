@@ -1,5 +1,9 @@
 package models;
 
+import play.data.validation.Constraints;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,16 +12,19 @@ import java.util.List;
 /**
  * Represents a category, which is stored in the DB
  */
+@Entity
 public class Category extends BaseEntity {
 
-
+    @Constraints.Required
     private String nameDE;
+    @Constraints.Required
     private String nameEN;
 
 
     //A list of questions in this category
+    @ElementCollection
     private List<Question> questions = new ArrayList<Question>();
-    
+
     /**
      * Add a new question to the category
      * @param question
@@ -78,7 +85,7 @@ public class Category extends BaseEntity {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-    
+
     public void sort() {
     	Collections.sort(questions, new Comparator<Question>() {
 			@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import play.Logger;
 import play.db.jpa.JPA;
 
 /**
@@ -57,9 +58,33 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public void persist(BaseEntity entity) {
-        // TODO: Implement Method
-        throw new UnsupportedOperationException("Not yet implemented.");
+        if (entity.getId() == null){
+            em().persist(entity);
+        Logger.info("New user added to database");
+    } else {
+        Logger.error("There is already entry using the same ID");
     }
+        // TODO: Implement Method
+        // throw new  UnsupportedOperationException("Not yet implemented.");
+    }
+
+/*    public void persist(JeopardyUser user){
+        if(user.getId() != null && findById(user.getId()) != null) {
+            return;
+        }
+
+        em().persist(user);
+    }
+
+    public void persist(Category category){
+
+    }
+    public void persist(Question question){
+
+    }
+    public void persist(Answer answer){
+
+    }*/
 
 
     /**
@@ -71,11 +96,22 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <T extends BaseEntity> T merge(T entity) {
+        long id = entity.getId();
+
+        if(em().find(Category.class,id)==null &&
+                em().find(Question.class,id)==null &&
+                em().find(Answer.class,id)==null &&
+                findById(entity.getId()) == null){
+            persist(entity);
+        } else {
+            em().merge(entity);
+        }
         // TODO: Implement Method
-        throw new UnsupportedOperationException("Not yet implemented.");
+        // throw new UnsupportedOperationException("Not yet implemented.");
+        return entity;
     }
 
-    /**
+    /**user
      * Get an entity of the given type using the id
      * @param id
      * @param entityClazz
