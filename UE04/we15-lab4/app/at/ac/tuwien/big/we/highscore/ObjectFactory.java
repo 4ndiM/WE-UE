@@ -1,5 +1,5 @@
 
-package highscore;
+package at.ac.tuwien.big.we.highscore;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

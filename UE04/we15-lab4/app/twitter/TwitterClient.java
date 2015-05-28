@@ -20,11 +20,14 @@ public class TwitterClient implements ITwitterClient {
 
         this.twitter = factory.getInstance();
 
+        twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
+
         twitter.setOAuthAccessToken(new AccessToken(ACCESS_TOKEN, ACCESS_TOKEN_SECRET));
     }
 
     @Override
     public void publishUuid(TwitterStatusMessage message) throws Exception {
+        System.out.println(message.getTwitterPublicationString());
         twitter.updateStatus(message.getTwitterPublicationString());
     }
 }

@@ -2,15 +2,13 @@ package controllers;
 
 import java.util.*;
 
-import highscore.Client;
-import highscore.data.*;
+import at.ac.tuwien.big.we.highscore.Client;
 import models.*;
 import play.Logger;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.DynamicForm.Dynamic;
 import play.data.Form;
-import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -20,10 +18,6 @@ import twitter.TwitterStatusMessage;
 import views.html.jeopardy;
 import views.html.question;
 import views.html.winner;
-
-import javax.xml.bind.JAXBElement;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
 
 
 @Security.Authenticated(Secured.class)
@@ -88,7 +82,6 @@ public class GameController extends Controller {
 	public static Result newGame() {
 		Logger.info("[" + request().username() + "] Start new game.");
 		JeopardyGame game = createNewGame(request().username());
-
 		return ok(jeopardy.render(game));
 	}
 	
@@ -161,14 +154,14 @@ public class GameController extends Controller {
 			return redirect(routes.GameController.playGame());
 
 //		JeopardyUser ju = JeopardyDAO.INSTANCE.findByUserName(request().username());
-		Client client = new Client(cachedGame(request().username()));
+		Client client = new Client(game);
 		String uuid = client.uuidWebService(); /*is it really the uuid i get?*/
+		Logger.info(uuid);
 		TwitterClient twitterC = new TwitterClient();
 		try {
-			twitterC.publishUuid(new TwitterStatusMessage("",uuid,new Date()));
+			twitterC.publishUuid(new TwitterStatusMessage(request().username(),uuid,new Date()));
 		} catch (Exception e) {
 			Logger.error("Tweet could not be sent");
-			System.err.println("Tweet could not be sent");
 		}
 
 		Logger.info("[" + request().username() + "] Game over.");		

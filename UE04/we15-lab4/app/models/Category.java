@@ -22,7 +22,7 @@ public class Category extends BaseEntity {
 
     //A list of questions in this category
     //@Transient
-    //@ElementCollection
+    @ElementCollection
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Question> questions = new ArrayList<Question>();
 

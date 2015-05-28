@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -59,7 +60,6 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public void persist(BaseEntity entity) {
-        System.out.println("persist " + entity.getClass().getSimpleName());
         if (entity.getId() == null || findEntity(entity.getId(), entity.getClass()) == null){
             em().persist(entity);
         }
@@ -68,27 +68,39 @@ public class JeopardyDAO implements IGameDAO {
     }
 
 
-/*    public void persist(JeopardyUser user){
+    public void persist(JeopardyUser user){
         System.out.println("persist user");
 
         if (user.getId() == null || findEntity(user.getId(), user.getClass()) == null){
+            if(user.getBirthDate() == null){
+                user.setBirthDate(new Date());
+            }
             em().persist(user);
         }
     }
-
     public void persist(Category category){
         if (category.getId() == null || findEntity(category.getId(), category.getClass()) == null){
             em().persist(category);
-        }            System.out.println("persist category");
+
+            List<Question> lst = category.getQuestions();
+            for(Question q : lst){
+                persist(q);
+            }
+
+        }
     }
     public void persist(Question question){
         if (question.getId() == null || findEntity(question.getId(), question.getClass()) == null){
             em().persist(question);
+
+            List<Answer> lst = question.getAnswers();
+            for(Answer a : lst){
+                persist(a);
+            }
         }
-        System.out.println("persist question");
 
     }
-    public void persist(Answer answer){
+/*    public void persist(Answer answer){
         if (answer.getId() == null || findEntity(answer.getId(), answer.getClass()) == null){
             em().persist(answer);
         }
@@ -106,12 +118,12 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <T extends BaseEntity> T merge(T entity) {
-        System.out.println("Merge entities" + entity.getClass().getSimpleName());
-        if (findEntity(entity.getId(), entity.getClass()) == null){
+        BaseEntity old =  findEntity(entity.getId(), entity.getClass());
+        if (old == null){
             persist(entity);
         } else {
-
-            em().merge(entity);
+            em().remove(old);
+            persist(entity);
         }
         // TODO: Implement Method
         //throw new UnsupportedOperationException("Not yet implemented.");
@@ -128,7 +140,6 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <T extends BaseEntity> T findEntity(Long id, Class<T> entityClazz) {
-        System.out.println("findEntity" + entityClazz.getSimpleName());
         return em().find(entityClazz,id);
         // TODO: Implement Method
         // throw new UnsupportedOperationException("Not yet implemented.");
@@ -144,7 +155,6 @@ public class JeopardyDAO implements IGameDAO {
      */
     @Override
     public <E extends BaseEntity> List<E> findEntities(Class<E> entityClazz) {
-        System.out.println("findEntities " + entityClazz.getSimpleName());
         String className = entityClazz.getSimpleName();
         String queryStr = "from " + className;
         TypedQuery<E> query = em().createQuery(queryStr, entityClazz);

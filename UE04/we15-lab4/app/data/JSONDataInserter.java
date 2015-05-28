@@ -88,7 +88,6 @@ class QuestionDeserializer implements JsonDeserializer<Question> {
 	@Override
 	public Question deserialize(JsonElement json, Type type,
 			JsonDeserializationContext context) throws JsonParseException {
-
 		Question question = new Question();
 
 		JsonObject object = json.getAsJsonObject();
@@ -118,7 +117,7 @@ class AnswerDeserializer implements JsonDeserializer<Answer> {
 	@Override
 	public Answer deserialize(JsonElement json, Type type,
 			JsonDeserializationContext context) throws JsonParseException {
-		
+
 		Answer answer = new Answer();
 		JsonObject object = json.getAsJsonObject();
 		answer.setTextDE(object.get("textDE").getAsString());

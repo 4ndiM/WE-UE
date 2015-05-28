@@ -1,5 +1,5 @@
 
-package highscore;
+package at.ac.tuwien.big.we.highscore;
 
 import java.net.MalformedURLException;
 import java.net.URL;

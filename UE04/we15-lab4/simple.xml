@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:HighScoreRequest xmlns:ns2="http://big.tuwien.ac.at/we/highscore/data">
+    <ns2:UserKey>3ke93-gue34-dkeu9</ns2:UserKey>
+    <ns2:UserData>
+        <Loser Gender="male" BirthDate="2015-05-20+02:00">
+            <FirstName>firstname</FirstName>
+            <LastName>lastname</LastName>
+            <Password></Password>
+            <Points>-170</Points>
+        </Loser>
+        <Winner Gender="male" BirthDate="1979-02-01+01:00">
+            <FirstName>Marvin</FirstName>
+            <LastName>ParanoidAndroid</LastName>
+            <Password></Password>
+            <Points>10</Points>
+        </Winner>
+    </ns2:UserData>
+</ns2:HighScoreRequest>

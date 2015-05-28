@@ -29,6 +29,7 @@ public class Question extends BaseEntity {
 
     //A list of right choices in this category
    // @Transient
+    @ElementCollection
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     private List<Answer> answers = new ArrayList<Answer>();
 
