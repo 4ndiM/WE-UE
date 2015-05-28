@@ -7,13 +7,8 @@ import models.JeopardyUser;
 import models.Player;
 import play.Logger;
 
-import javax.xml.bind.*;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.namespace.QName;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.ws.BindingProvider;
-import java.io.File;
 import java.util.GregorianCalendar;
 
 
@@ -38,24 +33,12 @@ public class Client {
         setValues(jeopardyGame.getHumanPlayer());
         setValues(jeopardyGame.getMarvinPlayer());
 
-        if(udt.getLoser() == null){
-            System.out.println("no loser");
-
-        }else if(udt.getWinner() == null){
-            System.out.println("no winner");
-
-        } else {
-            System.out.println("both, winner and loser");
-
-        }
-
-
         requestType = factory.createHighScoreRequestType();
         requestType.setUserData(udt);
         requestType.setUserKey("3ke93-gue34-dkeu9");
 
 
-        try {
+/*        try {
             JAXBContext jaxbContext = JAXBContext.newInstance( HighScoreRequestType.class );
 
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -68,7 +51,7 @@ public class Client {
             jaxbMarshaller.marshal( factory.createHighScoreRequest(requestType), System.out );
         } catch (JAXBException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         PublishHighScoreService service = new PublishHighScoreService();
@@ -111,21 +94,15 @@ public class Client {
             e.getMessage();
         }
 
-
-
-
-
         if(jeopardyGame.getWinner() == player){
-            System.out.println(player.getUser().getUserName());
             udt.setWinner(utype);
-            System.out.println(udt.getWinner().getPoints());
         } else {
             udt.setLoser(utype);
         }
     }
 
     private String setString(String str1, String str2) {
-        if (str1.isEmpty() || str1 == null){
+        if (str1.isEmpty()){
             return str2;
         }
         return str1;

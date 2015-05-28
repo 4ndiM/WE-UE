@@ -69,8 +69,6 @@ public class JeopardyDAO implements IGameDAO {
 
 
     public void persist(JeopardyUser user){
-        System.out.println("persist user");
-
         if (user.getId() == null || findEntity(user.getId(), user.getClass()) == null){
             if(user.getBirthDate() == null){
                 user.setBirthDate(new Date());
