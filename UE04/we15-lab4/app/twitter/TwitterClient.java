@@ -29,5 +29,6 @@ public class TwitterClient implements ITwitterClient {
     public void publishUuid(TwitterStatusMessage message) throws Exception {
         System.out.println(message.getTwitterPublicationString());
         twitter.updateStatus(message.getTwitterPublicationString());
+        /*throw new Exception();*/
     }
 }

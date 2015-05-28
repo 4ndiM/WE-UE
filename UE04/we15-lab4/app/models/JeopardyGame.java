@@ -31,7 +31,8 @@ public class JeopardyGame {
 	private Map<Long, Question> idToQuestion = new TreeMap<>();
 	private List<Question> openQuestions = new ArrayList<>();
 	private List<Question> chosenQuestions = new ArrayList<>();
-		
+	private String twitterMsg;
+
 
 	public JeopardyGame(JeopardyUser human, List<Category> categories) {
 		this.human = createHumanPlayer(human);
@@ -215,4 +216,11 @@ public class JeopardyGame {
 	}
 
 
+	public void setTwitterMsg(String twitterMsg) {
+		this.twitterMsg = twitterMsg;
+	}
+
+	public String getTwitterMsg(){
+		return this.twitterMsg;
+	}
 }

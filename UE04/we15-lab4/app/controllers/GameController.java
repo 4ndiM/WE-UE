@@ -155,13 +155,16 @@ public class GameController extends Controller {
 
 //		JeopardyUser ju = JeopardyDAO.INSTANCE.findByUserName(request().username());
 		Client client = new Client(game);
-		String uuid = client.uuidWebService(); /*is it really the uuid i get?*/
-		Logger.info(uuid);
+		String uuid = client.uuidWebService();
+		//Logger.info(uuid);
 		TwitterClient twitterC = new TwitterClient();
 		try {
-			twitterC.publishUuid(new TwitterStatusMessage(request().username(),uuid,new Date()));
+			TwitterStatusMessage tsm = new TwitterStatusMessage(request().username(),uuid,new Date());
+			twitterC.publishUuid(tsm);
+			Logger.info("UUID " + uuid + "has been posted to the highscoreboard.");
+			game.setTwitterMsg(tsm.getTwitterPublicationString());
 		} catch (Exception e) {
-			Logger.error("Tweet could not be sent");
+			Logger.error("UUID " + uuid + " could not be posted.");
 		}
 
 		Logger.info("[" + request().username() + "] Game over.");		
