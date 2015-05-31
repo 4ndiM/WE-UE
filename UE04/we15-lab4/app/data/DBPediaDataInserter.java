@@ -165,7 +165,10 @@ public class DBPediaDataInserter {
             answer.setCorrectAnswer(true);
             answer.setTextEN(englishRight.get(i));
             answer.setTextDE(germanRight.get(i));
-            question.addRightAnswer(answer);
+            if(answer.getTextDE() != null && answer.getTextEN() != null
+                    && !answer.getTextDE().equals("") && !answer.getTextEN().equals("")) {
+                question.addRightAnswer(answer);
+            }
         }
 
         for(int i = 0; i < englishWrong.size(); i++) {
@@ -173,7 +176,10 @@ public class DBPediaDataInserter {
             answer.setCorrectAnswer(false);
             answer.setTextEN(englishWrong.get(i));
             answer.setTextDE(germanWrong.get(i));
-            question.addWrongAnswer(answer);
+            if(answer.getTextDE() != null && answer.getTextEN() != null
+                    && !answer.getTextDE().equals("") && !answer.getTextEN().equals("")) {
+                question.addWrongAnswer(answer);
+            }
         }
 
         return question;
