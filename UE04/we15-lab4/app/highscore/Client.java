@@ -62,9 +62,7 @@ public class Client {
             Logger.info(str);
             return str;
         } catch (Failure failure) {
-            /*TODO: replace stacktrace!*/
             Logger.error("Failed to retrieve UUID.");
-            failure.printStackTrace();
         }
 
         return null;
