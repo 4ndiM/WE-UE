@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.*;
 
-import at.ac.tuwien.big.we.highscore.Client;
+import highscore.Client;
 import models.*;
 import play.Logger;
 import play.cache.Cache;

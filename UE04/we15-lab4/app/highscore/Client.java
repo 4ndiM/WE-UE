@@ -1,7 +1,6 @@
-package at.ac.tuwien.big.we.highscore;
+package highscore;
 
-import at.ac.tuwien.big.we.highscore.data.*;
-import at.ac.tuwien.big.we.highscore.data.ObjectFactory;
+import highscore.data.*;
 import models.JeopardyGame;
 import models.JeopardyUser;
 import models.Player;
@@ -15,12 +14,12 @@ import java.util.GregorianCalendar;
 public class Client {
 
     private JeopardyGame jeopardyGame;
-    private at.ac.tuwien.big.we.highscore.data.ObjectFactory factory;
+    private highscore.data.ObjectFactory factory;
     private UserDataType udt = null;
 
     public Client(JeopardyGame jeopardyGame) {
         this.jeopardyGame = jeopardyGame;
-        this.factory = new ObjectFactory();
+        this.factory = new highscore.data.ObjectFactory();
         this.udt = factory.createUserDataType();
 
     }

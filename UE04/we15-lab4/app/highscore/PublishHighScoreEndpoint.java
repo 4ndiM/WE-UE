@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.big.we.highscore;
+package highscore;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -8,7 +8,7 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-import at.ac.tuwien.big.we.highscore.data.HighScoreRequestType;
+import highscore.data.HighScoreRequestType;
 
 
 /**
@@ -21,7 +21,7 @@ import at.ac.tuwien.big.we.highscore.data.HighScoreRequestType;
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
     ObjectFactory.class,
-    at.ac.tuwien.big.we.highscore.data.ObjectFactory.class
+    highscore.data.ObjectFactory.class
 })
 public interface PublishHighScoreEndpoint {
 
