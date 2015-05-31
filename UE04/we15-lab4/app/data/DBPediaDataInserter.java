@@ -2,7 +2,6 @@ package data;
 
 import at.ac.tuwien.big.we.dbpedia.api.DBPediaService;
 import at.ac.tuwien.big.we.dbpedia.api.SelectQueryBuilder;
-import at.ac.tuwien.big.we.dbpedia.vocabulary.DBPProp;
 import at.ac.tuwien.big.we.dbpedia.vocabulary.DBPedia;
 import at.ac.tuwien.big.we.dbpedia.vocabulary.DBPediaOWL;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -15,9 +14,7 @@ import models.Answer;
 import models.Category;
 import models.JeopardyDAO;
 import models.Question;
-import play.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
