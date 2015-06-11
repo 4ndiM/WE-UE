@@ -3,13 +3,83 @@
 
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
-			<title>Jeopardy!</title>
-			<!-- <link rel="stylesheet" type="text/css" href=""> -->
+			<meta name="viewport" content="width=device-width"/>
+			<title>Welcome</title>
+			<link rel="stylesheet" type="text/css" href="styles/media_jeopardy.css"/>
+
 		</head>
 		<body>
-			<h2>Jeopardy!</h2>
-			<input type="submit" value="Abmelden" name="logout"/>
+			<div id="header">
+				<img src="img/big-logo-big.png" class="logo" alt="BIG Logo"/> 
+				<div class="text">Jeopardy!  </div>
+				<input type="submit" value="Anmelden" name="logout" class="button"/>
+			</div>
 
-			<h3>Persönliche Daten</h3>	
+			<form id="reg_form" class="center" method="POST">
+
+				<h3 class="secHeader">Persönliche Daten</h3>
+				<div id="perDaten" style="position:relative;">
+						<label for="vorname">Vorname: </label> <input type="text" id="vorname" class="textfield" />
+						<label for="nachname">Nachname: </label> <input type="text" id="nachname" class="textfield" />
+						<label for="gebtag">Geburtstag: </label> <input type="date" id="gebtag" name="gebtag" class="textfield"  onchange=" valDate();"/>
+					<p id="date_format" class="help">Format: TT.MM.JJJJ</p>
+					<label for="sex">Geschlecht: </label>
+					<input type="radio" id="sex" value="male" checked="checked"/> männlich
+					<input type="radio" name="sex" value="female" /> weiblich
+				</div>
+				<h3 class="secHeader">Spielerdaten</h3>
+				<div id="spDaten" style="position:relative;">
+					<label for="avSelect" id="avLabel">Avatar: </label> 
+					<select name="avatar" id="avSelect">
+						<option value="black_widow">Black Widow</option>
+						<option value="deadpool">Deadpool</option>
+					</select>
+					<label for="benutzer">Benutzername*: </label> <input type="text" id="benutzer" name="benutzer" class="textfield" pattern=".{4,8}" required="required"/>
+					<p id="name_format" class="help">Der Benutzername muss 4-8 Zeichen lang sein</p>
+					<label for="passwort">Passwort*: </label> <input type="password" id="passwort" name="passwort" class="textfield" pattern=".{4,8}" required="required"/>
+					<p id="pw_format" class="help">Das Passwort muss 4-8 Zeichen lang sein</p>
+				</div>
+					<!--<input type="submit" id="fake_reg_button" style="display: none"/>-->
+				<input type="submit" value="Registrieren" class="reg_button" />
+			</form>
+			<div id="manField" class="cent">Mit * gekennzeichnete Felder sind Pflichtfelder</div>
+			<div id="copyright" class="cent">&#169; 2015 BIG Jeopardy</div>
+
+			<script type="text/javascript" src="js/jquery.js"/>
+			<script type="text/javascript" src="js/framework.js"/>
+			<script type="text/javascript">
+				/*
+				function rightDate(){
+					var gb = document.getElementById("gebtag");
+					var i = getNormalizedDateString(gb);
+					gb.setAttribute("value", i);
+				}*/
+				function valDate(){
+				var i = document.getElementById("gebtag");
+ 				 if (i.type == "text") {
+ 				 	console.log(i);
+ 				 	i.setAttribute("pattern", "((0[1-9]|[12][0-9]|3[01])\\.(0[1-9]|1[012])\\.(19|20)\\d\\d)?");
+				  }
+				}
+
+			<![CDATA[
+			$(document).ready(function(){
+				
+				$(".textfield").keyup(function(){
+					var date_reg = /^((0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d)?$/;
+					var date = getNormalizedDateString("#gebtag");
+
+					if (!$("#benutzer")[0].checkValidity() || !$("#passwort")[0].checkValidity() || !date_reg.test(date)){
+						<!--$("#fake_reg_button").click();-->
+						$(".reg_button").prop("disabled", true);
+						
+					}
+					if ($("#benutzer")[0].checkValidity() && $("#passwort")[0].checkValidity() && date_reg.test(date)){
+						$(".reg_button").prop("disabled", false);
+					}
+				});
+				$(".textfield").trigger("keyup");
+			});
+			]]></script>
 		</body>
 	</html>

@@ -1,0 +1,51 @@
+accessability.toLogin = Zum Login springen
+accessability.toRegistration = Zur Registrierung springen
+accessability.toWinner = Zur Gewinnerseite springen
+accessability.registration = Registrierung
+accessability.question.selection = Zur Fragenauswahl springen
+accessability.game.info = Spielinformationen
+accessability.leading.player = Führender Spieler
+accessability.player.name = Spielername
+accessability.player.score = Spielerpunkte
+accessability.player.second = Zweiter Spieler
+
+register = Registrieren
+username = Benutzername
+password = Passwort
+login = Anmelden
+logout = Abmelden
+notRegistered = Nicht registriert
+toRegistration = Zur Registrierung
+
+question = Frage
+questions = Fragenbeantwortung
+question.choice = Fragenauswahl
+
+answer.correct.yours = Du hast richtig geantwortet:
+answer.wrong.yours = Du hast falsch geantwortet:
+answer.correct.opp = hat richtig geantwortet:
+answer.wrong.opp = hat falsch geantwortet:
+
+de.has = hat
+de.chosen = gewählt:
+de.for = für
+
+category = Kategorie:
+previous.game = Letztes Spiel
+time.left = Verbleibende Zeit:
+personal.info = Persönliche Informationen:
+required = Mit "*" gekennzeichnete Felder sind Pflichtfelder
+winner.page = Gewinneranzeige
+winner.info = Gewinnerinformation
+winner = Gewinner:
+loser = Verlierer:
+new.game = Neues Spiel
+answer = Antwort
+choose = Wählen
+
+firstname = Vorname
+lastname = Nachname
+birthdate = Geburtstag
+male = Männlich
+female = Weiblich
+gender = Geschlecht:

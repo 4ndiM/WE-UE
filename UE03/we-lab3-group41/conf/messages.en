@@ -1,0 +1,51 @@
+accessability.toLogin = Go to Login
+accessability.toRegistration = Go to Signup
+accessability.toWinner = Go to winnerpage
+accessability.registration = Signup
+accessability.question.selection = Go to question selection
+accessability.game.info = Game information
+accessability.leading.player = Leading player
+accessability.player.name = Playername
+accessability.player.score = Playerscore
+accessability.player.second = Second Player
+
+register = Signup
+username = Username
+password = Password
+login = Login 
+logout = Logout
+notRegistered = Not signed up
+toRegistration = Sign up
+
+question = Question
+questions = Questions
+question.choice = Question overview
+
+answer.correct.yours = Your answer was correct:
+answer.wrong.yours = Your answer was wrong:
+answer.correct.opp = ''s answer was correct: 
+answer.wrong.opp = ''s answer was wrong:
+
+de.has = chose
+de.chosen = :
+de.for = for
+
+category = Categorie:
+previous.game = Previous game
+time.left = Remaining time:
+personal.info = Personal Information:
+required = Input fields marked with a "*" are mendatory
+winner.page = Winnerpage
+winner.info = Winnerinformation
+winner = Winner:
+loser = Loser:
+new.game = New Game
+answer = Answer
+choose = Choose
+
+firstname = Firstname
+lastname = Lastname
+birthdate = Birthdate
+male = Male
+female = Female
+gender = Gender

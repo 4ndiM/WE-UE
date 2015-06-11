@@ -1,0 +1,101 @@
+@(game:at.ac.tuwien.big.we15.lab2.api.JeopardyGame)
+@import play.i18n._
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Business Informatics Group Jeopardy! - @Messages.get("winner.page")</title>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/screen.css")"
+        <script src="@routes.Assets.at("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/framework.js")" type="text/javascript"></script>
+    </head>
+    <body id="winner-page">
+      <a class="accessibility" href="#winner">@Messages.get("accessability.toWinner")</a>
+      <!-- Header -->
+      <header role="banner" aria-labelledby="bannerheading">
+         <h1 id="bannerheading">
+            <span class="accessibility">Business Informatics Group </span><span class="gametitle">Jeopardy!</span>
+         </h1>
+      </header>
+      
+      <!-- Navigation -->
+		<nav role="navigation" aria-labelledby="navheading">
+			<h2 id="navheading" class="accessibility">Navigation</h2>
+			<ul>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="@routes.Application.index()" accesskey="l">@Messages.get("logout")</a></li>
+			</ul>
+		</nav>
+      
+      <!-- Content -->
+      <div role="main">
+         <section id="gameinfo" aria-labelledby="winnerinfoheading">
+            <h2 id="winnerinfoheading" class="accessibility">@Messages.get("winner.info")</h2>
+             @if(game.getHumanPlayer().getLatestProfitChange() != null && game.getHumanPlayer().getLatestProfitChange() > 0) {
+             <p class="realUser-info positive-change">@Messages.get("answer.correct.yours") +@game.getHumanPlayer().getLatestProfitChange() €</p>
+             }
+             @if(game.getHumanPlayer().getLatestProfitChange() != null && game.getHumanPlayer().getLatestProfitChange() < 0) {
+             <p class="realUser-info negative-change">@Messages.get("answer.wrong.yours") @game.getHumanPlayer().getLatestProfitChange() €</p>
+             }
+
+             @if(game.getMarvinPlayer().getLatestProfitChange() != null && game.getMarvinPlayer().getLatestProfitChange() > 0) {
+             <p class="realUser-info positive-change">@game.getMarvin().getName() @Messages.get("answer.correct.opp") +@game.getMarvinPlayer().getLatestProfitChange() €</p>
+             }
+             @if(game.getMarvinPlayer().getLatestProfitChange() != null && game.getMarvinPlayer().getLatestProfitChange() < 0) {
+             <p class="realUser-info negative-change">@game.getMarvin().getName() @Messages.get("answer.wrong.opp") @game.getMarvinPlayer().getLatestProfitChange() €</p>
+             }
+
+            <section class="playerinfo leader" aria-labelledby="winnerannouncement">
+               <h3 id="winnerannouncement">@Messages.get("winner") @game.getWinner().getUser().getName()</h3>
+               <img class="avatar" src="@routes.Assets.at("images/avatar/" + game.getWinner().getUser().getAvatar().getImageFull())" alt="Spieler-Avatar @game.getWinner().getUser().getName()" />
+               <table>
+                  <tr>
+                     <th class="accessibility">@Messages.get("username")</th>
+                     <td class="playername">@game.getWinner().getUser().getName()</td>
+                  </tr>
+                  <tr>
+                     <th class="accessibility">@Messages.get("accessability.player.score")</th>
+                     <td class="playerpoints">€ @game.getWinner().getProfit()</td>
+                  </tr>
+               </table>
+            </section>
+            <section class="playerinfo" aria-labelledby="loserheading">
+               <h3 id="loserheading" class="accessibility">@Messages.get("loser") @game.getLoser().getUser().getName()</h3>
+               <img class="avatar" src="@routes.Assets.at("images/avatar/" + game.getLoser().getUser().getAvatar().getImageFull())" alt="Spieler-Avatar @game.getLoser().getUser().getName()" />
+               <table>
+                  <tr>
+                     <th class="accessibility">@Messages.get("username")</th>
+                     <td class="playername">@game.getLoser().getUser().getName()</td>
+                  </tr>
+                  <tr>
+                     <th class="accessibility">@Messages.get("accessability.player.score")</th>
+                     <td class="playerpoints">€ @game.getLoser().getProfit()</td>
+                  </tr>
+               </table>
+            </section>
+         </section>
+         <section id="newgame" aria-labelledby="newgameheading">
+             <h2 id="newgameheading" class="accessibility">@Messages.get("new.game")</h2>
+             @helper.form(action= routes.Game.game){
+                <input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="@Messages.get("new.game")" />
+             }
+         	<!--<form action="jeopardy.xhtml" method="post">
+               	<input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="Neues Spiel" />
+            </form>-->
+         </section>
+      </div>
+        <!-- footer -->
+        <footer role="contentinfo">© 2015 BIG Jeopardy</footer>  
+		<script type="text/javascript">
+        //<![CDATA[
+           $(document).ready(function(){
+         	   if(supportsLocalStorage()){
+         		   localStorage["lastGame"] = new Date().getTime();
+         	   }
+           });
+        //]]>
+        </script>  
+    </body>
+</html>
